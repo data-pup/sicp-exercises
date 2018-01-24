@@ -10,7 +10,7 @@ original Lisp implementation for comparison.
 
 With all that covered, let's jump into things!
 
-### Problem Overview
+## Problem Overview
 
 This problem is a good example of learning to understand what procedures are.
 The contrast between mathematical functions and computer procedures is "a
@@ -69,7 +69,7 @@ by invoking the `sqrt` command like this:
 3.0000915
 ```
 
-### Solution Implementation (F#)
+## Solution Implementation (F#)
 
 I am using .NET Core to solve these problems. So, we will first use this
 command in order to create a new F# project.
@@ -78,5 +78,23 @@ command in order to create a new F# project.
 dotnet new console --language F# --name "NewtonSqrtApproxF#"
 ```
 
+This will create a Program.fs file that looks like this:
 
 
+```fsharp
+open System
+
+[<EntryPoint>]
+let main argv =
+    printfn "Hello World from F#!"
+    0 // return an integer exit code
+
+```
+
+To recap what we saw in the Lisp implementation, we will need to write
+a few different functions to accomplish our goal:
+
+1.  A function to check the quality of the current guess.
+2.  A function to improve the guess.
+3.  A function that will repeat (1) and (2) until a satisfactory guess is found.
+4.  A function that will generate an initial approximation.
