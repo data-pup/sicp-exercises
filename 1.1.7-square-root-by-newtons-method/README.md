@@ -71,7 +71,7 @@ by invoking the `sqrt` command like this:
 
 ## Solution Implementation (F#)
 
-I am using .NET Core to solve these problems. So, we will first use this
+I am using F# on .NET Core to solve these problems. So, we will first use this
 command in order to create a new F# project.
 
 ```
