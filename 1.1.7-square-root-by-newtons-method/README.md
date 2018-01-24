@@ -74,7 +74,7 @@ by invoking the `sqrt` command like this:
 I am using F# on .NET Core to solve these problems. So, we will first use this
 command in order to create a new F# project.
 
-```
+```bash
 dotnet new console --language F# --name "NewtonSqrtApproxF#"
 ```
 
@@ -98,3 +98,14 @@ a few different functions to accomplish our goal:
 2.  A function to improve the guess.
 3.  A function that will repeat (1) and (2) until a satisfactory guess is found.
 4.  A function that will generate an initial approximation.
+
+### Checking the quality of a guess:
+
+Before we do anything else, we should understand how to check the accuracy of
+a given approximation of the square root of a value. Only after this should we
+move on to improving approximations, and doing so within a recursive loop.
+
+The syntax of this will look slightly different in F#, but the same process
+is used: Square the guess, and find the absolute value of the difference.
+
+
