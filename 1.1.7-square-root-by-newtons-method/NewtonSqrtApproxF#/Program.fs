@@ -20,9 +20,11 @@ let checkGuess (guess : float, x : float) =
     guess
     |> square
     |> fun i -> x - i
+    |> System.Math.Abs
     |> fun i -> i < 0.001
 
 
+// Recursively identify the approximate square root of x.
 let rec sqrtIter (guess : float, x : float) =
     match checkGuess(guess, x) with
     | true -> guess
@@ -37,7 +39,7 @@ let sqrt (x : float) = sqrtIter (1.0, x)
 
 [<EntryPoint>]
 let main argv =
-    let x = 9.0
-    x |> sqrt |> printfn "Appoximation of sqrt(9) = %f"
+    let x = 2.0
+    x |> sqrt |> printfn "Appoximation of sqrt(%f) = %f" x
 
     0 // return an integer exit code
