@@ -108,11 +108,28 @@ move on to improving approximations, and doing so within a recursive loop.
 The syntax of this will look slightly different in F#, but the same process
 is used: Square the guess, and find the absolute value of the difference.
 
+That function could be implemented in many ways, but here's how I did it:
 
-```
+```fsharp
 let checkGuess (guess : float, x : float) =
     guess
     |> square
     |> fun i -> x - i
+    |> System.Math.Abs
     |> fun i -> i < 0.001
 ```
+
+This might look impossibly foreign to somebody who is primarily acquainted
+with imperative programming languages. The function is essentially one
+statement, with the input value `guess` passed through a pipeline containing
+a series of function calls.
+
+If you visualize this as a flow of data, with `guess` being passed as the
+input, it might make more sense. This then proceeds to the `square` function,
+which passes the value `guess * guess` to a lambda function `x - i`.
+
+The difference between `x` and `i` is then passed into the `System.Math.Abs`
+function, a public static .NET method. Finally, the absolute value is compared
+to the threshold, a hardcoded `0.001`. The boolean result of that comparison
+is the result of this statement, and functions as the return value of
+`checkGuess` because it is the final statement in the function.
