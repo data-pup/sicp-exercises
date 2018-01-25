@@ -4,6 +4,13 @@
 // ----------------------------------------------------------------------------
 
 
+// Check that the number of arguments given to the program is correct.
+let checkArgumentCount (argv : string[]) =
+    match argv.Length with
+    | 1 -> true
+    | _ -> false
+
+
 // Find the square of a number x.
 let square x = x * x
 
@@ -38,17 +45,14 @@ let rec sqrtIter (guess : float, x : float) =
 let sqrt (x : float) = sqrtIter (1.0, x)
 
 
-// Check that the number of arguments given to the program is correct.
-let checkArgumentCount (argv : string[]) =
-    match argv.Length with
-    | 1 -> true
-    | _ -> false
-
-
 [<EntryPoint>]
 let main argv =
-    checkArgumentCount argv |> ignore
-    printfn "%s" argv.[0]
-    let x = 2.0
-    x |> sqrt |> printfn "Appoximation of sqrt(%f) = %f" x
-    0 // return an integer exit code
+    match checkArgumentCount argv with
+    | false ->
+        printfn "Incorrect number of arguments given! 1 argument expected."
+        printfn "Ex: dotnet run 2"
+        1 // Return an integer exit code indicating failure.
+    | true ->
+        let x = argv.[0] |> System.Double.Parse
+        x |> sqrt |> printfn "Appoximation of sqrt(%f) = %f" x
+        0 // return an integer exit code
