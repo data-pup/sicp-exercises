@@ -23,12 +23,21 @@ let checkGuess (guess : float, x : float) =
     |> fun i -> i < 0.001
 
 
-let rec sqrtIter(guess : float, x : float) =
-    0
+let rec sqrtIter (guess : float, x : float) =
+    match checkGuess(guess, x) with
+    | true -> guess
+    | false ->
+        let improvedGuess = improveGuess(guess, x)
+        sqrtIter (improvedGuess, x)
+
+
+// Find the approximation of the square root, beginning with a guess of 1.
+let sqrt (x : float) = sqrtIter (1.0, x)
 
 
 [<EntryPoint>]
 let main argv =
-    printfn "Hello World from F#!"
+    let x = 9.0
+    x |> sqrt |> printfn "Appoximation of sqrt(9) = %f"
 
     0 // return an integer exit code
