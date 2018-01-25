@@ -109,3 +109,10 @@ The syntax of this will look slightly different in F#, but the same process
 is used: Square the guess, and find the absolute value of the difference.
 
 
+```
+let checkGuess (guess : float, x : float) =
+    guess
+    |> square
+    |> fun i -> x - i
+    |> fun i -> i < 0.001
+```
