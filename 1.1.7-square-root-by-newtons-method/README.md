@@ -154,3 +154,27 @@ to approximate the square root of `x`, and have determined that our guess
 is not sufficiently close to the actual square root of `x`, we can find
 an improved guess by finding the average of `guess` and `x/guess`.
 
+So, how to do that in F#? Easy!
+
+```fsharp
+// Find the average of two numbers.
+let average x y = ((x + y) / 2.0)
+
+
+// Improve an approximation.
+let improveGuess (guess : float, x : float) = x / guess |> average guess
+```
+
+The first function `average` does what you might expect. It receives two
+parameters, and returns the average. What about the `improveGuess`
+function?
+
+We could rewrite it like this, to break things up a little bit:
+
+```fsharp
+let improveGuess (guess : float, x : float) =
+  x / guess
+  |> average guess
+```
+
+The first expression calculates `x/guess`, which is easy enough.
