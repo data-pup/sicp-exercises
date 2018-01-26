@@ -101,7 +101,7 @@ a few different functions to accomplish our goal:
 3.  A function that will repeat (1) and (2) until a satisfactory guess is found.
 4.  A function that will generate an initial approximation.
 
-### Checking the Quality of an Approximation:
+### 1. Checking the Quality of an Approximation:
 
 Before we do anything else, we should understand how to check the accuracy of
 a given approximation of the square root of a value. Only after this should we
@@ -135,3 +135,22 @@ function, a public static .NET method. Finally, the absolute value is compared
 to the threshold, a hardcoded `0.001`. The boolean result of that comparison
 is the result of this statement, and functions as the return value of
 `checkGuess` because it is the final statement in the function.
+
+### 2. Improving the Quality of an Approximation
+
+Next we will need to write a function that will improve the quality
+of an approximation, since we probably won't be correct on our first
+guess. (Especially since our implementation starts with a guess of 1!)
+
+Let's review the Lisp implementation once more before we do this in F#:
+
+```lisp
+(define (improve guess x)
+  (average guess (/ x guess)))
+```
+
+In plainer math terms for those unfamiliar with Lisp, if we are trying
+to approximate the square root of `x`, and have determined that our guess
+is not sufficiently close to the actual square root of `x`, we can find
+an improved guess by finding the average of `guess` and `x/guess`.
+
