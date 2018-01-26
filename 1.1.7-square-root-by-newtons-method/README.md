@@ -71,6 +71,8 @@ by invoking the `sqrt` command like this:
 
 ## Solution Implementation (F#)
 
+### Creating a New Project
+
 I am using F# on .NET Core to solve these problems. So, we will first use this
 command in order to create a new F# project.
 
@@ -99,7 +101,7 @@ a few different functions to accomplish our goal:
 3.  A function that will repeat (1) and (2) until a satisfactory guess is found.
 4.  A function that will generate an initial approximation.
 
-### Checking the quality of a guess:
+### Checking the Quality of an Approximation:
 
 Before we do anything else, we should understand how to check the accuracy of
 a given approximation of the square root of a value. Only after this should we
