@@ -195,4 +195,36 @@ parameters has been given already. Neat!
 So, that is an overview of the process used to improve an approximation of
 the square root of a number.
 
-### TODO (3, 4, and conclusion)
+### 3 & 4. Generating an Initial Guess, and Repeatedly Improving Approximations
+
+Now, we have functions defined that will check the accuracy of an approximation,
+and a procedure that will reliably improve an approximation. All that remains
+is to implement a procedure that will repeat this process until the guess
+is within a given threshold of accuracy, and a way to generate an initial guess.
+
+```fsharp
+// Recursively identify the approximate square root of x.
+let rec sqrtIter (guess : float, x : float) =
+    match checkGuess(guess, x) with
+    | true -> guess
+    | false ->
+        let improvedGuess = improveGuess(guess, x)
+        sqrtIter (improvedGuess, x)
+```
+
+One difference might stand out to you here initially, the `rec` keyword. This
+is a special keyword that specifies whether a function is allowed to invoke
+itself within the body of the function. The rest of it should be decently
+clear at this point. The logic of the function is as follows:
+
+1.  Check whether the given parameter `guess` is a sufficiently accurate
+approximation of the square root of `x`, using the `checkGuess` function.
+2a.  If the guess is within the threshold, return the guess.
+2b.  If the guess is not within the threshold, find an improved guess, and return the
+result of a recursive call to the function using the improved guess.
+
+## Conclusion
+
+Hopefully this overview provided an interesting glimpse into the functional
+programming world if you were not previously familiar, or an interesting
+comparison of Lisp and F# otherwise.
