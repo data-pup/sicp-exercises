@@ -15,13 +15,25 @@ concept to understand for aspiring computer scientists. Huffman coding is
 a good example of a nontrivial data abstraction, and is an efficient method for
 implementing lossless data compression.
 
-### Background
+## Background
 
-todo ...
+For those interested in CS [trivia|history], here's a little bit of
+background on the algorithm. David Huffman created the algorithm for an MIT
+information theory course, attempting to find the most efficient binary code.
 
-### Simple Example
+The algorithm functions by using a frequency-sorted binary tree, with more
+common symbols being placed higher in the tree. To briefly summarize, this
+means more common symbols are generally represented using fewer bits
+than less common symbols, which helps conserve space in a more reliable way
+than previous methods that used a bottom-up sorting.
 
-todo ...
+## Simple Example
+
+The best way to get an understanding of this is to go through a simple example
+of a 1:1 encoding method, and a simple example using the Huffman Coding Tree.
+
+
+
 
 ### TypeScript Implementation
 
