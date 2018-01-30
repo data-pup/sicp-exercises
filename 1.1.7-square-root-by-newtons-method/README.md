@@ -223,6 +223,15 @@ approximation of the square root of `x`, using the `checkGuess` function.
 2b.  If the guess is not within the threshold, find an improved guess, and return the
 result of a recursive call to the function using the improved guess.
 
+And now, we tie it all up in a function that can be called by a user! The
+`sqrt` function below will receive a single input, and invoke the recursive
+function shown above using an initial guess of 1.0.
+
+```fsharp
+// Find the approximation of the square root, beginning with a guess of 1.
+let sqrt (x : float) = sqrtIter (1.0, x)
+```
+
 ## Conclusion
 
 Hopefully this overview provided an interesting glimpse into the functional
