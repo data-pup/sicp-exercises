@@ -177,4 +177,22 @@ let improveGuess (guess : float, x : float) =
   |> average guess
 ```
 
-The first expression calculates `x/guess`, which is easy enough.
+The first expression calculates `x/guess`, which is straightforward enough.
+The result of this expression is sent through the pipeline to the next
+expression, which is a simple example of currying. This might look strange
+at first, but I will try to provide a brief explanation.
+
+The `average` function above is of type `float -> float -> float`. If we had
+defined it with a statement like `let average (x: float, y: float)`, it would
+be a function of type `float * float -> float`.
+
+This distinction might seem subtle, but the former function of type
+`float -> float -> float` will allow us to use the function in a pipeline
+using statements like `|> average guess`. Why? Well, you can think of
+`average guess` as a funcntion of type `float -> float`, because one of the
+parameters has been given already. Neat!
+
+So, that is an overview of the process used to improve an approximation of
+the square root of a number.
+
+### TODO (3, 4, and conclusion)
