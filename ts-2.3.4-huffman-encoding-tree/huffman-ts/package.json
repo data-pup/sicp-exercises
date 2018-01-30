@@ -4,7 +4,9 @@
   "description": "This is a basic exercise in encoding/decoding Huffman trees.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build-ts && npm run lint-ts",
+    "build-ts": "tsc",
+    "lint-ts": "tslint -c tslint.json -p tsconfig.json",
     "run": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
