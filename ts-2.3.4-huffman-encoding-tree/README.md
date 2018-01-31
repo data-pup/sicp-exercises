@@ -63,7 +63,11 @@ so it is not an especially difficult exercise.)
 
 ### Example (Huffman)
 
-todo ...
+I would like to note that we will only loosely cover the algorithm for
+creating the encoding tree here, in the interest of keeping things brief.
+
+...
+
 
 ## TypeScript Implementation
 
