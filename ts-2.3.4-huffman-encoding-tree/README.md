@@ -71,4 +71,8 @@ creating the encoding tree here, in the interest of keeping things brief.
 
 ## TypeScript Implementation
 
-todo ...
+### Counting the occurence of each character
+
+Next, we need to count the number of occurences of each unique character in
+the input string. This can be done using a priority queue.
+
