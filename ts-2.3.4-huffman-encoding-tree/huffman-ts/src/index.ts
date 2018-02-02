@@ -1,9 +1,10 @@
-"use scrict";
 
-import * as stringProcessing from "./lib/stringProcessing";
+import { printHello } from "./lib/string-processing";
 
-function main() {
-    process.stdout.write("Hello\n");
-}
+// Define the main function.
+const main = () => {
+    printHello();
+};
 
+// Invoke the main function.
 main();
