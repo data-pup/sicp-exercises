@@ -1,8 +1,7 @@
 "use scrict";
 
-
 function main() {
-    console.log("Hello World");
+    process.stdout.write("Hello\n");
 }
 
 main();

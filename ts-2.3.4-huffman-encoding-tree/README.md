@@ -71,6 +71,25 @@ creating the encoding tree here, in the interest of keeping things brief.
 
 ## TypeScript Implementation
 
+### Difficulties Encountered
+
+This problem was one of my first deep forrays into TypeScript (TS), so there
+were some difficulties encountered during the process. This is the fun part
+of learning a new language however, if you have the right attitude.
+
+First, we do need to explicitly install the node package for TypeScript, by
+specifying it as a dependency in the package.json file. The standard library
+modules being unrecognized from my TS was confusing at first, but it is
+important to keep the distinction between TS and Node.js in mind when
+developing in this language.
+
+While the code will be transpiled into JavaScript in order to run on Node.js,
+we do need to make the typing information available to VS Code in order for
+it to recognize the modules in the Node.js API.
+
+Note, that there are `ts-node` and `@types/node` modules. Which should you be
+using? By convention, `@types` is the prefix used for TypeScript modules.
+
 ### Counting the occurence of each character
 
 Next, we need to count the number of occurences of each unique character in
