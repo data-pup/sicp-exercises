@@ -1,5 +1,8 @@
-'use scrict';
+"use scrict";
 
-function getFrequencyDictionary(inputString:string) {
-    let characters = inputString.split('');
+
+function main() {
+    console.log("Hello World");
 }
+
+main();
