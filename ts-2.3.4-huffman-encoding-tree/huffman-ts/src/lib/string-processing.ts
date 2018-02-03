@@ -1,8 +1,5 @@
 "use strict";
 
-export const printHello = () => {
-    process.stdout.write("Imported a function!\n");
-};
 
 // export const getCharacterFrequencies = (input: string): Array<String> => {
 export const getCharacterFrequencies = (input: string) => {
