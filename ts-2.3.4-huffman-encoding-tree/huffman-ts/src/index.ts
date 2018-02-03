@@ -13,7 +13,7 @@ const main = () => {
     const dString = d.toString();
     process.stdout.write(`Dictionary:\n${dString}\n`);
 
-    getCharacterFrequencies("Hello!");
+    // getCharacterFrequencies("Hello!");
 };
 
 // Invoke the main function.
