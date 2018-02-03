@@ -1,4 +1,6 @@
 
+import { Dictionary } from "typescript-collections";
+
 import { getCharacterFrequencies } from "./lib/string-processing";
 
 // Define the main function.
