@@ -11,7 +11,7 @@ const printDictionary = (dict: Dictionary<string, number>): void => {
 // Define the main function.
 const main = () => {
     // Create a dictionary object, and then add some testing data.
-    const s = "Hello";
+    const s = "pet the good dog";
     const d = getCharFrequencies(s);
     printDictionary(d);
 };
