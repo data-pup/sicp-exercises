@@ -1,19 +1,19 @@
-
 import { Dictionary } from "typescript-collections";
+import { getCharFrequencies } from "./lib/string-processing";
 
-import { getCharacterFrequencies } from "./lib/string-processing";
+// Define a function that will print a dictionary.
+const printDictionary = (dict: Dictionary<string, number>): void => {
+    process.stdout.write("Dictionary Contents:\n");
+    const dString = dict.toString();
+    process.stdout.write(`Dictionary:\n${dString}\n`);
+};
 
 // Define the main function.
 const main = () => {
-
     // Create a dictionary object, and then add some testing data.
-    const d = new Dictionary<string, number>();
-    d.setValue("hello", 0);
-    d.setValue("world", 1);
-    const dString = d.toString();
-    process.stdout.write(`Dictionary:\n${dString}\n`);
-
-    // getCharacterFrequencies("Hello!");
+    const s = "Hello";
+    const d = getCharFrequencies(s);
+    printDictionary(d);
 };
 
 // Invoke the main function.
