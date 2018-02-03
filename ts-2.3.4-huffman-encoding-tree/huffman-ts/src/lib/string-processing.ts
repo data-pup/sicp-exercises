@@ -1,6 +1,5 @@
 "use strict";
 
-
 // export const getCharacterFrequencies = (input: string): Array<String> => {
 export const getCharacterFrequencies = (input: string) => {
     const inputChars = input.split("");
