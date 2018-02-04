@@ -9,28 +9,22 @@ const initFreqDictionary = (uniqueCharacters: string[])
     // Initialize a new dictionary.
     const freqDict = new Dictionary<string, number>();
     uniqueCharacters.forEach( // Set each key's value to 0.
-        (item, index, arr) => freqDict.setValue(item, 0),
-    ); // Return the intialized dictionary.
-    return freqDict;
+        (item, index, arr) => freqDict.setValue(item, 0));
+    return freqDict; // Return the intialized dictionary.
 };
 
 // Define a function that will count the occurences of each character.
 const getCharFrequencies = (input: string): Dictionary<string, number> => {
-
     // Find a list of the unique characters in the string.
     const inputChars = input.split(""); // Split the string.
     const uniqueCharacters = inputChars.filter( // Filter for unique characters.
-        (item, index, arr) => arr.indexOf(item) === index,
-    );
-
+        (item, index, arr) => arr.indexOf(item) === index);
     // Initialize the frequency dictionary, then process the string.
     const returnValue = initFreqDictionary(uniqueCharacters);
     for (const currChar of inputChars) { // Iterate through the character array.
         returnValue.setValue(currChar, // Increment the occurence value.
-            returnValue.getValue(currChar) + 1,
-        );
+            returnValue.getValue(currChar) + 1);
     }
-
     return returnValue; // Return the frequency dictionary.
 };
 
