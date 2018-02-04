@@ -5,7 +5,7 @@ import { Dictionary } from "typescript-collections";
 
 // Define a function that will initialize the character frequency dictionary.
 const initFreqDictionary = (uniqueCharacters: string[])
-                            : Dictionary<string, number> => {
+                                            : Dictionary<string, number> => {
     // Initialize a new dictionary.
     const freqDict = new Dictionary<string, number>();
     uniqueCharacters.forEach( // Set each key's value to 0.
@@ -14,7 +14,8 @@ const initFreqDictionary = (uniqueCharacters: string[])
 };
 
 // Define a function that will count the occurences of each character.
-const getCharFrequencies = (input: string): Dictionary<string, number> => {
+export const getCharFrequencies = (input: string)
+                                        : Dictionary<string, number> => {
     // Find a list of the unique characters in the string.
     const inputChars = input.split(""); // Split the string.
     const uniqueCharacters = inputChars.filter( // Filter for unique characters.
@@ -27,7 +28,3 @@ const getCharFrequencies = (input: string): Dictionary<string, number> => {
     }
     return freqDict; // Return the frequency dictionary.
 };
-
-// Export the dictionary type from this module.
-export { getCharFrequencies };
-export { Dictionary } from "typescript-collections";
