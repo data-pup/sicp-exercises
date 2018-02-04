@@ -20,12 +20,12 @@ const getCharFrequencies = (input: string): Dictionary<string, number> => {
     const uniqueCharacters = inputChars.filter( // Filter for unique characters.
         (item, index, arr) => arr.indexOf(item) === index);
     // Initialize the frequency dictionary, then process the string.
-    const returnValue = initFreqDictionary(uniqueCharacters);
+    const freqDict = initFreqDictionary(uniqueCharacters);
     for (const currChar of inputChars) { // Iterate through the character array.
-        returnValue.setValue(currChar, // Increment the occurence value.
-            returnValue.getValue(currChar) + 1);
+        freqDict.setValue(currChar, // Increment the occurence value.
+            freqDict.getValue(currChar) + 1);
     }
-    return returnValue; // Return the frequency dictionary.
+    return freqDict; // Return the frequency dictionary.
 };
 
 // Export the dictionary type from this module.
