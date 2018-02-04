@@ -1,5 +1,18 @@
-import { Dictionary } from "typescript-collections";
+import { Dictionary, PriorityQueue } from "typescript-collections";
 import { getCharFrequencies } from "./lib/count-characters";
+
+// Temporary function.
+const tempFunction = (): void => {
+    // Initialize a testing queue.
+    const pq = new PriorityQueue<string>();
+    pq.add("hello");
+    pq.add("hello");
+    pq.add("world");
+
+    // Print information about the queue and print the elements.
+    process.stdout.write(`Queue has ${pq.size()} elements`);
+    process.stdout.write(`Top queue item is ${pq.peek()}`);
+};
 
 // Define a function that will print a dictionary.
 const printDictionary = (dict: Dictionary<string, number>): void => {
@@ -17,4 +30,5 @@ const main = () => {
 };
 
 // Invoke the main function.
-main();
+// main();
+tempFunction();
