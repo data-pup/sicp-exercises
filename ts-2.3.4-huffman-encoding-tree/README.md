@@ -87,8 +87,11 @@ While the code will be transpiled into JavaScript in order to run on Node.js,
 we do need to make the typing information available to VS Code in order for
 it to recognize the modules in the Node.js API.
 
-Note, that there are `ts-node` and `@types/node` modules. Which should you be
-using? By convention, `@types` is the prefix used for TypeScript modules.
+In order for the Node API to be recognized by our editor within TypeScript,
+import the typing information by including the `@types/node` package in the
+development dependencies. Note that this package is a development dependency
+because it is not required to run the code that we write, it is just used
+to help us during the development process.
 
 ### Counting the occurence of each character
 
