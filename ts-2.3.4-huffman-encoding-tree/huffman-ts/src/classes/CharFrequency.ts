@@ -1,8 +1,8 @@
 import { ICharFrequency } from "../interfaces/ICharFrequency";
 
 export class CharFrequency implements ICharFrequency {
-    private character: string;
-    private occurences: number;
+    private readonly character: string;
+    private readonly occurences: number;
 
     constructor(c: string, f: number) {
         this.character = c;
