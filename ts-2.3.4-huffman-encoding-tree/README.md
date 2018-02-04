@@ -96,5 +96,13 @@ to help us during the development process.
 ### Counting the occurence of each character
 
 Next, we need to count the number of occurences of each unique character in
-the input string. This can be done using a priority queue.
+the input string. To do this, we will need to iterate through each character
+in the string, and increment the corresponding entry in a dictionary.
 
+I used the `typescript-collections` module from npm to do this. This includes
+TypeScript implementations of a number of data structures. Two functions are
+shown below which will do this.
+
+```javascript
+// todo ...
+```
