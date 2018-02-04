@@ -1,5 +1,5 @@
 import { Dictionary } from "typescript-collections";
-import { getCharFrequencies } from "./lib/string-processing";
+import { getCharFrequencies } from "./lib/count-characters";
 
 // Define a function that will print a dictionary.
 const printDictionary = (dict: Dictionary<string, number>): void => {
