@@ -95,7 +95,7 @@ to help us during the development process.
 
 ### Counting the occurence of each character
 
-Next, we need to count the number of occurences of each unique character in
+First, we need to count the number of occurences of each unique character in
 the input string. To do this, we will need to iterate through each character
 in the string, and increment the corresponding entry in a dictionary.
 
@@ -106,3 +106,18 @@ shown below which will do this.
 ```javascript
 // todo ...
 ```
+
+### Using a priority queue
+
+Once we have created a dictionary of frequency values in the plaintext for each
+character, we will need to sort the dictionary. We can do this using a priority
+queue, where the value is the character, and the priority is the number of
+times that the character occurs. This is necessary because dictionaries are not
+sorted. A detail that we will need to remember is that this will mean adding
+a comparison function for the priority queue, so that it can correctly sort
+our entries. Otherwise, they will end up being placed in the queue relative
+to their alphabetical order.*
+
+* Sort of. They will be in descending order, because the queue is using the
+string value as the means of specifying the priority. So, `z` will be placed
+ahead of `a` and so forth.
