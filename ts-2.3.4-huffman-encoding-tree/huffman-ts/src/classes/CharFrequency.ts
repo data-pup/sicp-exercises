@@ -1,6 +1,6 @@
-import { ICharFrequency } from "../interfaces/ICharFrequency";
+import { ICharFreqRecord } from "../interfaces/ICharFrequency";
 
-export class CharFreqRecord implements ICharFrequency {
+export class CharFreqRecord implements ICharFreqRecord {
     private readonly character: string;
     private readonly occurences: number;
 

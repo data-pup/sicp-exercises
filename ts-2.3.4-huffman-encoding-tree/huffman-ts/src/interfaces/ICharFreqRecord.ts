@@ -1,4 +1,4 @@
-export interface ICharFrequency {
+export interface ICharFreqRecord {
     getCharacter(): string;
     getOccurences(): number;
 }
