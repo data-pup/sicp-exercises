@@ -7,7 +7,7 @@ import { printCharFreqQueue } from "./lib/printCharFreqQueue";
 
 // Define the main function.
 const main = () => {
-    const s: string = "testing string";
+    const s: string = "This is a testing string, to demonstrate a queue.";
     const q = initializeQueue(s);
     printCharFreqQueue(q);
 };
