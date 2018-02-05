@@ -11,7 +11,7 @@ export const initializeQueue = (inputString: string)
     const freqQueue = new PriorityQueue<CharFreqRecord>(compareCharFreqRecords);
     // Check that the input string was not empty, or undefined.
     if (isNullOrUndefined(inputString) || inputString.length === 0) {
-        return freqQueue;
+        return freqQueue; // Return an empty queue if the input string is empty.
     } else { // Split and sort the input string, initialize loop variables.
         const sortedChars: string[] = inputString.split("").sort();
         let currChar: string = sortedChars[0];
