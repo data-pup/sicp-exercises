@@ -9,7 +9,7 @@ class HuffmanBTreeNode {
             new Array<string> (data.getCharacter()), // Child token array.
             data.getOccurences(), // Cummulative weight value.
             null, // Empty left pointer.
-            null  // Empty right pointer.
+            null,  // Empty right pointer.
         );
     }
 
