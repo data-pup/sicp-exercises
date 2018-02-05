@@ -1,7 +1,7 @@
-import { ICharFreqRecord } from "../interfaces/ICharFrequency";
+import { ICharFreqRecord } from "../interfaces/ICharFreqRecord";
 
 // Compare CharFrequency objects, this is used to build the priority queue.
-export const compareCharFrequencies = (a: ICharFreqRecord, b: ICharFreqRecord)
+export const compareCharFreqRecords = (a: ICharFreqRecord, b: ICharFreqRecord)
                                         : number => {
     // Find the number of occurences stored in each record.
     const [aCount, bCount] = [a.getOccurences(), b.getOccurences()];

@@ -1,14 +1,14 @@
 import { PriorityQueue } from "typescript-collections";
 import { isNullOrUndefined } from "util";
-import { CharFreqRecord } from "../classes/CharFrequency";
-import { compareCharFrequencies } from "./compareCharFrequencies";
+import { CharFreqRecord } from "../classes/CharFreqRecord";
+import { compareCharFreqRecords } from "./compareCharFreqRecords";
 
 // Declare a function that will create a new priority queue used to build
 // the Huffman encoding tree.
 export const initializeQueue = (inputString: string)
                                 : PriorityQueue<CharFreqRecord> => {
     // Initialize a new priority queue, using the imported comparison function.
-    const freqQueue = new PriorityQueue<CharFreqRecord>(compareCharFrequencies);
+    const freqQueue = new PriorityQueue<CharFreqRecord>(compareCharFreqRecords);
     // Check that the input string was not empty, or undefined.
     if (isNullOrUndefined(inputString) || inputString.length === 0) {
         return freqQueue;

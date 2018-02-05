@@ -1,7 +1,7 @@
 import { PriorityQueue } from "typescript-collections";
-import { CharFreqRecord } from "./classes/CharFrequency";
-import { ICharFreqRecord } from "./interfaces/ICharFrequency";
-import { compareCharFrequencies } from "./lib/compareCharFrequencies";
+import { CharFreqRecord } from "./classes/CharFreqRecord";
+import { ICharFreqRecord } from "./interfaces/ICharFreqRecord";
+import { compareCharFreqRecords } from "./lib/compareCharFreqRecords";
 import { initializeQueue } from "./lib/initCharFreqQueue";
 
 // Define the main function.

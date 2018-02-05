@@ -1,4 +1,4 @@
-import { ICharFreqRecord } from "../interfaces/ICharFrequency";
+import { ICharFreqRecord } from "../interfaces/ICharFreqRecord";
 
 export class CharFreqRecord implements ICharFreqRecord {
     private readonly character: string;
