@@ -1,6 +1,6 @@
 import { ICharFrequency } from "../interfaces/ICharFrequency";
 
-export class CharFrequency implements ICharFrequency {
+export class CharFreqRecord implements ICharFrequency {
     private readonly character: string;
     private readonly occurences: number;
 
