@@ -2,6 +2,7 @@ import { PriorityQueue } from "typescript-collections";
 import { CharFreqRecord } from "./classes/CharFreqRecord";
 import { ICharFreqRecord } from "./interfaces/ICharFreqRecord";
 import { compareCharFreqRecords } from "./lib/compareCharFreqRecords";
+import { createEncodingTree } from "./lib/createEncodingTree";
 import { initializeQueue } from "./lib/initCharFreqQueue";
 import { printCharFreqQueue } from "./lib/printCharFreqQueue";
 
