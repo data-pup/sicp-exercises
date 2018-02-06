@@ -82,15 +82,13 @@ import { CharFreqRecord } from "../src/classes/CharFreqRecord";
             ["", 1],
             ["Hello", 1],
             [undefined, 1],
-        ];
-        // Use the map function to find the results for each input case.
+        ]; // Use the map function to find the results for each input case.
         const invalidCheckResults = invalidValues.map( i => {
             return CharFreqRecord.paramsAreValid(
                 <string> i[0],
                 <number> i[1],
             );
-        });
-        // Count the number of inputs that were considered valid.
+        }); // Count the number of inputs that were considered valid.
         const numberOfPassedChecks = invalidCheckResults
             .filter( (val) => val == true ).length;
         const expectedNumberOfPassedChecks = 0;
@@ -101,13 +99,13 @@ import { CharFreqRecord } from "../src/classes/CharFreqRecord";
     @test public testParamsAreValidFunctionWithValidInputs() {
         const validValues = [ // Define an array of valid input values.
             ["a", 1],
-        ];
+        ]; // Use the map function to find the results that were accepted.
         const validCheckResults = validValues.map( i => {
             return CharFreqRecord.paramsAreValid(
                 <string> i[0],
                 <number> i[1],
             );
-        });
+        }); // Assert that all of the tests passed.
         const numberOfPassedChecks = validCheckResults
             .filter( (val) => val == true ).length;
         const expectedNumberOfPassedChecks = validCheckResults.length;
