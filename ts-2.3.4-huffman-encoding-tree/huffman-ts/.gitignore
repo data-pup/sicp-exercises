@@ -4,3 +4,5 @@ node_modules/
 # Ignore the compiler output directory.
 dist/
 
+# Ignore the NYC output directory. (Test coverage tool.)
+.nyc_output/
