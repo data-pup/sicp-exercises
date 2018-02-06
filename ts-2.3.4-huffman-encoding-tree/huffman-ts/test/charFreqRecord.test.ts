@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { suite, test } from "mocha-typescript";
-import { CharFreqRecord } from "../src/classes/CharFreqRecord";
+import { CharFreqRecord } from "../../src/classes/CharFreqRecord";
 
 @suite class TestCharFreqRecord {
 
