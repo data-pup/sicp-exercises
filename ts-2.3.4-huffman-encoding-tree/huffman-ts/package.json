@@ -8,6 +8,7 @@
     "build-ts": "tsc",
     "lint-ts": "tslint -c tslint.json -p tsconfig.json",
     "serve": "node dist/index.js",
+    "pretest": "tsc",
     "test": "nyc mocha",
     "test-help": "mocha --help"
   },
