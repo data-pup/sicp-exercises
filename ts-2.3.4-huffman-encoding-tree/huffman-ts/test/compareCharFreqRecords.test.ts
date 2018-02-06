@@ -3,7 +3,8 @@ import { suite, test } from "mocha-typescript";
 import { CharFreqRecord } from "../src/classes/CharFreqRecord";
 import { compareCharFreqRecords } from "../src/lib/compareCharFreqRecords";
 
-@suite class testCompareCharFreqRecords {
+@suite class TestCompareCharFreqRecords {
+
     @test public testEqual() {
         const a = new CharFreqRecord("a", 1);
         const b = new CharFreqRecord("b", 1);
@@ -12,4 +13,23 @@ import { compareCharFreqRecords } from "../src/lib/compareCharFreqRecords";
         assert.equal(expectedResult, compareResult,
             "Expected result of 0 for two records with equal priority.");
     }
+
+    @test public testGreaterThan() {
+        const a = new CharFreqRecord("a", 2);
+        const b = new CharFreqRecord("b", 1);
+        const compareResult = compareCharFreqRecords(a, b);
+        const expectedMinimum = 0;
+        assert.isAbove(compareResult, expectedMinimum,
+            "Expected result of 0 for two records with equal priority.");
+    }
+
+    @test public testLessThan() {
+        const a = new CharFreqRecord("a", 1);
+        const b = new CharFreqRecord("b", 2);
+        const compareResult = compareCharFreqRecords(a, b);
+        const expectedMaximum = 0;
+        assert.isBelow(compareResult, expectedMaximum,
+            "Expected result of 0 for two records with equal priority.");
+    }
+
 }
