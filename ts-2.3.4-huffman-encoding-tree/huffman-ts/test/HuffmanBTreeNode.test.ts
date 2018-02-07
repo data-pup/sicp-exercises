@@ -11,8 +11,6 @@ import { HuffmanBTreeNode } from '../src/classes/HuffmanBTreeNode';
             [], 0, undefined, undefined);
         // Check that the variable is not null and is of the correct type.
         assert.isNotNull(emptyHuffmanTree);
-        assert.typeOf(emptyHuffmanTree, 'HuffmanBTreeNode',
-                      'Variable is not of correct type.');
         // Check that the child array is not null, and is empty.
         assert.isNotNull(emptyHuffmanTree.childVals);
         assert.isEmpty(emptyHuffmanTree.childVals);
