@@ -1,6 +1,6 @@
 import { ICharFreqRecord } from "../interfaces/ICharFreqRecord";
 
-class HuffmanBTreeNode {
+export class HuffmanBTreeNode {
 
     // Create a leaf node using a frequency record.
     public static fromCharFreqRecord(data: ICharFreqRecord): HuffmanBTreeNode {
@@ -28,8 +28,8 @@ class HuffmanBTreeNode {
     // Constructor definition.
     constructor(children: string[], weight: number,
                 left: HuffmanBTreeNode, right: HuffmanBTreeNode) {
-        this.nodeWeight = weight;
         this.childVals = children;
+        this.nodeWeight = weight;
         this.left = null;
         this.right = null;
     }
