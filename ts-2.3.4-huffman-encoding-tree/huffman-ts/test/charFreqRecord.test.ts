@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { suite, test } from "mocha-typescript";
-import { CharFreqRecord } from "../../src/classes/CharFreqRecord";
+import { CharFreqRecord } from "../src/classes/CharFreqRecord";
 
 @suite class TestCharFreqRecord {
 
@@ -10,7 +10,7 @@ import { CharFreqRecord } from "../../src/classes/CharFreqRecord";
         // Check the character getter method.
         const actualChar = record.getCharacter();
         const expectedChar = "a";
-        assert.equal(actualChar, expectedChar, "Expected string 'a'.")
+        assert.equal(actualChar, expectedChar, "Expected string 'a'.");
         // Check the occurence count getter method.
         const actualOccurences = record.getOccurences();
         const expectedOccurences = 1;
@@ -70,8 +70,8 @@ import { CharFreqRecord } from "../../src/classes/CharFreqRecord";
         let s = record.getCharacter();
         s = "new string value"; // Reassign the value.
         // Check that the method return is not different.
-        let actualChar = record.getCharacter();
-        let expectedChar = "a";
+        const actualChar = record.getCharacter();
+        const expectedChar = "a";
         assert.equal(actualChar, expectedChar, "Private object was changed.");
     }
 
@@ -83,14 +83,14 @@ import { CharFreqRecord } from "../../src/classes/CharFreqRecord";
             ["Hello", 1],
             [undefined, 1],
         ]; // Use the map function to find the results for each input case.
-        const invalidCheckResults = invalidValues.map( i => {
+        const invalidCheckResults = invalidValues.map( (i) => {
             return CharFreqRecord.paramsAreValid(
-                <string> i[0],
-                <number> i[1],
+                i[0] as string,
+                i[1] as number,
             );
         }); // Count the number of inputs that were considered valid.
         const numberOfPassedChecks = invalidCheckResults
-            .filter( (val) => val == true ).length;
+            .filter( (val) => val === true ).length;
         const expectedNumberOfPassedChecks = 0;
         assert.equal(numberOfPassedChecks, expectedNumberOfPassedChecks,
             "None of the given checks should have passed validation.");
@@ -100,14 +100,14 @@ import { CharFreqRecord } from "../../src/classes/CharFreqRecord";
         const validValues = [ // Define an array of valid input values.
             ["a", 1],
         ]; // Use the map function to find the results that were accepted.
-        const validCheckResults = validValues.map( i => {
+        const validCheckResults = validValues.map( (i) => {
             return CharFreqRecord.paramsAreValid(
-                <string> i[0],
-                <number> i[1],
+                i[0] as string,
+                i[1] as number,
             );
         }); // Assert that all of the tests passed.
         const numberOfPassedChecks = validCheckResults
-            .filter( (val) => val == true ).length;
+            .filter( (val) => val === true ).length;
         const expectedNumberOfPassedChecks = validCheckResults.length;
         assert.equal(numberOfPassedChecks, expectedNumberOfPassedChecks);
     }

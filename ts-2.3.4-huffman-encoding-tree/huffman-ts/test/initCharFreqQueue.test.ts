@@ -2,7 +2,6 @@ import { assert } from "chai";
 import { suite, test } from "mocha-typescript";
 import { CharFreqRecord } from "../src/classes/CharFreqRecord";
 import { initializeQueue } from "../src/lib/initCharFreqQueue";
-import { currentId } from "async_hooks";
 
 @suite class TestInitializeQueue {
 
@@ -42,7 +41,7 @@ import { currentId } from "async_hooks";
             actualRemainingOccurs.push(currentRecord.getOccurences());
         } // Initialize values representing the expected results.
         const expectedRemainingChars: string[] = ["h", "e", "o"];
-        const expectedRemainingOccurs: number[] = [1, 1, 1]
+        const expectedRemainingOccurs: number[] = [1, 1, 1];
         // Check that the results are correct.
         assert.sameMembers(actualRemainingChars, expectedRemainingChars);
         assert.sameMembers(actualRemainingOccurs, expectedRemainingOccurs);
