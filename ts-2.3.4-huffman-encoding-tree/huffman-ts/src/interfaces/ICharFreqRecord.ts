@@ -1,4 +1,4 @@
 export interface ICharFreqRecord {
-    getCharacter(): string;
-    getOccurences(): number;
+    getCharacter() : string;
+    getOccurences() : number;
 }

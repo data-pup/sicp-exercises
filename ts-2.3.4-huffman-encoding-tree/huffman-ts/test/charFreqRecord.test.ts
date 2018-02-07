@@ -1,86 +1,93 @@
-import { assert } from "chai";
-import { suite, test } from "mocha-typescript";
-import { CharFreqRecord } from "../src/classes/CharFreqRecord";
+import { assert } from 'chai';
+import { suite, test } from 'mocha-typescript';
+import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
+/* tslint:disable-next-line:no-unused-variable */
 @suite class TestCharFreqRecord {
 
     @test public basicFreqRecordTest() {
         // Create a new record object.
-        const record = new CharFreqRecord("a", 1);
+        const record = new CharFreqRecord('a', 1);
         // Check the character getter method.
         const actualChar = record.getCharacter();
-        const expectedChar = "a";
-        assert.equal(actualChar, expectedChar, "Expected string 'a'.");
+        const expectedChar = 'a';
+        assert.equal(actualChar, expectedChar, 'Expected string \'a\'.');
         // Check the occurence count getter method.
         const actualOccurences = record.getOccurences();
         const expectedOccurences = 1;
         assert.equal(actualOccurences, expectedOccurences,
-            "Expected occurence value of 0.");
+                     'Expected occurence value of 0.');
     }
 
     @test public testZeroIsNotAcceptedAsOccurenceValue() {
         // Define a function that creates a record with an invalid occurence value.
         function createInvalidCharFreqRecord() {
-            const a = new CharFreqRecord("a", 0);
+            /* tslint:disable-next-line:no-unused-variable */
+            const a = new CharFreqRecord('a', -0.01);
         } // Assert that the function above will raise an exception.
         assert.throws(createInvalidCharFreqRecord,
-            "CharFreqRecord.occurences must be greater than 0.");
+                      'CharFreqRecord.occurences must be greater than 0.');
     }
 
     @test public testNegativeValueIsNotAccepted() {
         // Define a function that creates a record with an invalid occurence value.
         function createInvalidCharFreqRecord() {
-            const a = new CharFreqRecord("a", -0.01);
+            /* tslint:disable-next-line:no-unused-variable */
+            const a = new CharFreqRecord('a', -0.01);
         } // Assert that the function above will raise an exception.
         assert.throws(createInvalidCharFreqRecord,
-            "CharFreqRecord.occurences must be greater than 0.");
+                      'CharFreqRecord.occurences must be greater than 0.');
     }
 
     @test public testNaNIsNotAcceptedAsOccurenceValue() {
         // Define a function that creates a record with an invalid occurence value.
         function createInvalidCharFreqRecord() {
-            const a = new CharFreqRecord("a", NaN);
+            /* tslint:disable-next-line:no-unused-variable */
+            const a = new CharFreqRecord('a', NaN);
         } // Assert that the function above will raise an exception.
         assert.throws(createInvalidCharFreqRecord,
-            "CharFreqRecord.occurences cannot be undefined or NaN.");
+                      'CharFreqRecord.occurences cannot be undefined or NaN.');
     }
 
     @test public testEmptyStringIsNotAcceptedAsCharValue() {
         // Define a function that creates a record with an invalid char value.
         function createInvalidCharFreqRecord() {
-            const a = new CharFreqRecord("", 1);
+            /* tslint:disable-next-line:no-unused-variable */
+            const a = new CharFreqRecord('', 1);
         } // Assert that the function above will raise an exception.
         assert.throws(createInvalidCharFreqRecord,
-            "CharFreqRecord.character must be a single character.");
+                      'CharFreqRecord.character must be a single character.');
     }
 
     @test public testLongStringIsNotAcceptedAsCharValue() {
         // Define a function that creates a record with an invalid char value.
         function createInvalidCharFreqRecord() {
-            const a = new CharFreqRecord("ABC", 1);
+            /* tslint:disable-next-line:no-unused-variable */
+            const a = new CharFreqRecord('ABC', 1);
         } // Assert that the function above will raise an exception.
         assert.throws(createInvalidCharFreqRecord,
-            "CharFreqRecord.character must be a single character.");
+                      'CharFreqRecord.character must be a single character.');
     }
 
     @test public testPrivateStringCannotBeChanged() {
         // Create a new record object.
-        const record = new CharFreqRecord("a", 1);
+        const record = new CharFreqRecord('a', 1);
         // Use the getter method to fetch the character value.
+        /* tslint:disable-next-line:no-unused-variable */
         let s = record.getCharacter();
-        s = "new string value"; // Reassign the value.
+        s = 'new string value'; // Reassign the value.
         // Check that the method return is not different.
         const actualChar = record.getCharacter();
-        const expectedChar = "a";
-        assert.equal(actualChar, expectedChar, "Private object was changed.");
+        const expectedChar = 'a';
+        assert.equal(actualChar, expectedChar, 'Private object was changed.');
     }
 
     @test public testParamsAreValidFunctionWithInvalidInputs() {
         const invalidValues = [ // Define an array of invalid input values.
-            ["a", 0],
-            ["a", -1],
-            ["", 1],
-            ["Hello", 1],
+            ['a', 0],
+            ['a', -1],
+            ['', 1],
+            ['Hello', 1],
             [undefined, 1],
         ]; // Use the map function to find the results for each input case.
         const invalidCheckResults = invalidValues.map( (i) => {
@@ -93,12 +100,12 @@ import { CharFreqRecord } from "../src/classes/CharFreqRecord";
             .filter( (val) => val === true ).length;
         const expectedNumberOfPassedChecks = 0;
         assert.equal(numberOfPassedChecks, expectedNumberOfPassedChecks,
-            "None of the given checks should have passed validation.");
+                     'None of the given checks should have passed validation.');
     }
 
     @test public testParamsAreValidFunctionWithValidInputs() {
         const validValues = [ // Define an array of valid input values.
-            ["a", 1],
+            ['a', 1],
         ]; // Use the map function to find the results that were accepted.
         const validCheckResults = validValues.map( (i) => {
             return CharFreqRecord.paramsAreValid(
