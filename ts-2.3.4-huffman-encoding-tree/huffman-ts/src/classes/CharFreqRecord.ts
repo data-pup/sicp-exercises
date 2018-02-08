@@ -22,6 +22,9 @@ export class CharFreqRecord implements ICharFreqRecord {
         } else if (isNaN(f) || isUndefined(f)) {
             throw new Error( // Error message if the occurence count is invalid.
                 'CharFreqRecord.occurences cannot be undefined or NaN.');
+        } else if (!isFinite(f)) {
+            throw new Error( // Error message is the occurence count is infinite.
+                'CharFreqRecord.occurences must be finite.');
         } else if (f <= 0) {
             throw new Error( // Error message if the occurence is out of bounds.
                 'CharFreqRecord.occurences must be greater than 0.');

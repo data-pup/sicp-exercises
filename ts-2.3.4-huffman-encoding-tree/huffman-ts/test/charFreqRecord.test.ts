@@ -20,7 +20,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
     }
 
     @test public testZeroIsNotAcceptedAsOccurenceValue() {
-        // Define a function that creates a record with an invalid occurence value.
+        // Define a function that creates a record with invalid parameters.
         function createInvalidCharFreqRecord() {
             /* tslint:disable-next-line:no-unused-variable */
             const a = new CharFreqRecord('a', -0.01);
@@ -30,7 +30,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
     }
 
     @test public testNegativeValueIsNotAccepted() {
-        // Define a function that creates a record with an invalid occurence value.
+        // Define a function that creates a record with invalid parameters.
         function createInvalidCharFreqRecord() {
             /* tslint:disable-next-line:no-unused-variable */
             const a = new CharFreqRecord('a', -0.01);
@@ -40,13 +40,23 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
     }
 
     @test public testNaNIsNotAcceptedAsOccurenceValue() {
-        // Define a function that creates a record with an invalid occurence value.
+        // Define a function that creates a record with invalid parameters.
         function createInvalidCharFreqRecord() {
             /* tslint:disable-next-line:no-unused-variable */
             const a = new CharFreqRecord('a', NaN);
         } // Assert that the function above will raise an exception.
         assert.throws(createInvalidCharFreqRecord,
                       'CharFreqRecord.occurences cannot be undefined or NaN.');
+    }
+
+    @test public testInfiniteIsNotAcceptedAsOccurenceValue() {
+        // Define a function that created a record with invalid parameters.
+        function createInvalidCharFreqRecord() {
+            /* tslint:disable-next-line:no-unused-variable */
+            const cfr = new CharFreqRecord('a', Infinity);
+        } // Assert that the function above will throw an error.
+        assert.throws(createInvalidCharFreqRecord,
+                      'CharFreqRecord.occurences must be finite.');
     }
 
     @test public testEmptyStringIsNotAcceptedAsCharValue() {
