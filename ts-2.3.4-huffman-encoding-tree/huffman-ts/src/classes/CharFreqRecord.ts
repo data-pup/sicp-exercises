@@ -15,10 +15,10 @@ export class CharFreqRecord implements ICharFreqRecord {
 
     // Validate the parameters given to the constructor. Throws an exception
     // if the parameters do not meet the expected requirements.
-    private static validateConstructorParams(c:string, f:number) : void {
+    private static validateConstructorParams(c:string, o:number) : void {
         this.validateCharacterParam(c);
-        this.validateOccurenceParam(f);
-        this.validateOccurenceIsFiniteAndWithinBounds(f);
+        this.validateOccurenceParam(o);
+        this.validateOccurenceIsFiniteAndWithinBounds(o);
     }
 
     // Validate the constructor's string parameter. This should contain a
