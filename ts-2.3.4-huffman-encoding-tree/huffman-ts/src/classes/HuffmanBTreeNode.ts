@@ -31,10 +31,10 @@ export class HuffmanBTreeNode {
     }
 
     // Public member variables.
-    public childVals:string[];
-    public nodeWeight:number;
-    public left:HuffmanBTreeNode;
-    public right:HuffmanBTreeNode;
+    public readonly childVals:string[];
+    public readonly nodeWeight:number;
+    public readonly left:HuffmanBTreeNode;
+    public readonly right:HuffmanBTreeNode;
 
     // Constructor definition.
     constructor(children:string[], weight:number,
