@@ -33,4 +33,5 @@ export class HuffmanBTreeNode {
         this.left = undefined;
         this.right = undefined;
     }
+
 }

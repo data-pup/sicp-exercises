@@ -86,4 +86,5 @@ export class CharFreqRecord implements ICharFreqRecord {
     public getOccurences() {
         return this.occurences;
     }
+
 }
