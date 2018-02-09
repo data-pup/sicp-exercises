@@ -49,6 +49,16 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
                       'CharFreqRecord.occurences cannot be undefined or NaN.');
     }
 
+    @test public testUndefinedIsNotAcceptedAsOccurenceValue() {
+        // Define a function that creates a record with invalid parameters.
+        function createInvalidCharFreqRecord() {
+            /* tslint:disable-next-line:no-unused-variable */
+            const a = new CharFreqRecord('a', undefined);
+        } // Assert that the function above will raise an exception.
+        assert.throws(createInvalidCharFreqRecord,
+                      'CharFreqRecord.occurences cannot be undefined or NaN.');
+    }
+
     @test public testInfiniteIsNotAcceptedAsOccurenceValue() {
         // Define a function that created a record with invalid parameters.
         function createInvalidCharFreqRecord() {

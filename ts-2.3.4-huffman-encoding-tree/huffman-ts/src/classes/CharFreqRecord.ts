@@ -1,4 +1,4 @@
-import { isNullOrUndefined, isUndefined } from 'util';
+import { isNullOrUndefined } from 'util';
 import { ICharFreqRecord } from '../interfaces/ICharFreqRecord';
 
 export class CharFreqRecord implements ICharFreqRecord {
@@ -36,9 +36,6 @@ export class CharFreqRecord implements ICharFreqRecord {
     // is NaN, undefined, or Inifinity, otherwise returns nothing. (void)
     private static validateOccurenceParam(o:number) : void {
         if (isNaN(o)) { // Throw an error if the value is NaN.
-            throw new Error(this.occurenceUndefinedOrNaNErrorMessage);
-        }
-        if (isUndefined(o)) { // Throw an error if the value is undefined.
             throw new Error(this.occurenceUndefinedOrNaNErrorMessage);
         }
     }
