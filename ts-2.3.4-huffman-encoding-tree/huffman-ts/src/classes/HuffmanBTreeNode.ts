@@ -1,12 +1,7 @@
-import { PriorityQueue } from 'typescript-collections';
 import { ICharFreqRecord } from '../interfaces/ICharFreqRecord';
+import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
 
-export class HuffmanBTreeNode {
-
-    // Create an encoding tree using a ICharFreqRecord priority queue.
-    public static fromCFRQueue(cfrQueue:PriorityQueue<ICharFreqRecord>) {
-        throw new Error('Not Yet Implemented!');
-    }
+export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
 
     // Create a leaf node using a frequency record.
     public static fromCharFreqRecord(data:ICharFreqRecord) : HuffmanBTreeNode {
