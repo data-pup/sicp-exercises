@@ -78,6 +78,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         //                    /          \
         //               [b] : 1      [c] : 1
         // -------------------------------------
+
         // Initialize the tree shown above.
         const hbtRightLeftLeaf = new HuffmanBTreeNode(['b'], 1);
         const hbtRightRightLeaf = new HuffmanBTreeNode(['c'], 1);
@@ -86,6 +87,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         const leftChild = new HuffmanBTreeNode(['a'], 1);
         const rootNode = HuffmanBTreeNode.mergeTrees(
             leftChild, rightChild);
+
         // First, test that the root node's properties are correct.
         const expectedRootChildArray = ['a', 'b', 'c']; // Check children array.
         this.assertArraysAreEqual(rootNode.childVals, expectedRootChildArray);
@@ -93,6 +95,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         assert.equal(rootNode.nodeWeight, expectedRootWeight);
         assert.deepEqual(rootNode.left, leftChild); // Check the child pointers.
         assert.deepEqual(rootNode.right, rightChild);
+
         // Next, check the properties of the left child node.
         const expectedLeftChildChildren = ['a'];
         this.assertArraysAreEqual( // Check the left child's token array.
@@ -100,6 +103,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         const expectedLeftChildWeight = 1; // Check the left child's weight.
         assert.equal(rootNode.left.nodeWeight, expectedLeftChildWeight);
         assert.deepEqual(rootNode.left, leftChild);
+
         // Check the properties of the right child node.
         const expectedRightChildChildren = ['b', 'c'];
         this.assertArraysAreEqual( // Check the right child's token array.
@@ -107,14 +111,17 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         const expectedRightChildWeight = 2;
         assert.equal(rootNode.right.nodeWeight, expectedRightChildWeight);
         assert.deepEqual(rootNode.right, rightChild);
+
         // Check that the leaf node at (root -> right -> left) is correct.
         this.assertArraysAreEqual(rootNode.right.left.childVals, ['b']);
         assert.equal(rootNode.right.left.nodeWeight, 1);
         assert.deepEqual(rootNode.right.left, hbtRightLeftLeaf);
+
         // Check that the leaf node at (root -> right -> right) is correct.
         this.assertArraysAreEqual(rootNode.right.right.childVals, ['c']);
         assert.equal(rootNode.right.right.nodeWeight, 1);
         assert.deepEqual(rootNode.right.right, hbtRightRightLeaf);
+
         // Check that each leaf node has no defined child pointers.
         assert.isUndefined(rootNode.left.left);
         assert.isUndefined(rootNode.left.right);
