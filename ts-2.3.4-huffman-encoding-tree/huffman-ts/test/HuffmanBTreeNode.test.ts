@@ -14,7 +14,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         }
     }
 
-    @test public testDefaultConstructor() {
+    @test public testBasicConstructorCall() {
         // Create an empty Huffman encoding tree.
         const emptyHuffmanTree = new HuffmanBTreeNode(
             [], 0, undefined, undefined);
