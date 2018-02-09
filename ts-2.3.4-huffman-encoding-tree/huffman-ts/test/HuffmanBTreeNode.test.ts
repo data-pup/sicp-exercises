@@ -18,8 +18,6 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         // Create an empty Huffman encoding tree.
         const emptyHuffmanTree = new HuffmanBTreeNode(
             [], 0, undefined, undefined);
-        // Check that the variable is not null and is of the correct type.
-        assert.isNotNull(emptyHuffmanTree);
         // Check that the child array is not null, and is empty.
         assert.isNotNull(emptyHuffmanTree.childVals);
         assert.isEmpty(emptyHuffmanTree.childVals);
@@ -40,13 +38,16 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         // a new Huffman encoding tree for that single record.
         const cfr = new CharFreqRecord('a', 1);
         const hbt:HuffmanBTreeNode = HuffmanBTreeNode.fromCharFreqRecord(cfr);
+
         // Assert that the child pointers are undefined.
         assert.isUndefined(hbt.left);
         assert.isUndefined(hbt.right);
+
         // Assert that the node weight is correct.
         const expectedWeight:number = 1;
         assert.equal(hbt.nodeWeight, expectedWeight,
                      'Node weight should be 1.');
+
         // Assert that the child tokens array is correct.
         const expectedChildren:string[] = ['a'];
         this.assertArraysAreEqual(hbt.childVals, expectedChildren);
@@ -58,12 +59,15 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         const rightChild = new HuffmanBTreeNode(['b'], 1);
         const parentNode:HuffmanBTreeNode = HuffmanBTreeNode.mergeTrees(
             leftChild, rightChild);
+
         // Assert that the child pointers point to the child objects.
         assert.deepEqual(leftChild, parentNode.left);
         assert.deepEqual(rightChild, parentNode.right);
+
         // Assert that the parent node's weight is correct.
         const expectedWeight = 2;
         assert.equal(parentNode.nodeWeight, expectedWeight);
+
         // Assert that the parent node's children array is correct.
         const expectedChildren = ['a', 'b'];
         this.assertArraysAreEqual(parentNode.childVals, expectedChildren);

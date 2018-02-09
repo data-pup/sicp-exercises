@@ -8,10 +8,12 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
     @test public basicFreqRecordTest() {
         // Create a new record object.
         const record = new CharFreqRecord('a', 1);
+
         // Check the character getter method.
         const actualChar = record.getCharacter();
         const expectedChar = 'a';
         assert.equal(actualChar, expectedChar, 'Expected string \'a\'.');
+
         // Check the occurence count getter method.
         const actualOccurences = record.getOccurences();
         const expectedOccurences = 1;
@@ -109,13 +111,17 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
             ['', 1],
             ['Hello', 1],
             [undefined, 1],
-        ]; // Use the map function to find the results for each input case.
+        ];
+
+        // Use the map function to find the results for each input case.
         const invalidCheckResults = invalidValues.map( (i) => {
             return CharFreqRecord.paramsAreValid(
                 i[0] as string,
                 i[1] as number,
             );
-        }); // Count the number of inputs that were considered valid.
+        });
+
+        // Count the number of inputs that were considered valid.
         const numberOfPassedChecks = invalidCheckResults
             .filter( (val) => val === true ).length;
         const expectedNumberOfPassedChecks = 0;
@@ -126,13 +132,17 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
     @test public testParamsAreValidFunctionWithValidInputs() {
         const validValues = [ // Define an array of valid input values.
             ['a', 1],
-        ]; // Use the map function to find the results that were accepted.
+        ];
+
+        // Use the map function to find the results that were accepted.
         const validCheckResults = validValues.map( (i) => {
             return CharFreqRecord.paramsAreValid(
                 i[0] as string,
                 i[1] as number,
             );
-        }); // Assert that all of the tests passed.
+        });
+
+        // Assert that all of the tests passed.
         const numberOfPassedChecks = validCheckResults
             .filter( (val) => val === true ).length;
         const expectedNumberOfPassedChecks = validCheckResults.length;
