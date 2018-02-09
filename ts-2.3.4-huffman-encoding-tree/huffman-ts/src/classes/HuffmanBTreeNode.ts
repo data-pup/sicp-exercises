@@ -15,8 +15,13 @@ export class HuffmanBTreeNode {
     // Merge two existing trees/nodes into a new Huffman tree.
     public static mergeTrees(left:HuffmanBTreeNode, right:HuffmanBTreeNode)
                                  : HuffmanBTreeNode {
-        // TODO ...
-        return new this ([], 0, undefined, undefined); // TEMP: Satiate the type system.
+        // Create a new `children` array by concatenating and sorting the
+        // children arrays in the left and right child nodes.
+        const parentChildren = [ ...left.childVals, ...right.childVals ].sort();
+        // Calculate the cummulative weight of the parent node.
+        const parentWeight = left.nodeWeight + right.nodeWeight;
+        // Return a new parent node that contains both of the given trees.
+        return new this (parentChildren, parentWeight, left, right);
     }
 
     // Public member variables.
@@ -27,11 +32,13 @@ export class HuffmanBTreeNode {
 
     // Constructor definition.
     constructor(children:string[], weight:number,
-                left:HuffmanBTreeNode, right:HuffmanBTreeNode) {
-        this.childVals = children;
+                left:HuffmanBTreeNode = undefined,
+                right:HuffmanBTreeNode = undefined) {
+        // Sort the children array if it has not already been sorted.
+        this.childVals = children.sort();
         this.nodeWeight = weight;
-        this.left = undefined;
-        this.right = undefined;
+        this.left = left;
+        this.right = right;
     }
 
 }

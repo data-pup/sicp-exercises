@@ -29,6 +29,12 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         assert.isUndefined(emptyHuffmanTree.right, 'Right pointer should be null.');
     }
 
+    @test public testConstructorDefaultChildrenParameterValues() {
+        const hbt = new HuffmanBTreeNode([], 0);
+        assert.isUndefined(hbt.left);
+        assert.isUndefined(hbt.right);
+    }
+
     @test public testFromCharFreqRecord() {
         // Create a basic character frequency object, and use it to initialize
         // a new Huffman encoding tree for that single record.
@@ -44,6 +50,23 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         // Assert that the child tokens array is correct.
         const expectedChildren:string[] = ['a'];
         this.assertArraysAreEqual(hbt.childVals, expectedChildren);
+    }
+
+    @test public testBasicMergeOfTwoLeafNodes() {
+        // Initialize two child nodes and merge them into a new tree.
+        const leftChild = new HuffmanBTreeNode(['a'], 1);
+        const rightChild = new HuffmanBTreeNode(['b'], 1);
+        const parentNode:HuffmanBTreeNode = HuffmanBTreeNode.mergeTrees(
+            leftChild, rightChild);
+        // Assert that the child pointers point to the child objects.
+        assert.deepEqual(leftChild, parentNode.left);
+        assert.deepEqual(rightChild, parentNode.right);
+        // Assert that the parent node's weight is correct.
+        const expectedWeight = 2;
+        assert.equal(parentNode.nodeWeight, expectedWeight);
+        // Assert that the parent node's children array is correct.
+        const expectedChildren = ['a', 'b'];
+        this.assertArraysAreEqual(parentNode.childVals, expectedChildren);
     }
 
 }
