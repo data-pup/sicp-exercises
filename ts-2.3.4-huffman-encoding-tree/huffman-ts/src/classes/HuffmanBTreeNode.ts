@@ -81,13 +81,16 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
         }
     }
 
-    // Helper method used for the isLeaf and IsEmpty methods.
+    // Returns a boolean value representing whether or not the
+    // token array has been initialized and contains any data.
     private hasTokens() : boolean {
         if (isNullOrUndefined(this.tokens)) { return false; }
         if (this.tokens.length === 0) { return false; }
         return true;
     }
 
+    // Returns a boolean value representing whether or not the token
+    // array has been initialized and contains a single token.
     private hasSingleToken() : boolean {
         if (!this.hasTokens()) { return false; }
         if (this.tokens.length != 1) { return false; }
