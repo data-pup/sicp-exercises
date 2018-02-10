@@ -1,5 +1,6 @@
 import { ICharFreqRecord } from '../interfaces/ICharFreqRecord';
 import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
+import { isNullOrUndefined } from 'util';
 
 export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
 
@@ -30,6 +31,42 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
     public readonly weight:number;
     public readonly left:HuffmanBTreeNode;
     public readonly right:HuffmanBTreeNode;
+
+    // Return true or false depending on whether or not `this` is a leaf node.
+    public isLeaf() : boolean {
+        // Initialize variables to represent whether the node has defined
+        // children, and whether it has exactly one token in its tokens list.
+        const hasLeftChild:boolean = ! isNullOrUndefined(this.left);
+        const hasRightChild:boolean = ! isNullOrUndefined(this.right);
+        const hasOneToken = (!isNullOrUndefined(this.tokens))
+            && (this.tokens.length === 1);
+
+        // Return true if the node has no left or right child, and contains
+        // only one token in its tokens array. Otherwise return false.
+        return (
+            (!hasLeftChild)
+            && (!hasRightChild)
+            && hasOneToken
+        );
+    }
+
+    // Return true or false depending on whether or not the tree is empty.
+    public isEmpty() : boolean {
+        const hasNoChildren:boolean = ( // Check whether any child nodes exist.
+            isNullOrUndefined(this.left) && isNullOrUndefined(this.left)
+        );
+
+        // Check whether the token list is null, undefined, or empty.
+        const hasNoTokens:boolean = (
+            isNullOrUndefined(this.tokens) || this.tokens.length === 0
+        );
+
+        // Check that the node has no cummulative weight value assigned.
+        const hasNoWeight:boolean = this.weight === 0;
+
+        // Return true if the node has no children, no tokens, and no weight.
+        return (hasNoChildren && hasNoTokens && hasNoWeight);
+    }
 
     // Constructor definition.
     constructor(children:string[], weight:number,

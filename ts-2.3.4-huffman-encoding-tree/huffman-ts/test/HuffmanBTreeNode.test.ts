@@ -127,4 +127,42 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         assert.isUndefined(rootNode.right.right.left);
         assert.isUndefined(rootNode.right.right.right);
     }
+
+    @test public testIsLeafForSingleNode() {
+        const exampleLeaf = new HuffmanBTreeNode(['a'], 1);
+        assert.isTrue(exampleLeaf.isLeaf());
+    }
+
+    @test public testIsLeafForSimpleTree() {
+        // Create two leaf nodes and a parent node by merging the two trees.
+        const leftchild = new HuffmanBTreeNode(['a'], 1);
+        const rightChild = new HuffmanBTreeNode(['b'], 1);
+        const parentNode = HuffmanBTreeNode.mergeTrees(leftchild, rightChild);
+
+        // Check that the leaf nodes are considered as such, and that the
+        // parent node is not considered to be a leaf node.
+        assert.isTrue(leftchild.isLeaf());
+        assert.isTrue(rightChild.isLeaf());
+        assert.isFalse(parentNode.isLeaf());
+    }
+
+    @test public testIsLeafForNodeWithOneChild() {
+        // Create a child node and create a parent node.
+        const childNode = new HuffmanBTreeNode(['b'], 1);
+        let parentNode = new HuffmanBTreeNode(['b'], 1,
+                                              childNode, undefined);
+
+        // Assert that the parent node is not identified as a leaf.
+        assert.isFalse(parentNode.isLeaf());
+        assert.isTrue(childNode.isLeaf());
+
+        // Repeat the process, but with the child node attached to the right.
+        parentNode = new HuffmanBTreeNode(['b'], 1,
+                                          undefined, childNode);
+
+        // Assert that the parent node is not identified as a leaf.
+        assert.isFalse(parentNode.isLeaf());
+        assert.isTrue(childNode.isLeaf());
+    }
+
 }

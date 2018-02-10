@@ -3,4 +3,6 @@ export interface IHuffmanBTreeNode {
     readonly weight:number;
     readonly left:IHuffmanBTreeNode;
     readonly right:IHuffmanBTreeNode;
+    isEmpty() : boolean;
+    isLeaf() : boolean;
 }
