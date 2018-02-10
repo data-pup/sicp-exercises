@@ -1,18 +1,11 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
+import { assertArraysAreEqual } from './testUtils/assertArraysAreEqual';
 import { HuffmanBTreeNode } from '../src/classes/HuffmanBTreeNode';
 import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNode {
-
-    private assertArraysAreEqual<T>(a:T[], b:T[]) : void {
-        // Check the arrays are of equal length, then compare each element.
-        assert.equal(a.length, b.length);
-        for (let index = 0; index < a.length; index++) {
-            assert.equal(a[index], b[index]);
-        }
-    }
 
     @test public testBasicConstructorCall() {
         // Create an empty Huffman encoding tree.
@@ -50,7 +43,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
         // Assert that the child tokens array is correct.
         const expectedChildren:string[] = ['a'];
-        this.assertArraysAreEqual(hbt.childVals, expectedChildren);
+        assertArraysAreEqual(hbt.childVals, expectedChildren);
     }
 
     @test public testBasicMergeOfTwoLeafNodes() {
@@ -70,7 +63,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
         // Assert that the parent node's children array is correct.
         const expectedChildren = ['a', 'b'];
-        this.assertArraysAreEqual(parentNode.childVals, expectedChildren);
+        assertArraysAreEqual(parentNode.childVals, expectedChildren);
     }
 
     @test public testMergeOfLeafAndTreeOfHeight2() {
@@ -94,7 +87,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
         // First, test that the root node's properties are correct.
         const expectedRootChildArray = ['a', 'b', 'c']; // Check children array.
-        this.assertArraysAreEqual(rootNode.childVals, expectedRootChildArray);
+        assertArraysAreEqual(rootNode.childVals, expectedRootChildArray);
         const expectedRootWeight = 3; // Check the root node's weight value.
         assert.equal(rootNode.nodeWeight, expectedRootWeight);
         assert.deepEqual(rootNode.left, leftChild); // Check the child pointers.
@@ -102,7 +95,7 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
         // Next, check the properties of the left child node.
         const expectedLeftChildChildren = ['a'];
-        this.assertArraysAreEqual( // Check the left child's token array.
+        assertArraysAreEqual( // Check the left child's token array.
             rootNode.left.childVals, expectedLeftChildChildren);
         const expectedLeftChildWeight = 1; // Check the left child's weight.
         assert.equal(rootNode.left.nodeWeight, expectedLeftChildWeight);
@@ -110,19 +103,19 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
         // Check the properties of the right child node.
         const expectedRightChildChildren = ['b', 'c'];
-        this.assertArraysAreEqual( // Check the right child's token array.
+        assertArraysAreEqual( // Check the right child's token array.
             rootNode.right.childVals, expectedRightChildChildren);
         const expectedRightChildWeight = 2;
         assert.equal(rootNode.right.nodeWeight, expectedRightChildWeight);
         assert.deepEqual(rootNode.right, rightChild);
 
         // Check that the leaf node at (root -> right -> left) is correct.
-        this.assertArraysAreEqual(rootNode.right.left.childVals, ['b']);
+        assertArraysAreEqual(rootNode.right.left.childVals, ['b']);
         assert.equal(rootNode.right.left.nodeWeight, 1);
         assert.deepEqual(rootNode.right.left, hbtRightLeftLeaf);
 
         // Check that the leaf node at (root -> right -> right) is correct.
-        this.assertArraysAreEqual(rootNode.right.right.childVals, ['c']);
+        assertArraysAreEqual(rootNode.right.right.childVals, ['c']);
         assert.equal(rootNode.right.right.nodeWeight, 1);
         assert.deepEqual(rootNode.right.right, hbtRightRightLeaf);
 
