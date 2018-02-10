@@ -135,13 +135,13 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
     @test public testIsLeafForSimpleTree() {
         // Create two leaf nodes and a parent node by merging the two trees.
-        const leftchild = new HuffmanBTreeNode(['a'], 1);
+        const leftChild = new HuffmanBTreeNode(['a'], 1);
         const rightChild = new HuffmanBTreeNode(['b'], 1);
-        const parentNode = HuffmanBTreeNode.mergeTrees(leftchild, rightChild);
+        const parentNode = HuffmanBTreeNode.mergeTrees(leftChild, rightChild);
 
         // Check that the leaf nodes are considered as such, and that the
         // parent node is not considered to be a leaf node.
-        assert.isTrue(leftchild.isLeaf());
+        assert.isTrue(leftChild.isLeaf());
         assert.isTrue(rightChild.isLeaf());
         assert.isFalse(parentNode.isLeaf());
     }
@@ -175,6 +175,13 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         // Create a basic leaf node, assert that it is not considered empty.
         const hbt = new HuffmanBTreeNode(['a'], 1);
         assert.isFalse(hbt.isEmpty());
+    }
+
+    @test public testIsEmptyForParentNode() {
+        const leftChild = new HuffmanBTreeNode(['a'], 1);
+        const rightChild = new HuffmanBTreeNode(['b'], 1);
+        const parentNode = HuffmanBTreeNode.mergeTrees(leftChild, rightChild);
+        assert.isFalse(parentNode.isEmpty());
     }
 
 }

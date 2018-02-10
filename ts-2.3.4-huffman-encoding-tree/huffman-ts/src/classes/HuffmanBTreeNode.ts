@@ -52,20 +52,17 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
 
     // Return true or false depending on whether or not the tree is empty.
     public isEmpty() : boolean {
-        const hasNoChildren:boolean = ( // Check whether any child nodes exist.
-            isNullOrUndefined(this.left) && isNullOrUndefined(this.left)
-        );
+        // Return false if a left or right child node reference exist.
+        if (!isNullOrUndefined(this.left) || !isNullOrUndefined(this.right)) {
+            return false;
+        }
 
-        // Check whether the token list is null, undefined, or empty.
-        const hasNoTokens:boolean = (
-            isNullOrUndefined(this.tokens) || this.tokens.length === 0
-        );
+        // Retuurn false if token list exists and is not empty.
+        if (!isNullOrUndefined(this.tokens) && this.tokens.length != 0) {
+            return false;
+        }
 
-        // Check that the node has no cummulative weight value assigned.
-        const hasNoWeight:boolean = this.weight === 0;
-
-        // Return true if the node has no children, no tokens, and no weight.
-        return (hasNoChildren && hasNoTokens && hasNoWeight);
+        return true; // Otherwise, return true.
     }
 
     // Constructor definition.
