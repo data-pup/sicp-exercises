@@ -66,16 +66,40 @@ import { initializeHuffmanEncodingTree } from '../src/lib/initEncodingTree';
         assertArraysAreEqual(encodingTree.childVals, expectedRootChildList);
 
         // Check that the left child has been initialized as expected.
-        const expectedLeftChildTokenList = ['a'];
+        const expectedLeftChildTokenList = ['a']; // Check the token list.
         assertArraysAreEqual(encodingTree.left.childVals,
                              expectedLeftChildTokenList);
-        const expectedLeftChildWeight = 3;
+        const expectedLeftChildWeight = 3; // Check the node weight.
         assert.equal(encodingTree.left.nodeWeight, expectedLeftChildWeight);
-        assert.isUndefined(encodingTree.left.left);
+        assert.isUndefined(encodingTree.left.left); // Check the child pointers.
         assert.isUndefined(encodingTree.left.right);
 
         // Check the the immediate right child has been initialized correctly.
-        // ...
+        const expectedRightChildTokenList = ['b', 'c']; // Check the token list.
+        assertArraysAreEqual(encodingTree.right.childVals,
+                             expectedRightChildTokenList);
+        const expectedRightChildWeight = 3; // Check the node weight.
+        assert.equal(encodingTree.right.nodeWeight, expectedRightChildWeight);
+
+        // Check the node leaf containing 'b', which should be found by
+        // following the path: root -> right -> left.
+        const bLeaf = encodingTree.right.left;
+        const expectedBLeafChildVals = ['b']; // Check the child value list.
+        assertArraysAreEqual(bLeaf.childVals, expectedBLeafChildVals);
+        const expectedBLeafWeight = 2; // Check the node weight.
+        assert.equal(bLeaf.nodeWeight, expectedBLeafWeight);
+        assert.isUndefined(bLeaf.left); // Check the child pointers.
+        assert.isUndefined(bLeaf.right);
+
+        // Check the node leaf containing 'c', which should be found by
+        // following the path: root -> right -> right.
+        const cLeaf = encodingTree.right.right;
+        const expectedCLeafChildVals = ['c']; // Check the child value list.
+        assertArraysAreEqual(cLeaf.childVals, expectedCLeafChildVals);
+        const expectedCLeafWeight = 1; // Check the node weight.
+        assert.equal(cLeaf.nodeWeight, expectedCLeafWeight);
+        assert.isUndefined(cLeaf.left); // Check the child pointers.
+        assert.isUndefined(cLeaf.right);
     }
 
 }
