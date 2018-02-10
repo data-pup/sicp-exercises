@@ -104,7 +104,7 @@ const newNodeShouldBePushedOntoStack = (nodeStack:Stack<HuffmanBTreeNode>,
 
     // New node should be pushed onto the stack if the current top has a
     // cummulative weight greater than or equal to the new node's weight.
-    if (nodeStack.peek().nodeWeight >= newNode.nodeWeight) {
+    if (nodeStack.peek().weight >= newNode.weight) {
         return true;
     }
 

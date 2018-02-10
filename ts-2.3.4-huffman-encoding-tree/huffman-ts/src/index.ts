@@ -23,7 +23,7 @@ const main = () => {
         testQueue);
 
     // Print something so that the linter will remain quiet.
-    process.stdout.write(encodingTree.childVals.toString());
+    process.stdout.write(encodingTree.tokens.toString());
 };
 
 // Invoke the main function.

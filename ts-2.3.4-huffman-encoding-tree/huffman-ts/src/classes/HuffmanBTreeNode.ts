@@ -18,16 +18,16 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
                                  : HuffmanBTreeNode {
         // Create a new `children` array by concatenating and sorting the
         // children arrays in the left and right child nodes.
-        const parentChildren = [ ...left.childVals, ...right.childVals ].sort();
+        const parentChildren = [ ...left.tokens, ...right.tokens ].sort();
         // Calculate the cummulative weight of the parent node.
-        const parentWeight = left.nodeWeight + right.nodeWeight;
+        const parentWeight = left.weight + right.weight;
         // Return a new parent node that contains both of the given trees.
         return new this (parentChildren, parentWeight, left, right);
     }
 
     // Public member variables.
-    public readonly childVals:string[];
-    public readonly nodeWeight:number;
+    public readonly tokens:string[];
+    public readonly weight:number;
     public readonly left:HuffmanBTreeNode;
     public readonly right:HuffmanBTreeNode;
 
@@ -36,8 +36,8 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
                 left:HuffmanBTreeNode = undefined,
                 right:HuffmanBTreeNode = undefined) {
         // Sort the children array if it has not already been sorted.
-        this.childVals = children.sort();
-        this.nodeWeight = weight;
+        this.tokens = children.sort();
+        this.weight = weight;
         this.left = left;
         this.right = right;
     }

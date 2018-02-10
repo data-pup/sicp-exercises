@@ -1,6 +1,6 @@
 export interface IHuffmanBTreeNode {
-    readonly childVals:string[];
-    readonly nodeWeight:number;
+    readonly tokens:string[];
+    readonly weight:number;
     readonly left:IHuffmanBTreeNode;
     readonly right:IHuffmanBTreeNode;
 }

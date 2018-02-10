@@ -12,10 +12,10 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         const emptyHuffmanTree = new HuffmanBTreeNode(
             [], 0, undefined, undefined);
         // Check that the child array is not null, and is empty.
-        assert.isNotNull(emptyHuffmanTree.childVals);
-        assert.isEmpty(emptyHuffmanTree.childVals);
+        assert.isNotNull(emptyHuffmanTree.tokens);
+        assert.isEmpty(emptyHuffmanTree.tokens);
         // Check that the weight value and child pointers are correct.
-        assert.equal(emptyHuffmanTree.nodeWeight, 0);
+        assert.equal(emptyHuffmanTree.weight, 0);
         assert.isUndefined(emptyHuffmanTree.left, 'Left pointer should be null.');
         assert.isUndefined(emptyHuffmanTree.right, 'Right pointer should be null.');
     }
@@ -38,12 +38,12 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
         // Assert that the node weight is correct.
         const expectedWeight:number = 1;
-        assert.equal(hbt.nodeWeight, expectedWeight,
+        assert.equal(hbt.weight, expectedWeight,
                      'Node weight should be 1.');
 
         // Assert that the child tokens array is correct.
         const expectedChildren:string[] = ['a'];
-        assertArraysAreEqual(hbt.childVals, expectedChildren);
+        assertArraysAreEqual(hbt.tokens, expectedChildren);
     }
 
     @test public testBasicMergeOfTwoLeafNodes() {
@@ -59,11 +59,11 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
         // Assert that the parent node's weight is correct.
         const expectedWeight = 2;
-        assert.equal(parentNode.nodeWeight, expectedWeight);
+        assert.equal(parentNode.weight, expectedWeight);
 
         // Assert that the parent node's children array is correct.
         const expectedChildren = ['a', 'b'];
-        assertArraysAreEqual(parentNode.childVals, expectedChildren);
+        assertArraysAreEqual(parentNode.tokens, expectedChildren);
     }
 
     @test public testMergeOfLeafAndTreeOfHeight2() {
@@ -87,36 +87,36 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
         // First, test that the root node's properties are correct.
         const expectedRootChildArray = ['a', 'b', 'c']; // Check children array.
-        assertArraysAreEqual(rootNode.childVals, expectedRootChildArray);
+        assertArraysAreEqual(rootNode.tokens, expectedRootChildArray);
         const expectedRootWeight = 3; // Check the root node's weight value.
-        assert.equal(rootNode.nodeWeight, expectedRootWeight);
+        assert.equal(rootNode.weight, expectedRootWeight);
         assert.deepEqual(rootNode.left, leftChild); // Check the child pointers.
         assert.deepEqual(rootNode.right, rightChild);
 
         // Next, check the properties of the left child node.
         const expectedLeftChildChildren = ['a'];
         assertArraysAreEqual( // Check the left child's token array.
-            rootNode.left.childVals, expectedLeftChildChildren);
+            rootNode.left.tokens, expectedLeftChildChildren);
         const expectedLeftChildWeight = 1; // Check the left child's weight.
-        assert.equal(rootNode.left.nodeWeight, expectedLeftChildWeight);
+        assert.equal(rootNode.left.weight, expectedLeftChildWeight);
         assert.deepEqual(rootNode.left, leftChild);
 
         // Check the properties of the right child node.
         const expectedRightChildChildren = ['b', 'c'];
         assertArraysAreEqual( // Check the right child's token array.
-            rootNode.right.childVals, expectedRightChildChildren);
+            rootNode.right.tokens, expectedRightChildChildren);
         const expectedRightChildWeight = 2;
-        assert.equal(rootNode.right.nodeWeight, expectedRightChildWeight);
+        assert.equal(rootNode.right.weight, expectedRightChildWeight);
         assert.deepEqual(rootNode.right, rightChild);
 
         // Check that the leaf node at (root -> right -> left) is correct.
-        assertArraysAreEqual(rootNode.right.left.childVals, ['b']);
-        assert.equal(rootNode.right.left.nodeWeight, 1);
+        assertArraysAreEqual(rootNode.right.left.tokens, ['b']);
+        assert.equal(rootNode.right.left.weight, 1);
         assert.deepEqual(rootNode.right.left, hbtRightLeftLeaf);
 
         // Check that the leaf node at (root -> right -> right) is correct.
-        assertArraysAreEqual(rootNode.right.right.childVals, ['c']);
-        assert.equal(rootNode.right.right.nodeWeight, 1);
+        assertArraysAreEqual(rootNode.right.right.tokens, ['c']);
+        assert.equal(rootNode.right.right.weight, 1);
         assert.deepEqual(rootNode.right.right, hbtRightRightLeaf);
 
         // Check that each leaf node has no defined child pointers.
