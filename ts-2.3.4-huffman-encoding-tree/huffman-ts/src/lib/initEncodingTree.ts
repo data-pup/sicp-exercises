@@ -15,8 +15,8 @@ export const initializeHuffmanEncodingTree =
 
     while (!treeIsReady(nodeStack)) {
         // Pop the two nodes with the lowest priority in the node stack.
-        const leftTree:HuffmanBTreeNode = nodeStack.pop();
         const rightTree:HuffmanBTreeNode = nodeStack.pop();
+        const leftTree:HuffmanBTreeNode = nodeStack.pop();
         // Merge the trees together under a new parent node.
         const mergedTree = HuffmanBTreeNode.mergeTrees(leftTree, rightTree);
         placeMergedNodeIntoNodeStack(nodeStack, mergedTree);

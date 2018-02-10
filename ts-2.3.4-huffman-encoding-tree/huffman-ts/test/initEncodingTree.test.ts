@@ -65,6 +65,16 @@ import { initializeHuffmanEncodingTree } from '../src/lib/initEncodingTree';
         const expectedRootChildList = ['a', 'b', 'c'];
         assertArraysAreEqual(encodingTree.childVals, expectedRootChildList);
 
+        // Check that the left child has been initialized as expected.
+        const expectedLeftChildTokenList = ['a'];
+        assertArraysAreEqual(encodingTree.left.childVals,
+                             expectedLeftChildTokenList);
+        const expectedLeftChildWeight = 3;
+        assert.equal(encodingTree.left.nodeWeight, expectedLeftChildWeight);
+        assert.isUndefined(encodingTree.left.left);
+        assert.isUndefined(encodingTree.left.right);
+
+        // Check the the immediate right child has been initialized correctly.
         // ...
     }
 
