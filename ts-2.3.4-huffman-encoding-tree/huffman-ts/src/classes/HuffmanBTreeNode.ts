@@ -38,8 +38,7 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
         // children, and whether it has exactly one token in its tokens list.
         const hasLeftChild:boolean = ! isNullOrUndefined(this.left);
         const hasRightChild:boolean = ! isNullOrUndefined(this.right);
-        const hasOneToken = (!isNullOrUndefined(this.tokens))
-            && (this.tokens.length === 1);
+        const hasOneToken = this.hasSingleToken();
 
         // Return true if the node has no left or right child, and contains
         // only one token in its tokens array. Otherwise return false.
@@ -52,16 +51,9 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
 
     // Return true or false depending on whether or not the tree is empty.
     public isEmpty() : boolean {
-        // Return false if a left or right child node reference exist.
-        if (!isNullOrUndefined(this.left) || !isNullOrUndefined(this.right)) {
-            return false;
-        }
-
-        // Retuurn false if token list exists and is not empty.
-        if (!isNullOrUndefined(this.tokens) && this.tokens.length != 0) {
-            return false;
-        }
-
+        // Return false if the node has any children or a token list.
+        if (this.hasChildren()) { return false; }
+        if (this.hasTokens()) { return false; }
         return true; // Otherwise, return true.
     }
 
@@ -74,6 +66,32 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
         this.weight = weight;
         this.left = left;
         this.right = right;
+    }
+
+    // Helper method used for the isLeaf and IsEmpty methods.
+    private hasChildren() : boolean {
+        // Declare variables representing whether left or right children exist.
+        const hasLeftChild:boolean = ! isNullOrUndefined(this.left);
+        const hasRightChild:boolean = ! isNullOrUndefined(this.right);
+        // Return false if a left or right child exist. Otherwise, return true.
+        if (hasLeftChild || hasRightChild) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Helper method used for the isLeaf and IsEmpty methods.
+    private hasTokens() : boolean {
+        if (isNullOrUndefined(this.tokens)) { return false; }
+        if (this.tokens.length === 0) { return false; }
+        return true;
+    }
+
+    private hasSingleToken() : boolean {
+        if (!this.hasTokens()) { return false; }
+        if (this.tokens.length != 1) { return false; }
+        return true;
     }
 
 }
