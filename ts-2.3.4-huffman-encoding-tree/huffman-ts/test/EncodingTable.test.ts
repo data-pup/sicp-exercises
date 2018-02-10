@@ -18,10 +18,10 @@ import { suite, test } from 'mocha-typescript';
         // ---------------------------------------------------------
 
         // Initialize a priority queue using the given test string.
-        // todo ...
+        // const freqQueue = initializeQueue(testString);
 
         // Initialize an encoding tree.
-        // todo ...
+        // const encodingTree = initializeHuffmanEncodingTree(freqQueue);
 
         // Initialize an encoding table.
         // todo ...

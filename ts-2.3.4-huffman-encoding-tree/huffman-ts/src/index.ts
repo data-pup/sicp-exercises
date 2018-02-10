@@ -1,29 +1,26 @@
-import { PriorityQueue } from 'typescript-collections';
-import { CharFreqRecord } from './classes/CharFreqRecord';
+// import { PriorityQueue } from 'typescript-collections';
+// import { CharFreqRecord } from './classes/CharFreqRecord';
 import { HuffmanBTreeNode } from './classes/HuffmanBTreeNode';
-import { compareCharFreqRecords } from './lib/compareCharFreqRecords';
+import { initializeQueue } from './lib/initCharFreqQueue';
 import { initializeHuffmanEncodingTree } from './lib/initEncodingTree';
 
-// Currently unused imports.
-// import { initializeQueue } from './lib/initCharFreqQueue';
-// import { printCharFreqQueue } from './lib/printCharFreqQueue';
+const testing = (data:HuffmanBTreeNode) : void => {
+    process.stdout.write('Hello Testing!');
+};
 
 // Define the main function.
 const main = () => {
-    const testQueue = new PriorityQueue<CharFreqRecord>(
-        compareCharFreqRecords);
+    // Initialize a testing string.
+    const testString = 'aaabbc';
 
-    // Push some character frequency records onto the stack.
-    testQueue.enqueue(new CharFreqRecord('a', 3));
-    testQueue.enqueue(new CharFreqRecord('b', 2));
-    testQueue.enqueue(new CharFreqRecord('c', 1));
+    // Initialize a priority queue using the given test string.
+    const freqQueue = initializeQueue(testString);
 
-    // Create an encoding tree using the testing priority queue.
-    const encodingTree:HuffmanBTreeNode = initializeHuffmanEncodingTree(
-        testQueue);
+    // Initialize an encoding tree.
+    const encodingTree = initializeHuffmanEncodingTree(freqQueue);
 
-    // Print something so that the linter will remain quiet.
-    process.stdout.write(encodingTree.tokens.toString());
+    // Testing function.
+    testing(encodingTree);
 };
 
 // Invoke the main function.
