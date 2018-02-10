@@ -6,7 +6,7 @@ export const initializeHuffmanEncodingTree =
              (freqQueue:PriorityQueue<ICharFreqRecord>) : HuffmanBTreeNode => {
     // First, check if the frequency queue is empty. An empty tree should be
     // returned if this queue is empty.
-    if (freqQueue.isEmpty) {
+    if (freqQueue.isEmpty()) {
         return new HuffmanBTreeNode([], 0);
     }
 
