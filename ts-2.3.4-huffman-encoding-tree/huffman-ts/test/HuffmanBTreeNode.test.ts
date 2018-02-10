@@ -165,4 +165,16 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
         assert.isTrue(childNode.isLeaf());
     }
 
+    @test public testIsEmptyForBasicEmptyNode() {
+        // Create a basic empty tree, assert that it is considered empty.
+        const hbt = new HuffmanBTreeNode([], 0);
+        assert.isTrue(hbt.isEmpty());
+    }
+
+    @test public testIsEmptyForLeafNode() {
+        // Create a basic leaf node, assert that it is not considered empty.
+        const hbt = new HuffmanBTreeNode(['a'], 1);
+        assert.isFalse(hbt.isEmpty());
+    }
+
 }
