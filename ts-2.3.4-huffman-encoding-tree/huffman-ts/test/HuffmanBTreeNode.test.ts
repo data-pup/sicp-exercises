@@ -148,21 +148,20 @@ import { CharFreqRecord } from '../src/classes/CharFreqRecord';
 
     @test public testIsLeafForNodeWithOneChild() {
         // Create a child node and create a parent node.
-        const childNode = new HuffmanBTreeNode(['b'], 1);
-        let parentNode = new HuffmanBTreeNode(['b'], 1,
-                                              childNode, undefined);
+        const firstLeafNode = new HuffmanBTreeNode(['b'], 1);
+        const secondLeafNode = new HuffmanBTreeNode(['c'], 1);
+        const childNode = new HuffmanBTreeNode(['b', 'c'], 2,
+                                               firstLeafNode, secondLeafNode);
+        const parentNode = new HuffmanBTreeNode(['b', 'c'], 3,
+                                                childNode, undefined);
 
         // Assert that the parent node is not identified as a leaf.
         assert.isFalse(parentNode.isLeaf());
-        assert.isTrue(childNode.isLeaf());
 
-        // Repeat the process, but with the child node attached to the right.
-        parentNode = new HuffmanBTreeNode(['b'], 1,
-                                          undefined, childNode);
-
-        // Assert that the parent node is not identified as a leaf.
-        assert.isFalse(parentNode.isLeaf());
-        assert.isTrue(childNode.isLeaf());
+        // Check that the isLeaf() method is correct for the other nodes.
+        assert.isFalse(childNode.isLeaf());
+        assert.isTrue(firstLeafNode.isLeaf());
+        assert.isTrue(secondLeafNode.isLeaf());
     }
 
     @test public testIsEmptyForBasicEmptyNode() {
