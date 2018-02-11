@@ -99,7 +99,7 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
     }
 
     // Helper method used for the isLeaf and IsEmpty methods.
-    private hasChildren() : boolean {
+    public hasChildren() : boolean {
         // Declare variables representing whether left or right children exist.
         const hasLeftChild:boolean = ! isNullOrUndefined(this.left);
         const hasRightChild:boolean = ! isNullOrUndefined(this.right);
@@ -113,7 +113,7 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
 
     // Returns a boolean value representing whether or not the
     // token array has been initialized and contains any data.
-    private hasTokens() : boolean {
+    public hasTokens() : boolean {
         if (isNullOrUndefined(this.tokens)) { return false; }
         if (this.tokens.length === 0) { return false; }
         return true;
@@ -121,14 +121,14 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
 
     // Returns a boolean value representing whether or not the token
     // array has been initialized and contains a single token.
-    private hasSingleToken() : boolean {
+    public hasSingleToken() : boolean {
         if (!this.hasTokens()) { return false; }
         if (this.tokens.length != 1) { return false; }
         return true;
     }
 
     // Returns a boolean value representing whether a weight value exists.
-    private hasWeight() : boolean {
+    public hasWeight() : boolean {
         if (this.weight > 0) { return true; }
         return false;
     }
