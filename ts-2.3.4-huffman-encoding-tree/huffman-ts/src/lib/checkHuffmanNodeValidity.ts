@@ -21,53 +21,48 @@
 // TEMP: Disabled import.
 // import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
 
-const validateLeafNode = () : boolean => {
-    throw new Error('Not Implemented');
+// This function will validate an Huffman encoding tree node.
+export const validateIHuffmanBTreeNode = () : void => {
+    if (this.hasChildren()) {
+        validateParentNode();
+    } else {
+        validateLeafNode();
+    }
+}
+
+// This function is used to identify whether a leaf node is valid.
+const validateLeafNode = () : void => {
+    // If the node does not have children, it must either be an empty
+    // tree, or a validly initialized leaf node.
+    if (this.hasTokens()) {
+        // A node with no children and a token array must only contain
+        // a single token and a non-zero weight.
+        if (!this.hasSingleToken()) {
+            throw new Error(
+                'Leaf nodes cannot contain multiple tokens!');
+        }
+        // A leaf node with a single token must have a non-zero weight.
+        if (!this.hasWeight()) {
+            throw new Error('Leaf node must have a non-zero weight!');
+        }
+    } else {
+        if (this.hasWeight()) {
+            throw new Error('Empty tree cannot have a weight value!');
+        }
+    }
 };
 
-const validateParentNode = () : boolean => {
-    throw new Error('Not Implemented');
+const validateParentNode = () : void => {
+    // If the node has children, it must have a token array.
+    if (!this.hasTokens()) {
+        throw new Error('Parent node must have a token array!');
+    }
+    // If the node has children, it should not have a single token.
+    if (this.hasSingleToken()) {
+        throw new Error('Extraneous parent node detected!');
+    }
+    // A parent node must have a non-zero weight value.
+    if (!this.hasWeight()) {
+        throw new Error('Parent node must have a non-zero weight!');
+    }
 };
-
-// Function used to validate a Huffman encoding tree node.
-export const validateIHuffmanBTreeNode = () : boolean => {
-    throw new Error('Not Implemented');
-};
-
-// Helper method used by constructor to determine whether the state
-// is valid. If an issue is detected, throw an error.
-// const checkStateIsValid = () : void => {
-//     if (this.hasChildren()) {
-//         // If the node has children, it must have a token array.
-//         if (!this.hasTokens()) {
-//             throw new Error('Parent node must have a token array!');
-//         }
-//         // If the node has children, it should not have a single token.
-//         if (this.hasSingleToken()) {
-//             throw new Error('Extraneous parent node detected!');
-//         }
-//         // A parent node must have a non-zero weight value.
-//         if (!this.hasWeight()) {
-//             throw new Error('Parent node must have a non-zero weight!');
-//         }
-//     } else {
-//         // If the node does not have children, it must either be an empty
-//         // tree, or a validly initialized leaf node.
-//         if (this.hasTokens()) {
-//             // A node with no children and a token array must only contain
-//             // a single token and a non-zero weight.
-//             if (!this.hasSingleToken()) {
-//                 throw new Error(
-//                     'Leaf nodes cannot contain multiple tokens!');
-//             }
-//             // A leaf node with a single token must have a non-zero weight.
-//             if (!this.hasWeight()) {
-//                 throw new Error('Leaf node must have a non-zero weight!');
-//             }
-//         } else {
-//             if (this.hasWeight()) {
-//                 throw new Error('Empty tree cannot have a weight value!');
-//             }
-//         }
-//     }
-// }
