@@ -4,7 +4,7 @@ import { HuffmanBTreeNode } from '../src/classes/HuffmanBTreeNode';
 import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
 
 /* tslint:disable-next-line:no-unused-variable */
-@suite class TestHuffmanBTreeNodeInvalidObject {
+@suite class TestHuffmanBTreeNodeInvalidLeaf {
 
     private checkNodeIsInvalidState(node:HuffmanBTreeNode) : void {
         // Check that the child pointers, token list, and weight are undefined.
