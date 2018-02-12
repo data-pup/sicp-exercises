@@ -22,6 +22,9 @@
 */
 
 import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
+import {
+    IHuffmanNodeValidityCheckResult,
+} from '../interfaces/IHuffmanNodeValidityCheckResult';
 
 // This function will validate an Huffman encoding tree node.
 export const validateIHuffmanBTreeNode = (node:IHuffmanBTreeNode) : void => {

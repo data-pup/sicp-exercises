@@ -1,9 +1,7 @@
-import {
-    IHuffmanNodeValidityCheckResult,
-} from '../interfaces/IHuffmanNodeValidityCheckResult';
 import { isUndefined } from 'util';
+import { INodeCheckResult } from '../interfaces/INodeCheckResult';
 
-export class HuffmanNodeValidityCheckResult implements IHuffmanNodeValidityCheckResult {
+export class NodeCheckResult implements INodeCheckResult {
 
     // Private static error message declarations.
     private static missingErrorMessage =
@@ -28,7 +26,7 @@ export class HuffmanNodeValidityCheckResult implements IHuffmanNodeValidityCheck
         const testFailed = ! this.isValid;
         if (testFailed && hasUndefinedMessage) {
             throw new Error(
-                HuffmanNodeValidityCheckResult.missingErrorMessage,
+                NodeCheckResult.missingErrorMessage,
             );
         }
     }
