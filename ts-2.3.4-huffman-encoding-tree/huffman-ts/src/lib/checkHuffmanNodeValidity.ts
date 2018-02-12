@@ -31,7 +31,7 @@ export const validateIHuffmanBTreeNode = (node:IHuffmanBTreeNode) : void => {
     } else {
         validateLeafNode(node);
     }
-}
+};
 
 // This function is used to identify whether a leaf node is valid.
 const validateLeafNode = (node:IHuffmanBTreeNode) : void => {
