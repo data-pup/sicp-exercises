@@ -30,6 +30,6 @@ import { suite, test } from 'mocha-typescript';
         // todo ...
 
         // Placeholder assertion. (Linting.)
-        assert.equal(1, 1);
+        assert.equal(1, 1, 'Temporary placeholder.');
     }
 }
