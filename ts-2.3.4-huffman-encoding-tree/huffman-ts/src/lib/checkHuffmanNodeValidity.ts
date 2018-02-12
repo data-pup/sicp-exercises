@@ -78,6 +78,12 @@ const validateParentNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
             false, InvalidNodeErrorMessages.parentNodeIsExtraneous);
     }
 
+    // A parent node should not have duplicate values in its token array.
+    if (parentNodeHasDuplicateTokens(node)) {
+        return new NodeCheckResult(
+            false, InvalidNodeErrorMessages.parentNodeHasDuplicateTokens);
+    }
+
     // A parent node must have a non-zero weight value.
     if (!node.hasWeight()) {
         return new NodeCheckResult(
@@ -111,4 +117,22 @@ const parentWeightMatchesSumOfChildren = (parentNode:IHuffmanBTreeNode)
     // Return true if the child weight sum matches the parent node's weight.
     if (parentWeight === childrenWeightSum) { return true; }
     return false; // Return false if the sum did not match the parent weight.
+};
+
+// This function will chech that a parent Huffman node does not have any
+// duplicate values in its tokens array. The logic in this function
+// is written based on the fact that the Huffman node's constructor sorts
+// the token array before checking node state validity.
+const parentNodeHasDuplicateTokens = (parentNode:IHuffmanBTreeNode)
+                                     : boolean => {
+    let previousToken:string = undefined; // Initialize a helper variable.
+
+    // Iterate through the token array to check for duplicates.
+    for (const currentToken of parentNode.tokens) {
+        // If the current token matches the previous token, return true.
+        if (currentToken === previousToken) { return true; }
+        previousToken = currentToken;
+    }
+
+    return false; // If no duplicates were found, return false.
 };
