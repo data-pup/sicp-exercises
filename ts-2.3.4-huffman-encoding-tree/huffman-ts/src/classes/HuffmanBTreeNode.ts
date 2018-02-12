@@ -1,6 +1,8 @@
+import { isNullOrUndefined } from 'util';
+import { NodeCheckResult } from './NodeCheckResult';
 import { ICharFreqRecord } from '../interfaces/ICharFreqRecord';
 import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
-import { isNullOrUndefined } from 'util';
+import { validateIHuffmanBTreeNode } from '../lib/checkHuffmanNodeValidity';
 
 export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
 
@@ -31,34 +33,28 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
     public readonly weight:number;
     public readonly left:HuffmanBTreeNode;
     public readonly right:HuffmanBTreeNode;
-
-    // Return true or false depending on whether or not `this` is a leaf node.
-    public isLeaf() : boolean {
-        // Return false if the node has any children.
-        if (this.hasChildren()) { return false; }
-        if (!this.hasSingleToken()) { return false; }
-        return true;
-    }
-
-    // Return true or false depending on whether or not the tree is empty.
-    public isEmpty() : boolean {
-        // Return false if the node has any children or a token list.
-        if (this.hasChildren()) { return false; }
-        if (this.hasTokens()) { return false; }
-        return true; // Otherwise, return true.
-    }
+    public readonly checkResults:NodeCheckResult;
 
     // Constructor definition.
     constructor(children:string[], weight:number,
                 left:HuffmanBTreeNode = undefined,
                 right:HuffmanBTreeNode = undefined) {
+
         // Sort the children array if it has not already been sorted.
         this.tokens = children.sort();
         this.weight = weight;
         this.left = left;
         this.right = right;
-        // this.checkStateIsValid();
-        // TODO: Add call the state validity check function.
+
+        // Check that the object is a valid node.
+        this.checkResults = validateIHuffmanBTreeNode(this);
+        if (!this.checkResults.isValid) {
+            // Reset the properties if the validity check failed.
+            this.tokens = undefined;
+            this.weight = undefined;
+            this.left = undefined;
+            this.right = undefined;
+        }
     }
 
     // Helper method used for the isLeaf and IsEmpty methods.
@@ -74,14 +70,6 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
         }
     }
 
-    // Returns a boolean value representing whether or not the
-    // token array has been initialized and contains any data.
-    public hasTokens() : boolean {
-        if (isNullOrUndefined(this.tokens)) { return false; }
-        if (this.tokens.length === 0) { return false; }
-        return true;
-    }
-
     // Returns a boolean value representing whether or not the token
     // array has been initialized and contains a single token.
     public hasSingleToken() : boolean {
@@ -90,10 +78,34 @@ export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
         return true;
     }
 
+    // Returns a boolean value representing whether or not the
+    // token array has been initialized and contains any data.
+    public hasTokens() : boolean {
+        if (isNullOrUndefined(this.tokens)) { return false; }
+        if (this.tokens.length === 0) { return false; }
+        return true;
+    }
+
     // Returns a boolean value representing whether a weight value exists.
     public hasWeight() : boolean {
         if (this.weight > 0) { return true; }
         return false;
+    }
+
+    // Return true or false depending on whether or not the tree is empty.
+    public isEmpty() : boolean {
+        // Return false if the node has any children or a token list.
+        if (this.hasChildren()) { return false; }
+        if (this.hasTokens()) { return false; }
+        return true; // Otherwise, return true.
+    }
+
+    // Return true or false depending on whether or not `this` is a leaf node.
+    public isLeaf() : boolean {
+        // Return false if the node has any children.
+        if (this.hasChildren()) { return false; }
+        if (!this.hasSingleToken()) { return false; }
+        return true;
     }
 
 }

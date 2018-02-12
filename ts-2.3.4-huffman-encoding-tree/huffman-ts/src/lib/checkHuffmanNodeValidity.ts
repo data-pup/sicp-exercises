@@ -21,53 +21,64 @@
  * ----------------------------------------------------------------------------
 */
 
+import { NodeCheckResult } from '../classes/NodeCheckResult';
 import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
-import {
-    IHuffmanNodeValidityCheckResult,
-} from '../interfaces/IHuffmanNodeValidityCheckResult';
 
 // This function will validate an Huffman encoding tree node.
-export const validateIHuffmanBTreeNode = (node:IHuffmanBTreeNode) : void => {
-    if (this.hasChildren()) {
-        validateParentNode(node);
+export const validateIHuffmanBTreeNode = (node:IHuffmanBTreeNode)
+                                         : NodeCheckResult => {
+
+    if (node.isEmpty()) { // If the node is an empty tree, it is valid.
+        return new NodeCheckResult(true, undefined);
+    }
+
+    // If the node has children, check that it is a valid parent node.
+    if (node.hasChildren()) {
+        return validateParentNode(node);
     } else {
-        validateLeafNode(node);
+        // If the node has no children check that it is a valid leaf node.
+        return validateLeafNode(node);
     }
 };
 
 // This function is used to identify whether a leaf node is valid.
-const validateLeafNode = (node:IHuffmanBTreeNode) : void => {
-    // If the node does not have children, it must either be an empty
-    // tree, or a validly initialized leaf node.
-    if (this.hasTokens()) {
-        // A node with no children and a token array must only contain
-        // a single token and a non-zero weight.
-        if (!this.hasSingleToken()) {
-            throw new Error(
-                'Leaf nodes cannot contain multiple tokens!');
-        }
-        // A leaf node with a single token must have a non-zero weight.
-        if (!this.hasWeight()) {
-            throw new Error('Leaf node must have a non-zero weight!');
-        }
-    } else {
-        if (this.hasWeight()) {
-            throw new Error('Empty tree cannot have a weight value!');
-        }
+const validateLeafNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
+    // A node with no children and a token array must only contain
+    // a single token and a non-zero weight.
+    if (!node.hasSingleToken()) {
+        return new NodeCheckResult(
+            false, 'Leaf nodes cannot contain multiple tokens!');
     }
+
+    // A leaf node with a single token must have a non-zero weight.
+    if (!node.hasWeight()) {
+        return new NodeCheckResult(
+            false, 'Leaf node must have a non-zero weight!');
+    }
+
+    // Return a node check result object representing a valid Huffman node.
+    return new NodeCheckResult(true, undefined);
 };
 
-const validateParentNode = (node:IHuffmanBTreeNode) : void => {
+const validateParentNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
     // If the node has children, it must have a token array.
-    if (!this.hasTokens()) {
-        throw new Error('Parent node must have a token array!');
+    if (!node.hasTokens()) {
+        return new NodeCheckResult(
+            false, 'Parent node must have a token array!');
     }
+
     // If the node has children, it should not have a single token.
-    if (this.hasSingleToken()) {
-        throw new Error('Extraneous parent node detected!');
+    if (node.hasSingleToken()) {
+        return new NodeCheckResult(
+            false, 'Extraneous parent node detected!');
     }
+
     // A parent node must have a non-zero weight value.
-    if (!this.hasWeight()) {
-        throw new Error('Parent node must have a non-zero weight!');
+    if (!node.hasWeight()) {
+        return new NodeCheckResult(
+            false, 'Parent node must have a non-zero weight!');
     }
+
+    // Return a node check result object representing a valid Huffman node.
+    return new NodeCheckResult(true, undefined);
 };
