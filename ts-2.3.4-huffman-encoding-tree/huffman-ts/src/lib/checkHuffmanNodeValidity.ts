@@ -19,19 +19,19 @@
 */
 
 // TEMP: Disabled import.
-// import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
+import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
 
 // This function will validate an Huffman encoding tree node.
-export const validateIHuffmanBTreeNode = () : void => {
+export const validateIHuffmanBTreeNode = (node:IHuffmanBTreeNode) : void => {
     if (this.hasChildren()) {
-        validateParentNode();
+        validateParentNode(node);
     } else {
-        validateLeafNode();
+        validateLeafNode(node);
     }
 }
 
 // This function is used to identify whether a leaf node is valid.
-const validateLeafNode = () : void => {
+const validateLeafNode = (node:IHuffmanBTreeNode) : void => {
     // If the node does not have children, it must either be an empty
     // tree, or a validly initialized leaf node.
     if (this.hasTokens()) {
@@ -52,7 +52,7 @@ const validateLeafNode = () : void => {
     }
 };
 
-const validateParentNode = () : void => {
+const validateParentNode = (node:IHuffmanBTreeNode) : void => {
     // If the node has children, it must have a token array.
     if (!this.hasTokens()) {
         throw new Error('Parent node must have a token array!');
