@@ -6,6 +6,9 @@
  *
  * Parent Node Check:
  *   - Token array should contain more than 1 item.
+ *   - Token array should contain no duplicates.
+ *   - Every token should be in either the right or left child token array.
+ *   - No token in the token array should appear in both of the child arrays.
  *   - Weight value should equal the sum of the left/right children weights.
  *
  * Leaf Node Check:
