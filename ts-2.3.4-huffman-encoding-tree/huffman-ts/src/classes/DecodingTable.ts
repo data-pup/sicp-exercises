@@ -6,6 +6,7 @@ import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
 // import { IEncodingTable } from '../interfaces/IEncodingTable';
 
 export class DecodingTable implements IDecodingTable {
+
     public data:Dictionary<string, string>;
 
     public decode(input:string) : string {
