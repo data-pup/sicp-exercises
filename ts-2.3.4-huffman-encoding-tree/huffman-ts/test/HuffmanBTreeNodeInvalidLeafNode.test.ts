@@ -18,7 +18,6 @@ import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
         // Assert that the node is in the correct invalid state, and that
         // the checkResults object contains the correct error message.
         assertNodeIsInInvalidState(invalidLeaf);
-        assert.isFalse(invalidLeaf.checkResults.isValid);
         assert.equal(
             invalidLeaf.checkResults.message,
             InvalidNodeErrorMessages.leafNodeHasMultipleTokens,
@@ -35,7 +34,6 @@ import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
         // Assert that the node is in the correct invalid state, and that
         // the checkResults object contains the correct error message.
         assertNodeIsInInvalidState(invalidLeaf);
-        assert.isFalse(invalidLeaf.checkResults.isValid);
         assert.equal(
             invalidLeaf.checkResults.message,
             InvalidNodeErrorMessages.leafNodeHasInvalidWeight,
@@ -52,7 +50,6 @@ import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
         // Assert that the node is in the correct invalid state, and that
         // the checkResults object contains the correct error message.
         assertNodeIsInInvalidState(invalidLeaf);
-        assert.isFalse(invalidLeaf.checkResults.isValid);
         assert.equal(
             invalidLeaf.checkResults.message,
             InvalidNodeErrorMessages.leafNodeHasInvalidWeight,

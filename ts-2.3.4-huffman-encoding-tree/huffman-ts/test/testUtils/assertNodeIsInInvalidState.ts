@@ -7,4 +7,7 @@ export const assertNodeIsInInvalidState = (node:IHuffmanBTreeNode) : void => {
     assert.isUndefined(node.right);
     assert.isUndefined(node.weight);
     assert.isUndefined(node.tokens);
+
+    // Assert that the results object has its validity flag set to false.
+    assert.isFalse(node.checkResults.isValid);
 };
