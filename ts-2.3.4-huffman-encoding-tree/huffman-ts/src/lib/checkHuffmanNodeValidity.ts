@@ -21,11 +21,14 @@
  * ----------------------------------------------------------------------------
 */
 
+import { isNullOrUndefined } from 'util';
 import { NodeCheckResult } from '../classes/NodeCheckResult';
 import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
 import { InvalidNodeErrorMessages } from '../lib/invalidNodeErrorMessages';
 
 // This function will validate an Huffman encoding tree node.
+// Note that this is not a deep check, this does not check the children
+// nodes' validity, if they do exist.
 export const validateIHuffmanBTreeNode = (node:IHuffmanBTreeNode)
                                          : NodeCheckResult => {
 
@@ -61,6 +64,7 @@ const validateLeafNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
     return new NodeCheckResult(true, undefined);
 };
 
+// This function is used to identify whether a parent node is valid.
 const validateParentNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
     // If the node has children, it must have a token array.
     if (!node.hasTokens()) {
@@ -80,6 +84,31 @@ const validateParentNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
             false, InvalidNodeErrorMessages.parentNodeHasInvalidWeight);
     }
 
+    // A parent node's weight must match the sum of its children.
+    if (!parentWeightMatchesSumOfChildren(node)) {
+        return new NodeCheckResult(
+            false, InvalidNodeErrorMessages.parentNodeHasInvalidWeight);
+    }
+
     // Return a node check result object representing a valid Huffman node.
     return new NodeCheckResult(true, undefined);
+};
+
+// This function will check that the given node's weight matches the sum
+// of its childrens' weight. This should not be invoked on a leaf node.
+const parentWeightMatchesSumOfChildren = (parentNode:IHuffmanBTreeNode)
+                                         : boolean => {
+    // Declare a sum variable, and determine which children exist.
+    const parentWeight = parentNode.weight;
+    let childrenWeightSum = 0;
+    const parentHasLeftChild:boolean = ! isNullOrUndefined(parentNode.left);
+    const parentHasRightChild:boolean = ! isNullOrUndefined(parentNode.right);
+
+    // Add the weights of the children that exist.
+    if (parentHasLeftChild) { childrenWeightSum += parentNode.left.weight; }
+    if (parentHasRightChild) { childrenWeightSum += parentNode.right.weight; }
+
+    // Return true if the child weight sum matches the parent node's weight.
+    if (parentWeight === childrenWeightSum) { return true; }
+    return false; // Return false if the sum did not match the parent weight.
 };

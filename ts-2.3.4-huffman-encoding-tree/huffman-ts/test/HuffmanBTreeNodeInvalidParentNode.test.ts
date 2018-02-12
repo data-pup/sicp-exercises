@@ -112,8 +112,4 @@ import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
         );
     }
 
-    @test public testParentNodeCannotHaveDuplicateTokens() {
-        assert.equal(1, 1, 'Temporary placeholder.');
-    }
-
 }

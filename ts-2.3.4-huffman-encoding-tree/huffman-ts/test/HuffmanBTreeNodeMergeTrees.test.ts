@@ -1,7 +1,11 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
+import {
+    assertNodeIsInInvalidState,
+} from './testUtils/assertNodeIsInInvalidState';
 import { assertArraysAreEqual } from './testUtils/assertArraysAreEqual';
 import { HuffmanBTreeNode } from '../src/classes/HuffmanBTreeNode';
+import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNodeMergeTrees {
@@ -86,6 +90,26 @@ import { HuffmanBTreeNode } from '../src/classes/HuffmanBTreeNode';
         assert.isUndefined(rootNode.right.left.right);
         assert.isUndefined(rootNode.right.right.left);
         assert.isUndefined(rootNode.right.right.right);
+    }
+
+    @test public testMergeOfTwoLeafNodesWithDuplicateTokensFails() {
+        // Create two new child nodes with identical token arrays.
+        const [leftChild, rightChild] = [
+            new HuffmanBTreeNode(['a'], 1, undefined, undefined),
+            new HuffmanBTreeNode(['a'], 1, undefined, undefined),
+        ];
+
+        // Attempt to merge the two leaf nodes into a single tree.
+        const invalidParent = HuffmanBTreeNode.mergeTrees(
+            leftChild, rightChild);
+
+        // Check that node was correctly recognized as invalid.
+        assertNodeIsInInvalidState(invalidParent);
+        assert.equal(
+            invalidParent.checkResults.message,
+            InvalidNodeErrorMessages.parentNodeHasDuplicateTokens,
+            'Parent node with duplicate tokens was not correctly identified',
+        );
     }
 
 }
