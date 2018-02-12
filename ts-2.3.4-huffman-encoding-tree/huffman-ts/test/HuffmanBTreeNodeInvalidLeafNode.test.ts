@@ -1,18 +1,13 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
+import {
+    assertNodeIsInInvalidState,
+} from './testUtils/assertNodeIsInInvalidState';
 import { HuffmanBTreeNode } from '../src/classes/HuffmanBTreeNode';
 import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNodeInvalidLeaf {
-
-    private checkNodeIsInvalidState(node:HuffmanBTreeNode) : void {
-        // Check that the child pointers, token list, and weight are undefined.
-        assert.isUndefined(node.left);
-        assert.isUndefined(node.right);
-        assert.isUndefined(node.weight);
-        assert.isUndefined(node.tokens);
-    }
 
     @test public testLeafNodeCannotHaveMultipleTokens() {
         // Attempt to create a leaf node with multiple tokens but no children.
@@ -22,7 +17,7 @@ import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
 
         // Assert that the node is in the correct invalid state, and that
         // the checkResults object contains the correct error message.
-        this.checkNodeIsInvalidState(invalidLeaf);
+        assertNodeIsInInvalidState(invalidLeaf);
         assert.isFalse(invalidLeaf.checkResults.isValid);
         assert.equal(
             invalidLeaf.checkResults.message,
@@ -39,7 +34,7 @@ import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
 
         // Assert that the node is in the correct invalid state, and that
         // the checkResults object contains the correct error message.
-        this.checkNodeIsInvalidState(invalidLeaf);
+        assertNodeIsInInvalidState(invalidLeaf);
         assert.isFalse(invalidLeaf.checkResults.isValid);
         assert.equal(
             invalidLeaf.checkResults.message,
@@ -56,7 +51,7 @@ import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
 
         // Assert that the node is in the correct invalid state, and that
         // the checkResults object contains the correct error message.
-        this.checkNodeIsInvalidState(invalidLeaf);
+        assertNodeIsInInvalidState(invalidLeaf);
         assert.isFalse(invalidLeaf.checkResults.isValid);
         assert.equal(
             invalidLeaf.checkResults.message,

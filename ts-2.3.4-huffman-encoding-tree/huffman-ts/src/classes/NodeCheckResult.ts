@@ -4,7 +4,7 @@ import { INodeCheckResult } from '../interfaces/INodeCheckResult';
 export class NodeCheckResult implements INodeCheckResult {
 
     // Private static error message declarations.
-    private static missingErrorMessage =
+    public static missingErrorMessage =
         'Result object must contain an Error message if check failed';
 
     // Member variables.

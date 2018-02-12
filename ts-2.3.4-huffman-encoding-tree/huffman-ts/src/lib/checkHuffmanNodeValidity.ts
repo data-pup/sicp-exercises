@@ -65,7 +65,7 @@ const validateParentNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
     // If the node has children, it must have a token array.
     if (!node.hasTokens()) {
         return new NodeCheckResult(
-            false, InvalidNodeErrorMessages.parentNodeIsMissingWeight);
+            false, InvalidNodeErrorMessages.parentNodeIsMissingTokens);
     }
 
     // If the node has children, it should not have a single token.
@@ -77,7 +77,7 @@ const validateParentNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
     // A parent node must have a non-zero weight value.
     if (!node.hasWeight()) {
         return new NodeCheckResult(
-            false, InvalidNodeErrorMessages.parentNodeIsMissingWeight);
+            false, InvalidNodeErrorMessages.parentNodeHasInvalidWeight);
     }
 
     // Return a node check result object representing a valid Huffman node.
