@@ -21,7 +21,6 @@
  * ----------------------------------------------------------------------------
 */
 
-// TEMP: Disabled import.
 import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
 
 // This function will validate an Huffman encoding tree node.
