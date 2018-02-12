@@ -43,13 +43,26 @@ import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
         assert.isFalse(invalidLeaf.checkResults.isValid);
         assert.equal(
             invalidLeaf.checkResults.message,
-            InvalidNodeErrorMessages.leafNodeIsMissingWeight,
+            InvalidNodeErrorMessages.leafNodeHasInvalidWeight,
             'Leaf node with weight of zero was improperly handled',
         );
     }
 
     @test public testLeafNodeCannotHaveNegativeWeight() {
-        assert.equal(1, 1, 'Placeholder assertion.');
+        // Attempt to create a leaf node with multiple tokens but no children.
+        const invalidLeaf = new HuffmanBTreeNode(
+            ['a'], -1, undefined, undefined,
+        );
+
+        // Assert that the node is in the correct invalid state, and that
+        // the checkResults object contains the correct error message.
+        this.checkNodeIsInvalidState(invalidLeaf);
+        assert.isFalse(invalidLeaf.checkResults.isValid);
+        assert.equal(
+            invalidLeaf.checkResults.message,
+            InvalidNodeErrorMessages.leafNodeHasInvalidWeight,
+            'Leaf node with weight of zero was improperly handled',
+        );
     }
 
 }

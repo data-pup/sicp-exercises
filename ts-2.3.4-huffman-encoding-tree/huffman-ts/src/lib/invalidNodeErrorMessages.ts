@@ -3,8 +3,8 @@ export class InvalidNodeErrorMessages {
     public static leafNodeHasMultipleTokens:string =
         'Leaf node has multiple tokens!';
 
-    public static leafNodeIsMissingWeight:string =
-        'Leaf node must have a non-zero weight!';
+    public static leafNodeHasInvalidWeight:string =
+        'Leaf node must have a positive, non-zero weight!';
 
     public static parentNodeIsMissingTokens:string =
         'Parent node must have a token array!';

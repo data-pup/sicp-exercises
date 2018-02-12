@@ -54,7 +54,7 @@ const validateLeafNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
     // A leaf node with a single token must have a non-zero weight.
     if (!node.hasWeight()) {
         return new NodeCheckResult(
-            false, InvalidNodeErrorMessages.leafNodeIsMissingWeight);
+            false, InvalidNodeErrorMessages.leafNodeHasInvalidWeight);
     }
 
     // Return a node check result object representing a valid Huffman node.
