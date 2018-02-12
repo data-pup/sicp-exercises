@@ -6,7 +6,27 @@ import { suite, test } from 'mocha-typescript';
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNodeInvalidLeaf {
 
-    @test public testTemporary() {
+    @test public testExtraneousParentNodeCannotBeCreated() {
+        assert.equal(1, 1, 'Temporary placeholder.');
+    }
+
+    @test public testParentNodeCannotBeMissingTokens() {
+        assert.equal(1, 1, 'Temporary placeholder.');
+    }
+
+    @test public testParentNodeCannotHaveWeightOfZero() {
+        assert.equal(1, 1, 'Temporary placeholder.');
+    }
+
+    @test public testParentNodeCannotHaveNegativeWeight() {
+        assert.equal(1, 1, 'Temporary placeholder.');
+    }
+
+    @test public testParentNodeWeightMustEqualChildrenWeightSum() {
+        assert.equal(1, 1, 'Temporary placeholder.');
+    }
+
+    @test public testParentNodeCannotHaveDuplicateTokens() {
         assert.equal(1, 1, 'Temporary placeholder.');
     }
 
