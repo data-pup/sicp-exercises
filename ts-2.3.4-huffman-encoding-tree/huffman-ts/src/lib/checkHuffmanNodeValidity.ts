@@ -66,37 +66,59 @@ const validateLeafNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
 
 // This function is used to identify whether a parent node is valid.
 const validateParentNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
+    // Check the parent node's tokens. If a test fails, return the error.
+    const tokenCheckResult:NodeCheckResult = validateParentNodeTokens(node);
+    if (!tokenCheckResult.isValid) { return tokenCheckResult; }
+
+    // Check the parent node's weight. If a test fails, return the error.
+    const weightCheckResult:NodeCheckResult = validateParentNodeWeight(node);
+    if (!weightCheckResult.isValid) { return weightCheckResult; }
+
+    // Return a node check result object representing a valid Huffman node.
+    return new NodeCheckResult(true, undefined);
+};
+
+// Parent node check helper function, checks that the token array is valid.
+const validateParentNodeTokens = (parentNode:IHuffmanBTreeNode)
+                                 : NodeCheckResult => {
     // If the node has children, it must have a token array.
-    if (!node.hasTokens()) {
+    if (!parentNode.hasTokens()) {
         return new NodeCheckResult(
             false, InvalidNodeErrorMessages.parentNodeIsMissingTokens);
     }
 
     // If the node has children, it should not have a single token.
-    if (node.hasSingleToken()) {
+    if (parentNode.hasSingleToken()) {
         return new NodeCheckResult(
             false, InvalidNodeErrorMessages.parentNodeIsExtraneous);
     }
 
     // A parent node should not have duplicate values in its token array.
-    if (parentNodeHasDuplicateTokens(node)) {
+    if (parentNodeHasDuplicateTokens(parentNode)) {
         return new NodeCheckResult(
             false, InvalidNodeErrorMessages.parentNodeHasDuplicateTokens);
     }
 
+    // Return a check result representing a passed test if nothing failed.
+    return new NodeCheckResult(true, undefined);
+};
+
+// Parent node check helper function, checks that the node weight is valid.
+const validateParentNodeWeight = (parentNode:IHuffmanBTreeNode)
+                                 : NodeCheckResult => {
     // A parent node must have a non-zero weight value.
-    if (!node.hasWeight()) {
+    if (!parentNode.hasWeight()) {
         return new NodeCheckResult(
             false, InvalidNodeErrorMessages.parentNodeHasInvalidWeight);
     }
 
     // A parent node's weight must match the sum of its children.
-    if (!parentWeightMatchesSumOfChildren(node)) {
+    if (!parentWeightMatchesSumOfChildren(parentNode)) {
         return new NodeCheckResult(
             false, InvalidNodeErrorMessages.parentNodeHasInvalidWeight);
     }
 
-    // Return a node check result object representing a valid Huffman node.
+    // Return a check result representing a passed test if nothing failed.
     return new NodeCheckResult(true, undefined);
 };
 
