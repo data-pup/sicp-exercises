@@ -1,6 +1,6 @@
 import { Dictionary } from 'typescript-collections';
-import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
 import { IEncodingTable } from '../interfaces/IEncodingTable';
+import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
 
 export class EncodingTable implements IEncodingTable {
 
