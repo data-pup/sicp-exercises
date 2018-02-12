@@ -23,6 +23,7 @@
 
 import { NodeCheckResult } from '../classes/NodeCheckResult';
 import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
+import { InvalidNodeErrorMessages } from '../lib/invalidNodeErrorMessages';
 
 // This function will validate an Huffman encoding tree node.
 export const validateIHuffmanBTreeNode = (node:IHuffmanBTreeNode)
@@ -47,13 +48,13 @@ const validateLeafNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
     // a single token and a non-zero weight.
     if (!node.hasSingleToken()) {
         return new NodeCheckResult(
-            false, 'Leaf nodes cannot contain multiple tokens!');
+            false, InvalidNodeErrorMessages.leafNodeHasMultipleTokens);
     }
 
     // A leaf node with a single token must have a non-zero weight.
     if (!node.hasWeight()) {
         return new NodeCheckResult(
-            false, 'Leaf node must have a non-zero weight!');
+            false, InvalidNodeErrorMessages.leafNodeIsMissingWeight);
     }
 
     // Return a node check result object representing a valid Huffman node.
@@ -64,19 +65,19 @@ const validateParentNode = (node:IHuffmanBTreeNode) : NodeCheckResult => {
     // If the node has children, it must have a token array.
     if (!node.hasTokens()) {
         return new NodeCheckResult(
-            false, 'Parent node must have a token array!');
+            false, InvalidNodeErrorMessages.parentNodeIsMissingWeight);
     }
 
     // If the node has children, it should not have a single token.
     if (node.hasSingleToken()) {
         return new NodeCheckResult(
-            false, 'Extraneous parent node detected!');
+            false, InvalidNodeErrorMessages.parentNodeIsExtraneous);
     }
 
     // A parent node must have a non-zero weight value.
     if (!node.hasWeight()) {
         return new NodeCheckResult(
-            false, 'Parent node must have a non-zero weight!');
+            false, InvalidNodeErrorMessages.parentNodeIsMissingWeight);
     }
 
     // Return a node check result object representing a valid Huffman node.
