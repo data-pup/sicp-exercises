@@ -1,6 +1,6 @@
 import { Dictionary } from 'typescript-collections';
 
 export interface IEncodingTable {
-    data:Dictionary<string, string>;
+    readonly encodingScheme:Dictionary<string, string>;
     encode(input:string) : string;
 }
