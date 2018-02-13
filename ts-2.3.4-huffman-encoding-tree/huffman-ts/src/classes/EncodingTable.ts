@@ -1,7 +1,7 @@
 import { Dictionary } from 'typescript-collections';
 import { IEncodingTable } from '../interfaces/IEncodingTable';
 import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
-import { createEncodingDictionary } from '../lib/encodingTableFactory';
+import { createEncodingDictionary } from '../lib/createEncodingDictionary';
 
 export class EncodingTable implements IEncodingTable {
 
