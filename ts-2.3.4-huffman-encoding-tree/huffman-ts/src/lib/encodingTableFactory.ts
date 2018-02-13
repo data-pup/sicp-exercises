@@ -1,20 +1,25 @@
 import { Dictionary } from 'typescript-collections';
-import { EncodingTable } from '../classes/EncodingTable';
-import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
 import { isNullOrUndefined } from 'util';
+import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
 
-export const createEncodingTable = (huffmanBTree:IHuffmanBTreeNode,
-                                    encodingPrefix:string)
-                                   : EncodingTable => {
-    // Initialize a new dictionary object to store encoding values.
-    // const encodingDict = new Dictionary<string, string>();
+// Create an encoding dictionary using a Huffman encoding tree. This function
+// will recursively traverse the tree and return a dictionary containing
+// the encoding for each token in the tree.
+export const createEncodingDictionary = (huffmanBTree:IHuffmanBTreeNode,
+                                         encodingPrefix:string)
+                                        : Dictionary<string, string> => {
+    // If the tree is null, undefined, or empty, return an empty dictionary.
+    if (huffmanTreeIsNullOrUndefinedOrEmpty(huffmanBTree)) {
+        return new Dictionary<string, string>();
+    }
 
-    // if (huffmanTreeIsNullOrUndefinedOrEmpty(huffmanBTree)) {
-    //     return new EncodingTable() // TODO: Change the constructor params.
-    // }
-
-    // TEMP: Throw an error for now.
-    throw new Error('Not Implemented Error');
+    // Determine if the node is a leaf node or a parent node within the
+    // Huffman encoding tree, and create the encoding dictionary accordingly.
+    if (huffmanBTree.isLeaf()) {
+        return getLeafNodeEncodingDict(huffmanBTree, encodingPrefix);
+    } else {
+        return getParentNodeEncodingDict(huffmanBTree, encodingPrefix);
+    }
 };
 
 // Returns a boolean value representing whether or not the given Huffman
@@ -41,7 +46,20 @@ const getLeafNodeEncodingDict = (huffmanBTree:IHuffmanBTreeNode,
 const getParentNodeEncodingDict = (huffmanBTree:IHuffmanBTreeNode,
                                    encodingPrefix:string)
                                   : Dictionary<string, string> => {
-    throw new Error('Not Implemented!');
+    // Calculate the left child's encoding prefix and encoding dictionary.
+    const leftChildPrefix = encodingPrefix.concat('0');
+    const leftChildDict:Dictionary<string, string> = createEncodingDictionary(
+        huffmanBTree.left, leftChildPrefix);
+
+    // Calculate the right child's encoding prefix and encoding dictionary.
+    const rightChildPrefix = encodingPrefix.concat('1');
+    const rightChildDict:Dictionary<string, string> = createEncodingDictionary(
+        huffmanBTree.right, rightChildPrefix);
+
+    // Merge the left and right children's encoding dictionaries.
+    const parentNodeEncodingDict:Dictionary<string, string> =
+        mergeEncodingDictionaries(leftChildDict, rightChildDict);
+    return parentNodeEncodingDict; // Return the result of the merge.
 };
 
 // This is a helper function for processing parent nodes, this will merge

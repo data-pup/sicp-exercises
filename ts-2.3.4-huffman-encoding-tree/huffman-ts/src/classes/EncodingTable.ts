@@ -1,5 +1,7 @@
 import { Dictionary } from 'typescript-collections';
 import { IEncodingTable } from '../interfaces/IEncodingTable';
+import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
+import { createEncodingDictionary } from '../lib/encodingTableFactory';
 
 export class EncodingTable implements IEncodingTable {
 
@@ -9,8 +11,8 @@ export class EncodingTable implements IEncodingTable {
         throw new Error('Not Implemented.');
     }
 
-    constructor(encodingScheme:Dictionary<string, string>) {
-        this.encodingScheme = encodingScheme;
+    constructor(huffmanTree:IHuffmanBTreeNode) {
+        this.encodingScheme = createEncodingDictionary(huffmanTree, '0');
     }
 
 }
