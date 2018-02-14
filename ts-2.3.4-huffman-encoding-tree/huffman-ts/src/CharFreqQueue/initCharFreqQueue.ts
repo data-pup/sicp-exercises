@@ -1,6 +1,6 @@
 import { PriorityQueue } from 'typescript-collections';
 import { isNullOrUndefined } from 'util';
-import { CharFreqRecord } from '../classes/CharFreqRecord';
+import { CharFreqRecord } from './CharFreqRecord';
 import { compareCharFreqRecords } from './compareCharFreqRecords';
 
 // Declare a function that will create a new priority queue used to build

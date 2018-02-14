@@ -3,8 +3,10 @@ import { suite, test } from 'mocha-typescript';
 import {
     assertNodeIsInInvalidState,
 } from './testUtils/assertNodeIsInInvalidState';
-import { HuffmanBTreeNode } from '../src/classes/HuffmanBTreeNode';
-import { InvalidNodeErrorMessages } from '../src/lib/invalidNodeErrorMessages';
+import { HuffmanBTreeNode } from '../src/HuffmanBTree/HuffmanBTreeNode';
+import {
+    InvalidNodeErrorMessages,
+} from '../src/HuffmanBTreeValidation/invalidNodeErrorMessages';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNodeInvalidLeaf {

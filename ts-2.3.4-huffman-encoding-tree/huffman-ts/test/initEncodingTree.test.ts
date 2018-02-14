@@ -2,10 +2,18 @@ import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import { PriorityQueue } from 'typescript-collections';
 import { assertArraysAreEqual } from './testUtils/assertArraysAreEqual';
-import { CharFreqRecord } from '../src/classes/CharFreqRecord';
-import { HuffmanBTreeNode } from '../src/classes/HuffmanBTreeNode';
-import { compareCharFreqRecords } from '../src/lib/compareCharFreqRecords';
-import { initializeHuffmanEncodingTree } from '../src/lib/initEncodingTree';
+
+// Character Frequency Record Imports.
+import { CharFreqRecord } from '../src/CharFreqQueue/CharFreqRecord';
+import {
+    compareCharFreqRecords,
+} from '../src/CharFreqQueue/compareCharFreqRecords';
+
+// Huffman B-Tree Imports.
+import { HuffmanBTreeNode } from '../src/HuffmanBTree/HuffmanBTreeNode';
+import {
+    initializeHuffmanEncodingTree,
+} from '../src/HuffmanBTree/initEncodingTree';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestInitEncodingTree {

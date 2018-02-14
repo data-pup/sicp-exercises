@@ -1,9 +1,11 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import { Dictionary } from 'typescript-collections';
-import { EncodingTable } from '../src/classes/EncodingTable';
-import { initializeQueue } from '../src/lib/initCharFreqQueue';
-import { initializeHuffmanEncodingTree } from '../src/lib/initEncodingTree';
+import { initializeQueue } from '../src/CharFreqQueue/initCharFreqQueue';
+import {
+    initializeHuffmanEncodingTree,
+} from '../src/HuffmanBTree/initEncodingTree';
+import { EncodingTable } from '../src/HuffmanEncoding/EncodingTable';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestEncodingTable {

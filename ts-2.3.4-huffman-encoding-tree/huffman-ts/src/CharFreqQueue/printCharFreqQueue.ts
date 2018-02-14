@@ -1,5 +1,5 @@
 import { PriorityQueue } from 'typescript-collections';
-import { ICharFreqRecord } from '../interfaces/ICharFreqRecord';
+import { ICharFreqRecord } from './ICharFreqRecord';
 
 const printICharFreqRecord = (record:ICharFreqRecord) : void => {
     const char = record.getCharacter();

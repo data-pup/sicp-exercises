@@ -1,6 +1,6 @@
 import { Dictionary } from 'typescript-collections';
-import { IDecodingTable } from '../interfaces/IDecodingTable';
-import { IEncodingTable } from '../interfaces/IEncodingTable';
+import { IDecodingTable } from './IDecodingTable';
+import { IEncodingTable } from '../HuffmanEncoding/IEncodingTable';
 
 export class DecodingTable implements IDecodingTable {
 

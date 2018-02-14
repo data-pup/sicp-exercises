@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
-import { CharFreqRecord } from '../src/classes/CharFreqRecord';
-import { initializeQueue } from '../src/lib/initCharFreqQueue';
+import { CharFreqRecord } from '../src/CharFreqQueue/CharFreqRecord';
+import { initializeQueue } from '../src/CharFreqQueue/initCharFreqQueue';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestInitializeQueue {

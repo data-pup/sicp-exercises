@@ -1,5 +1,5 @@
 import { isUndefined } from 'util';
-import { INodeCheckResult } from '../interfaces/INodeCheckResult';
+import { INodeCheckResult } from './INodeCheckResult';
 
 export class NodeCheckResult implements INodeCheckResult {
 

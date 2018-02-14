@@ -1,8 +1,10 @@
 import { isNullOrUndefined } from 'util';
-import { NodeCheckResult } from './NodeCheckResult';
-import { ICharFreqRecord } from '../interfaces/ICharFreqRecord';
-import { IHuffmanBTreeNode } from '../interfaces/IHuffmanBTreeNode';
-import { validateIHuffmanBTreeNode } from '../lib/checkHuffmanNodeValidity';
+import { IHuffmanBTreeNode } from './IHuffmanBTreeNode';
+import { ICharFreqRecord } from '../CharFreqQueue/ICharFreqRecord';
+import {
+    validateIHuffmanBTreeNode,
+} from '../HuffmanBTreeValidation/checkHuffmanNodeValidity';
+import { NodeCheckResult } from '../HuffmanBTreeValidation/NodeCheckResult';
 
 export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
 

@@ -1,6 +1,6 @@
 import { PriorityQueue, Stack } from 'typescript-collections';
-import { HuffmanBTreeNode } from '../classes/HuffmanBTreeNode';
-import { ICharFreqRecord } from '../interfaces/ICharFreqRecord';
+import { HuffmanBTreeNode } from './HuffmanBTreeNode';
+import { ICharFreqRecord } from '../CharFreqQueue/ICharFreqRecord';
 
 export const initializeHuffmanEncodingTree =
              (freqQueue:PriorityQueue<ICharFreqRecord>) : HuffmanBTreeNode => {

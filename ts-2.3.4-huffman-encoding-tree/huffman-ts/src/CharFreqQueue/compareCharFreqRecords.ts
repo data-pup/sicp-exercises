@@ -1,4 +1,4 @@
-import { ICharFreqRecord } from '../interfaces/ICharFreqRecord';
+import { ICharFreqRecord } from './ICharFreqRecord';
 
 // Compare CharFrequency objects, this is used to build the priority queue.
 export const compareCharFreqRecords = (a:ICharFreqRecord, b:ICharFreqRecord)

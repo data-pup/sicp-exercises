@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { IHuffmanBTreeNode } from '../../src/interfaces/IHuffmanBTreeNode';
+import { IHuffmanBTreeNode } from '../../src/HuffmanBTree/IHuffmanBTreeNode';
 
 export const assertNodeIsInInvalidState = (node:IHuffmanBTreeNode) : void => {
     // Check that the child pointers, token list, and weight are undefined.

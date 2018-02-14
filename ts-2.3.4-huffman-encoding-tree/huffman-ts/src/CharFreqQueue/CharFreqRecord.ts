@@ -1,5 +1,5 @@
 import { isNullOrUndefined } from 'util';
-import { ICharFreqRecord } from '../interfaces/ICharFreqRecord';
+import { ICharFreqRecord } from './ICharFreqRecord';
 
 export class CharFreqRecord implements ICharFreqRecord {
 
