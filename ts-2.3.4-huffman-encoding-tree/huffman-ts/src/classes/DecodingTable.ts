@@ -9,7 +9,16 @@ export class DecodingTable implements IDecodingTable {
     // schema. This will return a Dictionary<string, string> object.
     private static generateDecodingScheme(encoder:IEncodingTable)
                                          : Dictionary<string, string> {
-        throw new Error('Not Implemented');
+        // Initialize a new empty dictionary.
+        const decodingScheme = new Dictionary<string, string>();
+
+        // Iterate through the dictionary stored in the encoder.
+        encoder.encodingScheme.forEach((char, encoding) : void => {
+            decodingScheme.setValue(encoding, char);
+        });
+
+        // Return the decoding scheme.
+        return decodingScheme;
     }
 
     public readonly decodingScheme:Dictionary<string, string>;
