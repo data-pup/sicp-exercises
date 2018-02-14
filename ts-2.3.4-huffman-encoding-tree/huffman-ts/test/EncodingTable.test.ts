@@ -8,6 +8,18 @@ import { initializeHuffmanEncodingTree } from '../src/lib/initEncodingTree';
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestEncodingTable {
 
+    @test public testEmptyEncodingTableCreation() {
+        // Create an encoding table, given an empty test string.
+        const testString = '';
+        const freqQueue = initializeQueue(testString);
+        const encodingTree = initializeHuffmanEncodingTree(freqQueue);
+        const encoder = new EncodingTable(encodingTree);
+
+        // Check that the encoding table is empty.
+        const encodingSchemeIsEmpty = encoder.encodingScheme.isEmpty();
+        assert.isTrue(encodingSchemeIsEmpty);
+    }
+
     @test public testBasicEncodingTableCreation() {
         // Input String: 'aaabbc' -> Expected Huffman Encoding Tree:
         // ---------------------------------------------------------
