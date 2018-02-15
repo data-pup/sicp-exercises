@@ -9,10 +9,36 @@ export const printHuffmanBTree = (rootNode:IHuffmanBTreeNode) : void => {
 // This function will print a single node Huffman encoding tree to stdout.
 const printHuffmanBTreeNode = (node:IHuffmanBTreeNode,
                                linePrefix:string='') : void => {
-    // Calculate the prefix string that should be printed before the node.
-    const nodeStringPrefix = generateNodeLinePrefix(linePrefix);
+    // Create the string representation of the current node, and print it.
+    const nodeString = getNodeString(node, linePrefix);
+    process.stdout.write(`${nodeString}\n`);
 
-    // Wrap each token in quotations, for readability.
+    // Create the line prefix for printing child nodes, and recursively print.
+    const leftLinePrefix = generateChildsLinePrefix(linePrefix);
+    const printableChildren:IHuffmanBTreeNode[] = getPrintableChildren(node);
+    printableChildren.map((childNode) : void => {
+        if (!isNullOrUndefined(childNode)) {
+            printHuffmanBTreeNode(childNode, leftLinePrefix);
+        }
+    });
+};
+
+// This function will calculate the string representation of a huffman encoding
+// tree node, given the current indentation level in a line prefix string.
+const getNodeString = (node:IHuffmanBTreeNode, linePrefix:string) : string => {
+    const nodeStringPrefix = generateNodeLinePrefix(linePrefix);
+    const nodeTokensString:string = getNodeTokensString(node);
+    const nodeString = [
+        nodeStringPrefix,
+        nodeTokensString,
+        ' : ',
+        node.weight.toString(),
+    ].join('');
+    return nodeString;
+};
+
+const getNodeTokensString = (node:IHuffmanBTreeNode) : string => {
+    // Wrap each token in single quotes, for readability.
     const wrappedTokens:string[] = node.tokens.map((token) : string => {
         return ['\'', token, '\''].join('');
     });
@@ -24,25 +50,7 @@ const printHuffmanBTreeNode = (node:IHuffmanBTreeNode,
         ']', // Then combine the array, placing a space between the '[' and ']'.
     ].join(' ');
 
-    // Next, combine the tokens string and the weight value.
-    const nodeString = [
-        nodeStringPrefix,
-        nodeTokensString,
-        ':',
-        node.weight.toString(),
-    ].join(' ');
-
-    // Finally, print the string with a newline appended.
-    process.stdout.write(`${nodeString}\n`);
-
-    // Print the child nodes.
-    const leftLinePrefix = generateChildsLinePrefix(linePrefix);
-    const printableChildren:IHuffmanBTreeNode[] = getPrintableChildren(node);
-    printableChildren.map((childNode) : void => {
-        if (!isNullOrUndefined(childNode)) {
-            printHuffmanBTreeNode(childNode, leftLinePrefix);
-        }
-    });
+    return nodeTokensString; // Return the tokens string.
 };
 
 // Generate the prefix string to be printed before the string
