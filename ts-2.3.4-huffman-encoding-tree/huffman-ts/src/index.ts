@@ -5,10 +5,12 @@ import { HuffmanBTreeNode } from './HuffmanBTree/HuffmanBTreeNode';
 import {
     initializeHuffmanEncodingTree,
 } from './HuffmanBTree/initEncodingTree';
-import { printHuffmanBTree } from './PrintingUtilities/printHuffmanBTree';
+import { DecodingTable } from './HuffmanDecoding/DecodingTable';
+import { EncodingTable } from './HuffmanEncoding/EncodingTable';
 
 // Unused Imports:
 // import { isNullOrUndefined } from 'util';
+// import { printHuffmanBTree } from './PrintingUtilities/printHuffmanBTree';
 
 const createHuffmanBTreeFromString = (input:string) : HuffmanBTreeNode => {
     const cfQueue:PriorityQueue<CharFreqRecord> = initializeQueue(input);
@@ -19,11 +21,24 @@ const createHuffmanBTreeFromString = (input:string) : HuffmanBTreeNode => {
 // Define the main function.
 const main = () => {
     // Initialize a Huffman encoding tree;
-    const greeting = 'hello world!';
+    const greeting = 'Can you hear me now? Good!';
     const huffmanBTree:HuffmanBTreeNode = createHuffmanBTreeFromString(
         greeting);
-    // Call the printing function.
-    printHuffmanBTree(huffmanBTree);
+
+    // Initialize an encoding table.
+    const encoder = new EncodingTable(huffmanBTree);
+
+    // Use the encoding table to create a decoding table.
+    const decoder = new DecodingTable(encoder);
+
+    // Serialize the test string using the encoder.
+    const encodedString:string = encoder.encode(greeting);
+    const decodedString:string = decoder.decode(encodedString);
+
+    // Print the results.
+    process.stdout.write(`Input String: ${greeting}\n`);
+    process.stdout.write(`Encoded String: ${encodedString}\n`);
+    process.stdout.write(`Decoded String: ${decodedString}\n`);
 };
 
 // Invoke the main function.

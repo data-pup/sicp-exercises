@@ -24,7 +24,24 @@ export class DecodingTable implements IDecodingTable {
     public readonly decodingScheme:Dictionary<string, string>;
 
     public decode(input:string) : string {
-        throw new Error('Not Implemented.');
+        const decodedTokens:string[] = new Array<string>();
+        let tokenStart:number = 0;
+        let tokenEnd:number = 0;
+        let token:string = undefined;
+        while (tokenEnd < input.length) {
+            token = input.substring(tokenStart, tokenEnd);
+            if (this.decodingScheme.containsKey(token)) {
+                decodedTokens.push(this.decodingScheme.getValue(token));
+                tokenStart = tokenEnd;
+            }
+            tokenEnd++;
+        }
+        token = input.substring(tokenStart, tokenEnd);
+        if (this.decodingScheme.containsKey(token)) {
+            decodedTokens.push(this.decodingScheme.getValue(token));
+            tokenStart = tokenEnd;
+        }
+        return decodedTokens.join('');
     }
 
     constructor(encoder:IEncodingTable) {

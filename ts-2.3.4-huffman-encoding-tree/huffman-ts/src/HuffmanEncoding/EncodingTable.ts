@@ -12,7 +12,7 @@ export class EncodingTable implements IEncodingTable {
         const encodedChars = inputChars.map((char) => {
             return this.encodingScheme.getValue(char);
         });
-        const encodedOutput = encodedChars.join();
+        const encodedOutput = encodedChars.join('');
         return encodedOutput;
     }
 

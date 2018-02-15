@@ -12,7 +12,6 @@ import {
 @suite class TestDecodingTable {
 
     @test public testDecodingSchemeGeneration() {
-        assert.equal(1, 1, 'Placeholder Test');
         // Expected Decoding Table:
         // ---------------------------------------------------------
         // | 10 -> a                                               |
@@ -49,6 +48,36 @@ import {
             const actualChar = decoder.decodingScheme.getValue(encoding);
             assert.equal(actualChar, expectedChar);
         });
+    }
+
+    @test public testDecodingSimpleString() {
+        // -----------------------------------------------------------------
+        // Create an encoding and decoding table using `aaabbc` as an input,
+        // and test that the same string can be decoded using the decoding
+        // table's `decode` method.
+        // -----------------------------------------------------------------
+
+        // Initialize the input string.
+        const testString = 'aaabbc';
+
+        // Initialize a priority queue using the given test string.
+        const freqQueue = initializeQueue(testString);
+
+        // Initialize an encoding tree.
+        const encodingTree = initializeHuffmanEncodingTree(freqQueue);
+
+        // Initialize an encoding table.
+        const encoder = new EncodingTable(encodingTree);
+
+        // Use the encoding table to create a decoding table.
+        const decoder = new DecodingTable(encoder);
+
+        // Serialize the test string using the encoder.
+        const encodedString:string = encoder.encode(testString);
+        const decodedString:string = decoder.decode(encodedString);
+
+        // Assert that the decoded string matches the original string.
+        assert.equal(decodedString, testString);
     }
 
 }
