@@ -11,6 +11,12 @@ import { EncodingTable } from '../src/HuffmanEncoding/EncodingTable';
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestEncodingTable {
 
+    @test public testUndefinedInputForEncodingTableConstructor() {
+        const encoder = new EncodingTable(undefined);
+        const encodingSchemeIsEmpty = encoder.encodingScheme.isEmpty();
+        assert.isTrue(encodingSchemeIsEmpty);
+    }
+
     @test public testEmptyEncodingTableCreation() {
         // Create an encoding table, given an empty test string.
         const testString = '';

@@ -12,6 +12,12 @@ import { initializeQueue } from '../src/CharFreqQueue/initCharFreqQueue';
         assert.isTrue(resultQueue.isEmpty());
     }
 
+    @test public testUndefinedString() {
+        const inputString:string = undefined;
+        const resultQueue = initializeQueue(inputString);
+        assert.isTrue(resultQueue.isEmpty());
+    }
+
     @test public testSimpleString() {
         // Initialize an input string and create a frequency priority queue.
         const inputString = 'hello';
