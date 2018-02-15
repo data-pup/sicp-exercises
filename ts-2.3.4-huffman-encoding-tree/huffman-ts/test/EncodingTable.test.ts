@@ -5,6 +5,7 @@ import { initializeQueue } from '../src/CharFreqQueue/initCharFreqQueue';
 import {
     initializeHuffmanEncodingTree,
 } from '../src/HuffmanBTree/initEncodingTree';
+import { DecodingTable } from '../src/HuffmanDecoding/DecodingTable';
 import { EncodingTable } from '../src/HuffmanEncoding/EncodingTable';
 
 /* tslint:disable-next-line:no-unused-variable */
@@ -77,6 +78,56 @@ import { EncodingTable } from '../src/HuffmanEncoding/EncodingTable';
 
         // Assert the expected and actual test string encoding match.
         assert.equal(actualTestStringEncoding, expectedTestStringEncoding);
+    }
+
+    @test public testEncodingTableCreationForNonTrivialString() {
+        // Input String: aaabbbcccdddeeefffggghhhiii
+        // ----------------------------------------------------
+        // [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i' ] : 27
+        // │    ├──[ 'a', 'b', 'c', 'h', 'i' ] : 15
+        // │    │    ├──[ 'a', 'h', 'i' ] : 9
+        // │    │    │    ├──[ 'h', 'i' ] : 6
+        // │    │    │    │    ├──[ 'i' ] : 3
+        // │    │    │    │    ├──[ 'h' ] : 3
+        // │    │    │    ├──[ 'a' ] : 3
+        // │    │    ├──[ 'b', 'c' ] : 6
+        // │    │    │    ├──[ 'c' ] : 3
+        // │    │    │    ├──[ 'b' ] : 3
+        // │    ├──[ 'd', 'e', 'f', 'g' ] : 12
+        // │    │    ├──[ 'd', 'e' ] : 6
+        // │    │    │    ├──[ 'e' ] : 3
+        // │    │    │    ├──[ 'd' ] : 3
+        // │    │    ├──[ 'f', 'g' ] : 6
+        // │    │    │    ├──[ 'g' ] : 3
+        // │    │    │    ├──[ 'f' ] : 3
+        // -----------------------------------------------------------------
+        // This test case is designed to cause a situation where
+        // the encoding tree generation process requires completely emptying
+        // the priority queue into a temporary queue into temporary queue.
+        //
+        // This is done by creating a string with various characters that
+        // are equally weighted so that any merge of these nodes will be
+        // of larger weight than all other nodes.
+        //
+        // Rather than creating the expected tree manually, this is checked
+        // by ensuring that the string can be decoded correctly.
+        // -----------------------------------------------------------------
+        const testString:string = 'aaabbbcccdddeeefffggghhhiii';
+
+        // Initialize a priority queue using the given test string.
+        const freqQueue = initializeQueue(testString);
+
+        // Initialize an encoding tree.
+        const encodingTree = initializeHuffmanEncodingTree(freqQueue);
+
+        // Initialize an encoding table and a decoding table.
+        const encoder = new EncodingTable(encodingTree);
+        const decoder = new DecodingTable(encoder);
+
+        // Check that the encoding tree is valid by encoding and then decoding
+        // the contents of `testString` and asserting that they are equal.
+        const result = decoder.decode(encoder.encode(testString));
+        assert.equal(result, testString);
     }
 
 }
