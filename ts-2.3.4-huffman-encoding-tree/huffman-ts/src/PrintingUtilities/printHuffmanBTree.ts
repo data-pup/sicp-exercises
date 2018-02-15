@@ -1,5 +1,5 @@
-import { IHuffmanBTreeNode } from './IHuffmanBTreeNode';
 import { isNullOrUndefined } from 'util';
+import { IHuffmanBTreeNode } from '../HuffmanBTree/IHuffmanBTreeNode';
 
 // This function will print a Huffman encoding tree to stdout.
 export const printHuffmanBTree = (rootNode:IHuffmanBTreeNode) : void => {
@@ -49,6 +49,8 @@ const printHuffmanBTreeNode = (node:IHuffmanBTreeNode,
 // representation of a node, given the line prefix string variable.
 const generateNodeLinePrefix = (linePrefix:string, isLast:boolean=false)
                                : string => {
+    if (linePrefix.length === 0) { return ''; }
+
     // Select the branch character to use, depending on the `isLast` flag.
     const selectedBranchChar:string = isLast ?
         TreePrintingChars.lastBranchChar

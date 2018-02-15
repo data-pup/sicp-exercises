@@ -5,7 +5,7 @@ import { HuffmanBTreeNode } from './HuffmanBTree/HuffmanBTreeNode';
 import {
     initializeHuffmanEncodingTree,
 } from './HuffmanBTree/initEncodingTree';
-import { printHuffmanBTree } from './HuffmanBTree/printHuffmanBTree';
+import { printHuffmanBTree } from './PrintingUtilities/printHuffmanBTree';
 
 // Unused Imports:
 // import { isNullOrUndefined } from 'util';
