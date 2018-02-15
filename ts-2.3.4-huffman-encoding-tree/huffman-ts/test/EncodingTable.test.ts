@@ -70,7 +70,7 @@ import { EncodingTable } from '../src/HuffmanEncoding/EncodingTable';
         // of the test string, using the expected schema defined above.
         const expectedTestStringEncoding:string = [
             '10', '10', '10', '110', '110', '111',
-        ].join();
+        ].join('');
 
         // Initialize a variable containing the actual test string encoding.
         const actualTestStringEncoding = encoder.encode(testString);
