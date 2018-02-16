@@ -33,7 +33,7 @@ const padStringIfNeeded = (encoding:string, paddingSize:number) : string => {
 const parameterIsValidNonNegativeInteger = (i:number) : boolean => {
     if (!Number.isFinite(i)) {
         return false;
-    } else if (!Number.isNaN(i)) {
+    } else if (Number.isNaN(i)) {
         return false;
     } else if (!Number.isSafeInteger(i)) {
         return false;
