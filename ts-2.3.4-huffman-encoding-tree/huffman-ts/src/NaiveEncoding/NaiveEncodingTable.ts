@@ -10,12 +10,11 @@ export class NaiveEncodingTable implements INaiveEncodingTable {
     // the internal encoding dictionary, given the input string.
     private static generateEncodingDictionary(inputString:string)
                                              : Dictionary<string, string> {
+        // Initialize a new dictionary, which will store encoding mappings.
         const encodingDictionary = new Dictionary<string, string>();
 
-        // Process the input string and generate an array of encoding keys.
+        // Generate an array of encoding keys, find the encoding string width.
         const sortedKeys:string[] = getSortedUniqueCharArray(inputString);
-
-        // Process the token array and identify the encoding string width.
         const paddingWidth:number = calculateEncodingSize(sortedKeys);
 
         // Declare loop helper variables, and iterate through the array of
