@@ -1,14 +1,6 @@
 import { Dictionary } from 'typescript-collections';
 import { isNullOrUndefined } from 'util';
 
-// This method will return a boolean value representing whether or not
-// the input string is empty, null, or undefined.
-export const stringIsEmptyOrNullOrUndefined = (input:string) : boolean => {
-    if (isNullOrUndefined(input)) { return true; }
-    if (input.length === 0) { return true; }
-    return false;
-};
-
 // This method is responsible for processing the input string, and
 // returning a sorted list of unique characters that occur in the input.
 export const getSortedUniqueCharArray = (inputString:string) : string[] => {
@@ -16,7 +8,7 @@ export const getSortedUniqueCharArray = (inputString:string) : string[] => {
     const charactersSeen = new Dictionary<string, boolean>();
 
     // Return an empty list if the input is empty, null, or undefined.
-    if (this.stringIsEmptyOrNullOrUndefined) {
+    if (stringIsEmptyOrNullOrUndefined(inputString)) {
         return new Array<string>();
     }
 
@@ -34,4 +26,12 @@ export const getSortedUniqueCharArray = (inputString:string) : string[] => {
     // Convert the list of keys in the dictionary into a sorted array.
     const uniqueCharArray:string[] = charactersSeen.keys().sort();
     return uniqueCharArray; // Return the result.
+};
+
+// This method will return a boolean value representing whether or not
+// the input string is empty, null, or undefined.
+const stringIsEmptyOrNullOrUndefined = (input:string) : boolean => {
+    if (isNullOrUndefined(input)) { return true; }
+    if (input.length === 0) { return true; }
+    return false;
 };
