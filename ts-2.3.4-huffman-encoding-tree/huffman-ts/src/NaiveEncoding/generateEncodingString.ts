@@ -4,7 +4,7 @@ const leftPad = require('left-pad');
 // characters. If `paddingSize` is zero, the encoding will not be left
 // padded with zeroes. If `i` is not an integer that can be safely represented,
 // or negative, an empty string will be returned.
-export const convertNumberToEncodingString = (i:number, paddingSize:number)
+export const convertNumberToEncodingString = (i:number, paddingSize:number=0)
                                              : string => {
     // Return an empty string if the validation function returns false
     // for either the value to be encoded, or the paddding size parameter.

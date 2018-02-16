@@ -1,4 +1,7 @@
 import { Dictionary } from 'typescript-collections';
+import { calculateEncodingSize } from './calculateEncodingSize';
+import { convertNumberToEncodingString } from './generateEncodingString';
+import { getSortedUniqueCharArray } from './generateSortedUniqueCharacterArray';
 import { INaiveEncodingTable } from './INaiveEncodingTable';
 
 export class NaiveEncodingTable implements INaiveEncodingTable {
@@ -7,7 +10,25 @@ export class NaiveEncodingTable implements INaiveEncodingTable {
     // the internal encoding dictionary, given the input string.
     private static generateEncodingDictionary(inputString:string)
                                              : Dictionary<string, string> {
-        throw new Error('');
+        const encodingDictionary = new Dictionary<string, string>();
+
+        // Process the input string and generate an array of encoding keys.
+        const sortedKeys:string[] = getSortedUniqueCharArray(inputString);
+
+        // Process the token array and identify the encoding string width.
+        const paddingWidth:number = calculateEncodingSize(sortedKeys);
+
+        // Declare loop helper variables, and iterate through the array of
+        // sorted unique tokens. Find the encoding for each, and add the
+        // key value pair to the dictionary.
+        let [currentToken, tokenEncoding]:string[] = [undefined, undefined];
+        for (let index = 0; index < sortedKeys.length; index++) {
+            currentToken = sortedKeys[index];
+            tokenEncoding = convertNumberToEncodingString(index, paddingWidth);
+            encodingDictionary.setValue(currentToken, tokenEncoding);
+        }
+
+        return encodingDictionary; // Return the dictionary.
     }
 
     public readonly encodingScheme:Dictionary<string, string>;
