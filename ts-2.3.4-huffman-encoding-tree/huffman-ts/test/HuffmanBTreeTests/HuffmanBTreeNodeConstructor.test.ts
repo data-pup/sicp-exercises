@@ -1,8 +1,8 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
-import { assertArraysAreEqual } from './testUtils/assertArraysAreEqual';
-import { CharFreqRecord } from '../src/CharFreqQueue/CharFreqRecord';
-import { HuffmanBTreeNode } from '../src/HuffmanBTree/HuffmanBTreeNode';
+import { assertArraysAreEqual } from '../testUtils/assertArraysAreEqual';
+import { CharFreqRecord } from '../../src/CharFreqQueue/CharFreqRecord';
+import { HuffmanBTreeNode } from '../../src/HuffmanBTree/HuffmanBTreeNode';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNodeConstructor {

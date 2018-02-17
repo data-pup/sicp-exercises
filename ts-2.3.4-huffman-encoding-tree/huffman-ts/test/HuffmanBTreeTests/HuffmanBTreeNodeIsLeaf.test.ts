@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
-import { HuffmanBTreeNode } from '../src/HuffmanBTree/HuffmanBTreeNode';
+import { HuffmanBTreeNode } from '../../src/HuffmanBTree/HuffmanBTreeNode';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNodeIsLeaf {
