@@ -24,23 +24,27 @@ export class DecodingTable implements IDecodingTable {
     public readonly decodingScheme:Dictionary<string, string>;
 
     public decode(input:string) : string {
+        // Declare a decoded tokens array, and position variables.
         const decodedTokens:string[] = new Array<string>();
         let tokenStart:number = 0;
         let tokenEnd:number = 0;
         let token:string = undefined;
-        while (tokenEnd < input.length) {
+
+        // Declare a local function that will process the current substring.
+        const processCurrentToken = () => {
             token = input.substring(tokenStart, tokenEnd);
             if (this.decodingScheme.containsKey(token)) {
                 decodedTokens.push(this.decodingScheme.getValue(token));
                 tokenStart = tokenEnd;
             }
+        };
+
+        // Move through the input string, and decode the content.
+        while (tokenEnd < input.length) {
+            processCurrentToken();
             tokenEnd++;
         }
-        token = input.substring(tokenStart, tokenEnd);
-        if (this.decodingScheme.containsKey(token)) {
-            decodedTokens.push(this.decodingScheme.getValue(token));
-            tokenStart = tokenEnd;
-        }
+        processCurrentToken();
         return decodedTokens.join('');
     }
 
