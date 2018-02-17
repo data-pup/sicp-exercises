@@ -18,8 +18,7 @@ export class DecodingTable implements IDecodingTable {
             decodingScheme.setValue(encoding, char);
         });
 
-        // Return the decoding scheme.
-        return decodingScheme;
+        return decodingScheme; // Return the decoding scheme.
     }
 
     public readonly decodingScheme:Dictionary<string, string>;
