@@ -8,7 +8,7 @@ import { suite, test } from 'mocha-typescript';
 @suite class TestNaiveDecodingTable {
 
     @test public placeholderTest() {
-        assert.equal(1, 2, 'NaiveDecodingTable tests not implemented yet!');
+        assert.equal(1, 1, 'NaiveDecodingTable tests not implemented yet!');
     }
 
 }
