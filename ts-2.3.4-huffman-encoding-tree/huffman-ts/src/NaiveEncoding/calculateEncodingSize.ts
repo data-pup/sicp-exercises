@@ -8,8 +8,8 @@ export const calculateEncodingSize = (tokens:string[]) : number => {
         throw new Error('Error calculating encoding string size!');
     }
 
-    // If the token array contains 0 or 1 elements, return a length of 1.
-    if (tokens.length <= 1) {
+    // If the token array contains < 2 elements, the encoding size should be 1.
+    if (tokens.length <= 2) {
         return 1;
     }
 
