@@ -3,6 +3,7 @@ import { calculateEncodingSize } from './calculateEncodingSize';
 import { convertNumberToEncodingString } from './generateEncodingString';
 import { getSortedUniqueCharArray } from './generateSortedUniqueCharacterArray';
 import { INaiveEncodingTable } from './INaiveEncodingTable';
+import { encodeInputString } from '../GenericConversionLogic/encodeData';
 
 export class NaiveEncodingTable implements INaiveEncodingTable {
 
@@ -33,7 +34,7 @@ export class NaiveEncodingTable implements INaiveEncodingTable {
     public readonly encodingScheme:Dictionary<string, string>;
 
     public encode(input:string) : string {
-        throw new Error('Not Implemented Error');
+        return encodeInputString(input, this.encodingScheme);
     }
 
     constructor (inputString:string) {
