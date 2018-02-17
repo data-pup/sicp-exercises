@@ -42,10 +42,10 @@ export class DecodingTable implements IDecodingTable {
         // Move through the input string, and decode the content.
         while (tokenEnd < input.length) {
             processCurrentToken();
-            tokenEnd++;
-        }
+            tokenEnd++; // Increment the current token end position.
+        } // Process the end of the input string.
         processCurrentToken();
-        return decodedTokens.join('');
+        return decodedTokens.join(''); // Join the tokens and return.
     }
 
     constructor(encoder:IEncodingTable) {
