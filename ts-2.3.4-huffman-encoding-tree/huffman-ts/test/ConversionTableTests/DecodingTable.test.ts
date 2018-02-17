@@ -11,6 +11,20 @@ import {
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestDecodingTable {
 
+    @test public testEmptyEncodingTableIsAcceptedByConstructor() {
+        const testString = '';
+        const freqQueue = initializeQueue(testString);
+        const encodingTree = initializeHuffmanEncodingTree(freqQueue);
+        const encoder = new EncodingTable(encodingTree);
+        const decoder = new DecodingTable(encoder);
+        assert.isTrue(decoder.decodingScheme.isEmpty());
+    }
+
+    @test public testUndefinedIsAcceptedByConstructor() {
+        const decoder = new DecodingTable(undefined);
+        assert.isTrue(decoder.decodingScheme.isEmpty());
+    }
+
     @test public testDecodingSchemeGeneration() {
         // Expected Decoding Table:
         // ---------------------------------------------------------

@@ -1,4 +1,5 @@
 import { Dictionary } from 'typescript-collections';
+import { isNullOrUndefined } from 'util';
 import { IDecodingTable } from './IDecodingTable';
 import { decodeInputString } from '../GenericConversionLogic/decodeData';
 import { IEncodingTable } from '../HuffmanEncoding/IEncodingTable';
@@ -12,6 +13,9 @@ export class DecodingTable implements IDecodingTable {
                                          : Dictionary<string, string> {
         // Initialize a new empty dictionary.
         const decodingScheme = new Dictionary<string, string>();
+
+        // Return an empty dictionary if the encoding table is undefined.
+        if (isNullOrUndefined(encoder)) { return decodingScheme; }
 
         // Iterate through the dictionary stored in the encoder.
         encoder.encodingScheme.forEach((char, encoding) : void => {

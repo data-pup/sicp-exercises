@@ -16,4 +16,9 @@ import {
         assert.isTrue(ndt.decodingScheme.isEmpty());
     }
 
+    @test public testUndefinedInputToConstructor() {
+        const ndt = new NaiveDecodingTable(undefined);
+        assert.isTrue(ndt.decodingScheme.isEmpty());
+    }
+
 }

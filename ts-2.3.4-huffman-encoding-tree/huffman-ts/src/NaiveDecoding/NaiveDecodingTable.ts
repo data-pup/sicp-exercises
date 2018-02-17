@@ -1,4 +1,5 @@
 import { Dictionary } from 'typescript-collections';
+import { isNullOrUndefined } from 'util';
 import { INaiveDecodingTable } from './INaiveDecodingTable';
 import { decodeInputString } from '../GenericConversionLogic/decodeData';
 import { INaiveEncodingTable } from '../NaiveEncoding/INaiveEncodingTable';
@@ -9,6 +10,9 @@ export class NaiveDecodingTable implements INaiveDecodingTable {
                                          : Dictionary<string, string> {
         // Initialize a new empty dictionary.
         const decodingScheme = new Dictionary<string, string>();
+
+        // Return an empty dictionary if the encoding table is undefined.
+        if (isNullOrUndefined(encoder)) { return decodingScheme; }
 
         // Iterate through the dictionary, swap keys and values.
         encoder.encodingScheme.forEach((char, encoding) => {
