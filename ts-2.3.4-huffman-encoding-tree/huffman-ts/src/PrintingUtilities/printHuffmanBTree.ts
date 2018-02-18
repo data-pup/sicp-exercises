@@ -9,25 +9,37 @@ export const printHuffmanBTree = (rootNode:IHuffmanBTreeNode) : void => {
 
 // This function will print a single node Huffman encoding tree to stdout.
 const printHuffmanBTreeNode = (node:IHuffmanBTreeNode,
-                               linePrefix:string='') : void => {
+                               linePrefix:string='',
+                               nodeIsLastChild:boolean=false) : void => {
     // Create the string representation of the current node, and print it.
-    const nodeString = getNodeString(node, linePrefix);
+    const nodeString = getNodeString(node, linePrefix, nodeIsLastChild);
     process.stdout.write(`${nodeString}\n`);
 
-    // Create the line prefix for printing child nodes, and recursively print.
-    const leftLinePrefix = generateChildsLinePrefix(linePrefix);
+    // If the node has no children, there is no need to continue further.
+    if (!node.hasChildren()) { return; }
+
+    // Otherwise, get an array of printable children.
     const printableChildren:IHuffmanBTreeNode[] = getPrintableChildren(node);
-    printableChildren.map((childNode) : void => {
-        if (!isNullOrUndefined(childNode)) {
-            printHuffmanBTreeNode(childNode, leftLinePrefix);
-        }
-    });
+
+    // Calculate the index of the last child to print.
+    const lastChildIndex:number = printableChildren.length - 1;
+
+    // Pass each printable child to the printing function.
+    for (let currIndex = 0; currIndex < printableChildren.length;
+                                          currIndex++) {
+        const currChild:IHuffmanBTreeNode = printableChildren[currIndex];
+        const isLast:boolean = (currIndex === lastChildIndex);
+        const childLinePrefix = generateChildsLinePrefix(linePrefix, isLast);
+        printHuffmanBTreeNode(currChild, childLinePrefix);
+    }
 };
 
 // This function will calculate the string representation of a huffman encoding
 // tree node, given the current indentation level in a line prefix string.
-const getNodeString = (node:IHuffmanBTreeNode, linePrefix:string) : string => {
-    const nodeStringPrefix = generateNodeLinePrefix(linePrefix);
+const getNodeString = (node:IHuffmanBTreeNode,
+                       linePrefix:string,
+                       isLast:boolean) : string => {
+    const nodeStringPrefix = generateNodeLinePrefix(linePrefix, isLast);
     const nodeTokensString:string = getNodeTokensString(node);
     const nodeString = [
         nodeStringPrefix,
@@ -56,8 +68,8 @@ const getNodeTokensString = (node:IHuffmanBTreeNode) : string => {
 
 // Generate the prefix string to be printed before the string
 // representation of a node, given the line prefix string variable.
-const generateNodeLinePrefix = (linePrefix:string, isLast:boolean=false)
-                               : string => {
+const generateNodeLinePrefix = (linePrefix:string,
+                                isLast:boolean) : string => {
     // Return an empty string if the preexesting line prefix is also empty.
     if (linePrefix.length === 0) { return ''; }
 
@@ -78,7 +90,7 @@ const generateNodeLinePrefix = (linePrefix:string, isLast:boolean=false)
 const generateChildsLinePrefix = (parentLinePrefix:string, isLast:boolean=false)
                                  : string => {
     // If the parent's line prefix is empty, return a single space.
-    if (parentLinePrefix.length === 0) { return ' '; }
+    if (parentLinePrefix.length === 0) { return '  '; }
 
     // Generate the child's line indendation prefix for further print calls.
     // If the node is the last child of the parent, do not include a vertical
