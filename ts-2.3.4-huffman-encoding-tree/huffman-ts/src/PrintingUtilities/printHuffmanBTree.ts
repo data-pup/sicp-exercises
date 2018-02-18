@@ -77,6 +77,12 @@ const generateNodeLinePrefix = (linePrefix:string, isLast:boolean=false)
 // node's children.
 const generateChildsLinePrefix = (parentLinePrefix:string, isLast:boolean=false)
                                  : string => {
+    // If the parent's line prefix is empty, return a single space.
+    if (parentLinePrefix.length === 0) { return ' '; }
+
+    // Generate the child's line indendation prefix for further print calls.
+    // If the node is the last child of the parent, do not include a vertical
+    // pipe character in the indentation string.
     return isLast ?
         parentLinePrefix.concat(' ', HuffmanBTreePrintingChars.nodeIndentation)
         : parentLinePrefix.concat(
@@ -89,11 +95,10 @@ const generateChildsLinePrefix = (parentLinePrefix:string, isLast:boolean=false)
 const getPrintableChildren = (parentNode:IHuffmanBTreeNode)
                                  : IHuffmanBTreeNode[] => {
     if (isNullOrUndefined(parentNode)) {
-        return [];
-    } else {
-        // Return an array of the children nodes that are defined.
+        return []; // Return an empty array if the parent is not defined.
+    } else { // Otherwise, return an array of the children nodes.
         return [parentNode.left, parentNode.right].filter(
-            (node) : boolean => {
+            (node) : boolean => { // Callback checks whether the child exists.
                 if (isNullOrUndefined(node)) { return false; }
                 return true;
             },
