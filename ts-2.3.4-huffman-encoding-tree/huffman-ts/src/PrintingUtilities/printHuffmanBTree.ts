@@ -1,5 +1,5 @@
 import { isNullOrUndefined } from 'util';
-import { HuffmanBTreePrintingChars } from './TreePrintingChars';
+import { HuffmanBTreePrintingChars } from './HuffmanBTreePrintingChars';
 import { IHuffmanBTreeNode } from '../HuffmanBTree/IHuffmanBTreeNode';
 
 // This function will print a Huffman encoding tree to stdout.
@@ -58,6 +58,7 @@ const getNodeTokensString = (node:IHuffmanBTreeNode) : string => {
 // representation of a node, given the line prefix string variable.
 const generateNodeLinePrefix = (linePrefix:string, isLast:boolean=false)
                                : string => {
+    // Return an empty string if the preexesting line prefix is also empty.
     if (linePrefix.length === 0) { return ''; }
 
     // Select the branch character to use, depending on the `isLast` flag.
@@ -74,11 +75,14 @@ const generateNodeLinePrefix = (linePrefix:string, isLast:boolean=false)
 
 // Generate a prefix string that shall be printed before each of a
 // node's children.
-const generateChildsLinePrefix = (parentLinePrefix:string) : string => {
-    return parentLinePrefix.concat(
-        HuffmanBTreePrintingChars.verticalChar,
-        HuffmanBTreePrintingChars.nodeIndentation,
-    );
+const generateChildsLinePrefix = (parentLinePrefix:string, isLast:boolean=false)
+                                 : string => {
+    return isLast ?
+        parentLinePrefix.concat(' ', HuffmanBTreePrintingChars.nodeIndentation)
+        : parentLinePrefix.concat(
+            HuffmanBTreePrintingChars.verticalChar,
+            HuffmanBTreePrintingChars.nodeIndentation,
+        );
 };
 
 // Generate an array of a node's printable children.
