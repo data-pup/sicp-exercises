@@ -48,7 +48,7 @@ class TableColumnPrintingInformation {
                 const widthSeemsValid:boolean = (colName.length < colWidth);
                 return widthSeemsValid;
             }) // Check that all of the columns seemed valid.
-            .every((value) => { return (value === true) });
+            .every((value) => (value === true));
         return noColumnsFailedBasicValidation;
     }
 }
