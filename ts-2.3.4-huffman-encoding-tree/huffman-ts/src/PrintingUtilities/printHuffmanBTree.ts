@@ -1,5 +1,5 @@
 import { isNullOrUndefined } from 'util';
-import { TreePrintingChars } from './TreePrintingChars';
+import { HuffmanBTreePrintingChars } from './TreePrintingChars';
 import { IHuffmanBTreeNode } from '../HuffmanBTree/IHuffmanBTreeNode';
 
 // This function will print a Huffman encoding tree to stdout.
@@ -62,13 +62,13 @@ const generateNodeLinePrefix = (linePrefix:string, isLast:boolean=false)
 
     // Select the branch character to use, depending on the `isLast` flag.
     const selectedBranchChar:string = isLast ?
-        TreePrintingChars.lastBranchChar
-        : TreePrintingChars.branchChar;
+        HuffmanBTreePrintingChars.lastBranchChar
+        : HuffmanBTreePrintingChars.branchChar;
 
     return linePrefix.concat( // Generate the line prefix using concatenation.
         selectedBranchChar,
-        TreePrintingChars.horizontalChar,
-        TreePrintingChars.horizontalChar,
+        HuffmanBTreePrintingChars.horizontalChar,
+        HuffmanBTreePrintingChars.horizontalChar,
     );
 };
 
@@ -76,8 +76,8 @@ const generateNodeLinePrefix = (linePrefix:string, isLast:boolean=false)
 // node's children.
 const generateChildsLinePrefix = (parentLinePrefix:string) : string => {
     return parentLinePrefix.concat(
-        TreePrintingChars.verticalChar,
-        TreePrintingChars.nodeIndentation,
+        HuffmanBTreePrintingChars.verticalChar,
+        HuffmanBTreePrintingChars.nodeIndentation,
     );
 };
 

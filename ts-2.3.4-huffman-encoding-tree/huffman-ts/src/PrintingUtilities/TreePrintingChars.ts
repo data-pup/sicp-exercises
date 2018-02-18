@@ -1,4 +1,4 @@
-export class TreePrintingChars {
+export class HuffmanBTreePrintingChars {
     public static readonly branchChar:string = '├';
     public static readonly lastBranchChar:string = '└';
     public static readonly horizontalChar:string = '─';
