@@ -1,4 +1,5 @@
 import { isNullOrUndefined } from 'util';
+import { TreePrintingChars } from './TreePrintingChars';
 import { IHuffmanBTreeNode } from '../HuffmanBTree/IHuffmanBTreeNode';
 
 // This function will print a Huffman encoding tree to stdout.
@@ -95,13 +96,3 @@ const getPrintableChildren = (parentNode:IHuffmanBTreeNode)
         );
     }
 };
-
-// // Private class containing public static helper characters
-// // used to print a Huffman encoding tree.
-class TreePrintingChars {
-    public static readonly branchChar:string = '├';
-    public static readonly lastBranchChar:string = '└';
-    public static readonly horizontalChar:string = '─';
-    public static readonly verticalChar:string = '│';
-    public static readonly nodeIndentation:string = '    ';
-}
