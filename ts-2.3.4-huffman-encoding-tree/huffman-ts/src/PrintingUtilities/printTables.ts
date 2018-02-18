@@ -1,7 +1,12 @@
-// import {  } from 'module';
-// import {  } from '../';
+import { IDecodingTable } from '../TableInterfaces/IDecodingTable';
+import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
 
-// TODO: Accept a table as an input,
-// find the table width & print each element aligned to this width.
-// TODO: Merge the table interfaces so that both huffman and naive
-// tables implement the same interface.
+// Print an object that implements the decoding table interface.
+const printEncodingTable = (table:IEncodingTable) : void => {
+    throw new Error('Not Implemented Yet!');
+};
+
+// Print an object that implements the decoding table interface.
+const printDecodingTable = (table:IDecodingTable) : void => {
+    throw new Error('Not Implemented Yet!');
+};
