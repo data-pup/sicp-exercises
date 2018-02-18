@@ -99,9 +99,9 @@ const getPrintableChildren = (parentNode:IHuffmanBTreeNode)
 // // Private class containing public static helper characters
 // // used to print a Huffman encoding tree.
 class TreePrintingChars {
-    public static branchChar:string = '├';
-    public static lastBranchChar:string = '└';
-    public static horizontalChar:string = '─';
-    public static verticalChar:string = '│';
-    public static nodeIndentation:string = '    ';
+    public static readonly branchChar:string = '├';
+    public static readonly lastBranchChar:string = '└';
+    public static readonly horizontalChar:string = '─';
+    public static readonly verticalChar:string = '│';
+    public static readonly nodeIndentation:string = '    ';
 }
