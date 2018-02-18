@@ -22,6 +22,12 @@ const printDecodingTableHeader = () : void => {
     throw new Error('Not Implemented Yet!');
 };
 
+// TODO: This function should find the column names, and the length of the
+// longest value in each of the columns for a given table.
+const getPrintInfo = () : void => {
+    throw new Error('Not Implemented Yet!');
+};
+
 class TableColumnPrintingInformation {
 
     public columns:ColumnInfo[];
