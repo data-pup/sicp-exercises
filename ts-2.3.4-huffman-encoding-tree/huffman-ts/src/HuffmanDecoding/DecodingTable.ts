@@ -1,8 +1,8 @@
 import { Dictionary } from 'typescript-collections';
 import { isNullOrUndefined } from 'util';
-import { IDecodingTable } from './IDecodingTable';
 import { decodeInputString } from '../GenericConversionLogic/decodeData';
-import { IEncodingTable } from '../HuffmanEncoding/IEncodingTable';
+import { IDecodingTable } from '../TableInterfaces/IDecodingTable';
+import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
 
 export class DecodingTable implements IDecodingTable {
 

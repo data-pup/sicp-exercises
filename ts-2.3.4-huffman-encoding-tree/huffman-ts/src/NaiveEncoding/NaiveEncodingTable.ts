@@ -2,8 +2,8 @@ import { Dictionary } from 'typescript-collections';
 import { calculateEncodingSize } from './calculateEncodingSize';
 import { convertNumberToEncodingString } from './generateEncodingString';
 import { getSortedUniqueCharArray } from './generateSortedUniqueCharacterArray';
-import { INaiveEncodingTable } from './INaiveEncodingTable';
 import { encodeInputString } from '../GenericConversionLogic/encodeData';
+import { INaiveEncodingTable } from '../TableInterfaces/INaiveEncodingTable';
 
 export class NaiveEncodingTable implements INaiveEncodingTable {
 

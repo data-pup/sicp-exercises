@@ -1,8 +1,8 @@
 import { Dictionary } from 'typescript-collections';
 import { createEncodingDictionary } from './createEncodingDictionary';
-import { IEncodingTable } from './IEncodingTable';
 import { encodeInputString } from '../GenericConversionLogic/encodeData';
 import { IHuffmanBTreeNode } from '../HuffmanBTree/IHuffmanBTreeNode';
+import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
 
 export class EncodingTable implements IEncodingTable {
 

@@ -1,8 +1,8 @@
 import { Dictionary } from 'typescript-collections';
 import { isNullOrUndefined } from 'util';
-import { INaiveDecodingTable } from './INaiveDecodingTable';
 import { decodeInputString } from '../GenericConversionLogic/decodeData';
-import { INaiveEncodingTable } from '../NaiveEncoding/INaiveEncodingTable';
+import { INaiveDecodingTable } from '../TableInterfaces/INaiveDecodingTable';
+import { INaiveEncodingTable } from '../TableInterfaces/INaiveEncodingTable';
 
 export class NaiveDecodingTable implements INaiveDecodingTable {
 
