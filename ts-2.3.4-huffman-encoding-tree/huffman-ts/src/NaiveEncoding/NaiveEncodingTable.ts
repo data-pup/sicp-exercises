@@ -3,9 +3,9 @@ import { calculateEncodingSize } from './calculateEncodingSize';
 import { convertNumberToEncodingString } from './generateEncodingString';
 import { getSortedUniqueCharArray } from './generateSortedUniqueCharacterArray';
 import { encodeInputString } from '../GenericConversionLogic/encodeData';
-import { INaiveEncodingTable } from '../TableInterfaces/INaiveEncodingTable';
+import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
 
-export class NaiveEncodingTable implements INaiveEncodingTable {
+export class NaiveEncodingTable implements IEncodingTable {
 
     // Private static helper function used by the constructor to generate
     // the internal encoding dictionary, given the input string.

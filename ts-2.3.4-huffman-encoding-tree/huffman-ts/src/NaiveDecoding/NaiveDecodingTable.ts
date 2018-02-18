@@ -1,12 +1,12 @@
 import { Dictionary } from 'typescript-collections';
 import { isNullOrUndefined } from 'util';
 import { decodeInputString } from '../GenericConversionLogic/decodeData';
-import { INaiveDecodingTable } from '../TableInterfaces/INaiveDecodingTable';
-import { INaiveEncodingTable } from '../TableInterfaces/INaiveEncodingTable';
+import { IDecodingTable } from '../TableInterfaces/IDecodingTable';
+import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
 
-export class NaiveDecodingTable implements INaiveDecodingTable {
+export class NaiveDecodingTable implements IDecodingTable {
 
-    private static generateDecodingScheme(encoder:INaiveEncodingTable)
+    private static generateDecodingScheme(encoder:IEncodingTable)
                                          : Dictionary<string, string> {
         // Initialize a new empty dictionary.
         const decodingScheme = new Dictionary<string, string>();
@@ -30,7 +30,7 @@ export class NaiveDecodingTable implements INaiveDecodingTable {
         return decodeInputString(input, this.decodingScheme);
     }
 
-    constructor(encodingTable:INaiveEncodingTable) {
+    constructor(encodingTable:IEncodingTable) {
         this.decodingScheme = NaiveDecodingTable
             .generateDecodingScheme(encodingTable);
     }
