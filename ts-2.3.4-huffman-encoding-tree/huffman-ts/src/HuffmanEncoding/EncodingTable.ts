@@ -7,6 +7,8 @@ import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
 export class EncodingTable implements IEncodingTable {
 
     public readonly encodingScheme:Dictionary<string, string>;
+    public readonly method:string;
+    public readonly type:string;
 
     public encode(input:string) : string {
         return encodeInputString(input, this.encodingScheme);
@@ -14,6 +16,8 @@ export class EncodingTable implements IEncodingTable {
 
     constructor(huffmanTree:IHuffmanBTreeNode) {
         this.encodingScheme = createEncodingDictionary(huffmanTree, '1');
+        this.method = 'huffman';
+        this.type = 'encoding';
     }
 
 }

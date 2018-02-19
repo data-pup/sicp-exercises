@@ -32,6 +32,8 @@ export class NaiveEncodingTable implements IEncodingTable {
     }
 
     public readonly encodingScheme:Dictionary<string, string>;
+    public readonly method:string;
+    public readonly type:string;
 
     public encode(input:string) : string {
         return encodeInputString(input, this.encodingScheme);
@@ -40,6 +42,8 @@ export class NaiveEncodingTable implements IEncodingTable {
     constructor (inputString:string) {
         this.encodingScheme = NaiveEncodingTable
             .generateEncodingDictionary(inputString);
+        this.method = 'naive';
+        this.type = 'encoding';
     }
 
 }

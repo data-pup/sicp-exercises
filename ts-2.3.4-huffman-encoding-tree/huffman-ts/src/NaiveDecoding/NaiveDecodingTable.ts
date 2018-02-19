@@ -23,6 +23,8 @@ export class NaiveDecodingTable implements IDecodingTable {
     }
 
     public readonly decodingScheme:Dictionary<string, string>;
+    public readonly method:string;
+    public readonly type:string;
 
     // Convert an input string back into plaintext using the internal
     // decoding scheme dictionary.
@@ -33,6 +35,8 @@ export class NaiveDecodingTable implements IDecodingTable {
     constructor(encodingTable:IEncodingTable) {
         this.decodingScheme = NaiveDecodingTable
             .generateDecodingScheme(encodingTable);
+        this.method = 'naive';
+        this.type = 'decoding';
     }
 
 }
