@@ -1,5 +1,5 @@
 import {
-    ColumnNameTuple,
+    ColumnValueTuple,
     ColumnWidthTuple,
     ConversionTable,
 } from './printingHelperTypes';
@@ -8,11 +8,12 @@ import {
 // longest value in each of the columns for a given table.
 /* tslint:disable-next-line:no-unused-variable */
 export const getTableColumnDimensions = (table:ConversionTable,
-                                         columnNames:ColumnNameTuple)
+                                         columnNames:ColumnValueTuple,
+                                         padding:number=1)
                                         : ColumnWidthTuple => {
     let [leftColumnMaxWidth, rightColumnMaxWidth]:number[] = [0, 0];
     const widthArray:ColumnWidthTuple[] = getKeyValueWidthArray(
-        table, columnNames);
+        table, columnNames, padding);
     for (const currWidthTuple of widthArray) {
         const [currLeftWidth, currRightWidth] = [
             currWidthTuple[0],
@@ -29,20 +30,36 @@ export const getTableColumnDimensions = (table:ConversionTable,
 };
 
 const getKeyValueWidthArray = (table:ConversionTable,
-                               columnNames:ColumnNameTuple)
+                               columnNames:ColumnValueTuple,
+                               padding:number)
                               : ColumnWidthTuple[] => {
+    // Initialize a new array to store each row's width.
     const widthArray:ColumnWidthTuple[] = new Array();
-    widthArray.push(getColumnWidthTupleForRow(columnNames));
+
+    // Get the width of the header row.
+    widthArray.push(getColumnWidthTupleForRow(columnNames, padding));
+
+    // Get the width of each row in the table.
     table.getScheme().forEach(
         (key:string, value:string) : void => {
-            widthArray.push(getColumnWidthTupleForRow([key, value]));
+            widthArray.push(
+                getColumnWidthTupleForRow(
+                    [key, value],
+                    padding,
+                ),
+            );
         },
     );
-    return widthArray;
+
+    return widthArray; // Return the width array.
 };
 
-const getColumnWidthTupleForRow = (columnNames:ColumnNameTuple)
+const getColumnWidthTupleForRow = (columnNames:ColumnValueTuple, padding:number)
                                   : ColumnWidthTuple => {
     const [keyColumnName, valueColumnName] = columnNames;
-    return [keyColumnName.length, valueColumnName.length];
+    const totalPadding = padding * 2;
+    return [
+        keyColumnName.length + totalPadding,
+        valueColumnName.length + totalPadding,
+    ];
 };

@@ -1,12 +1,12 @@
-import { ColumnNameTuple, ConversionTable } from './printingHelperTypes';
+import { ColumnValueTuple, ConversionTable } from './printingHelperTypes';
 import { TablePrintingErrorMessages } from './TablePrintingErrorMessages';
 
 export const getSchemeKeyValueColumnNames = (table:ConversionTable)
-                                            : ColumnNameTuple => {
+                                            : ColumnValueTuple => {
     // Declare variables that we will assign depending on the type of table.
     const keyColumnName:string = getKeyColumnName(table);
     const valueColumnName:string = getValueColumnName(table);
-    const names:ColumnNameTuple = [keyColumnName, valueColumnName];
+    const names:ColumnValueTuple = [keyColumnName, valueColumnName];
     return names;
 };
 

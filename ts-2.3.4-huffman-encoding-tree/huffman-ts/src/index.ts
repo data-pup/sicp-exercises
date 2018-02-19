@@ -10,7 +10,8 @@
 // import { printHuffmanBTree } from './PrintingUtilities/printHuffmanBTree';
 // import { DecodingTable } from './HuffmanDecoding/DecodingTable';
 // import { EncodingTable } from './HuffmanEncoding/EncodingTable';
-// import { NaiveEncodingTable } from './NaiveEncoding/NaiveEncodingTable';
+import { NaiveEncodingTable } from './NaiveEncoding/NaiveEncodingTable';
+import { getTableString } from './PrintingConversionTables/printTables';
 
 // Temporary example function. (Disabled)
 // const temp = () => {
@@ -22,8 +23,12 @@
 
 // Define the main function.
 const main = () => {
-    process.stdout.write('Under construction');
+    // process.stdout.write('Under construction');
     // temp();
+
+    const net = new NaiveEncodingTable('hello world this is a table!');
+    const netString:string = getTableString(net);
+    process.stdout.write(`${netString}\n`);
 };
 
 // Invoke the main function.

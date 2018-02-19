@@ -7,4 +7,4 @@ export type ConversionTable = IEncodingTable | IDecodingTable;
 // Define a helper type that will store two numbers, representing the width
 // of two columns that we expect to print.
 export type ColumnWidthTuple = [number, number];
-export type ColumnNameTuple = [string, string];
+export type ColumnValueTuple = [string, string];
