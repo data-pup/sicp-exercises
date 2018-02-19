@@ -5,36 +5,48 @@ import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
 // Define a type union for the two sorts of tables that we may need to print.
 type ConversionTable = IEncodingTable | IDecodingTable;
 
-// export const printTable = (table: IEncodingTable | IDecodingTable) : void => {
-//     switch (table.kind)
-// };
+// Print an encoding table or a decoding table.
+/* tslint:disable-next-line:no-unused-variable */
+export const printTable = (table:ConversionTable) : void => {
+    switch (table.type) {
+        case 'encoding' : printEncodingTable(<IEncodingTable>table);
+        case 'decoding' : printDecodingTable(<IDecodingTable>table);
+        default: throw new Error('Could not identify table!');
+    }
+};
 
 // Print an object that implements the decoding table interface.
+/* tslint:disable-next-line:no-unused-variable */
 const printEncodingTable = (table:IEncodingTable) : void => {
     throw new Error('Not Implemented Yet!');
 };
 
 // Print an object that implements the decoding table interface.
+/* tslint:disable-next-line:no-unused-variable */
 const printDecodingTable = (table:IDecodingTable) : void => {
     throw new Error('Not Implemented Yet!');
 };
 
 // Print the header for an encoding table.
+/* tslint:disable-next-line:no-unused-variable */
 const printEncodingTableHeader = () : void => {
     throw new Error('Not Implemented Yet!');
 };
 
 // Print the header for an encoding table.
+/* tslint:disable-next-line:no-unused-variable */
 const printDecodingTableHeader = () : void => {
     throw new Error('Not Implemented Yet!');
 };
 
 // TODO: This function should find the column names, and the length of the
 // longest value in each of the columns for a given table.
+/* tslint:disable-next-line:no-unused-variable */
 const getPrintInfo = () : void => {
     throw new Error('Not Implemented Yet!');
 };
 
+/* tslint:disable-next-line:no-unused-variable */
 class TableColumnPrintingInformation {
 
     public columns:ColumnInfo[];
