@@ -1,18 +1,13 @@
 // import { ColumnPrintingInformation } from './ColumnPrintingInformation';
 import { TableColumnPrintingInformation } from './TablePrintingInformation';
+import { ColumnWidthTuple, ConversionTable } from './printingHelperTypes';
 import { IDecodingTable } from '../TableInterfaces/IDecodingTable';
 import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
-
-// Define a type union for the two sorts of tables that we may need to print.
-type ConversionTable = IEncodingTable | IDecodingTable;
-
-// Define a helper type that will store two numbers, representing the width
-// of two columns that we expect to print.
-type ColumnWidthTuple = [number, number];
 
 // Print an encoding table or a decoding table.
 /* tslint:disable-next-line:no-unused-variable */
 export const getTableString = (table:ConversionTable) : string => {
+    // const tableInformation:TableColumnPrintingInformation =
     switch (table.type) {
         case 'encoding' : return getEncodingTableString(<IEncodingTable>table);
         case 'decoding' : return getDecodingTableString(<IDecodingTable>table);
