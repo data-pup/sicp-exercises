@@ -2,13 +2,20 @@ import { isNullOrUndefined } from 'util';
 import { IDecodingTable } from '../TableInterfaces/IDecodingTable';
 import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
 
+// Define a type union for the two sorts of tables that we may need to print.
+type ConversionTable = IEncodingTable | IDecodingTable;
+
+// export const printTable = (table: IEncodingTable | IDecodingTable) : void => {
+//     switch (table.kind)
+// };
+
 // Print an object that implements the decoding table interface.
-export const printEncodingTable = (table:IEncodingTable) : void => {
+const printEncodingTable = (table:IEncodingTable) : void => {
     throw new Error('Not Implemented Yet!');
 };
 
 // Print an object that implements the decoding table interface.
-export const printDecodingTable = (table:IDecodingTable) : void => {
+const printDecodingTable = (table:IDecodingTable) : void => {
     throw new Error('Not Implemented Yet!');
 };
 
