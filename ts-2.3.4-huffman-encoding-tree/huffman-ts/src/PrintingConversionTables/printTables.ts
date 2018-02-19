@@ -7,42 +7,42 @@ type ConversionTable = IEncodingTable | IDecodingTable;
 
 // Print an encoding table or a decoding table.
 /* tslint:disable-next-line:no-unused-variable */
-export const printTable = (table:ConversionTable) : void => {
+export const getTableString = (table:ConversionTable) : string => {
     switch (table.type) {
-        case 'encoding' : printEncodingTable(<IEncodingTable>table);
-        case 'decoding' : printDecodingTable(<IDecodingTable>table);
+        case 'encoding' : return printEncodingTable(<IEncodingTable>table);
+        case 'decoding' : return printDecodingTable(<IDecodingTable>table);
         default: throw new Error('Could not identify table!');
     }
 };
 
 // Print an object that implements the decoding table interface.
 /* tslint:disable-next-line:no-unused-variable */
-const printEncodingTable = (table:IEncodingTable) : void => {
+const printEncodingTable = (table:IEncodingTable) : string => {
     throw new Error('Not Implemented Yet!');
 };
 
 // Print an object that implements the decoding table interface.
 /* tslint:disable-next-line:no-unused-variable */
-const printDecodingTable = (table:IDecodingTable) : void => {
+const printDecodingTable = (table:IDecodingTable) : string => {
     throw new Error('Not Implemented Yet!');
 };
 
 // Print the header for an encoding table.
 /* tslint:disable-next-line:no-unused-variable */
-const printEncodingTableHeader = () : void => {
+const getEncodingTableHeaderString = () : void => {
     throw new Error('Not Implemented Yet!');
 };
 
 // Print the header for an encoding table.
 /* tslint:disable-next-line:no-unused-variable */
-const printDecodingTableHeader = () : void => {
+const getDecodingTableHeaderString = () : void => {
     throw new Error('Not Implemented Yet!');
 };
 
 // TODO: This function should find the column names, and the length of the
 // longest value in each of the columns for a given table.
 /* tslint:disable-next-line:no-unused-variable */
-const getPrintInfo = () : void => {
+const getSchemeKeyValueColumnWidths = () : void => {
     throw new Error('Not Implemented Yet!');
 };
 
