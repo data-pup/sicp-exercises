@@ -3,7 +3,7 @@ import { ColumnPrintingInformation } from './ColumnPrintingInformation';
 
 export class TableColumnPrintingInformation {
 
-    public columns:ColumnPrintingInformation[];
+    public readonly columns:ColumnPrintingInformation[];
 
     // Construct an array of column printing information objects.
     constructor(columns:ColumnPrintingInformation[]) {
