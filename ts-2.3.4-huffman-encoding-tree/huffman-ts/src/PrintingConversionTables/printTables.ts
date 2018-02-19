@@ -1,9 +1,14 @@
-import { isNullOrUndefined } from 'util';
+import { ColumnPrintingInformation } from './ColumnPrintingInformation';
+import { TableColumnPrintingInformation } from './TablePrintingInformation';
 import { IDecodingTable } from '../TableInterfaces/IDecodingTable';
 import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
 
 // Define a type union for the two sorts of tables that we may need to print.
 type ConversionTable = IEncodingTable | IDecodingTable;
+
+// Define a helper type that will store two numbers, representing the width
+// of two columns that we expect to print.
+type ColumnWidthTuple = [number, number];
 
 // Print an encoding table or a decoding table.
 /* tslint:disable-next-line:no-unused-variable */
@@ -39,45 +44,18 @@ const getDecodingTableHeaderString = () : void => {
     throw new Error('Not Implemented Yet!');
 };
 
-// TODO: This function should find the column names, and the length of the
-// longest value in each of the columns for a given table.
-/* tslint:disable-next-line:no-unused-variable */
-const getSchemeKeyValueColumnWidths = () : void => {
+// This function will create a string containing the generic section of the
+// table printing header. This should contain the type of the table being
+// printed, and what the encoding method used to generate the scheme was.
+const getGenericTableHeaderSectionString = (table:ConversionTable)
+                                           : string => {
     throw new Error('Not Implemented Yet!');
 };
 
+// TODO: This function should find the column names, and the length of the
+// longest value in each of the columns for a given table.
 /* tslint:disable-next-line:no-unused-variable */
-class TableColumnPrintingInformation {
+const getSchemeKeyValueColumnWidths = (table:ConversionTable) : void => {
 
-    public columns:ColumnInfo[];
-
-    constructor(columns:ColumnInfo[]) {
-        this.columns = columns;
-        if (!this.validate()) {
-            throw new Error('Error initializing table printing information');
-        }
-    }
-
-    private validate() : boolean {
-        if (isNullOrUndefined(this.columns)) { return false; }
-        const noColumnsFailedBasicValidation = this.columns
-            .map((currColumn) : boolean => { // Check if the column passes
-                const colName:string = currColumn.name; // a basic width check.
-                const colWidth:number = currColumn.width;
-                const widthSeemsValid:boolean = (colName.length < colWidth);
-                return widthSeemsValid;
-            }) // Check that all of the columns seemed valid.
-            .every((value) => (value === true));
-        return noColumnsFailedBasicValidation;
-    }
-}
-
-class ColumnInfo {
-    public readonly name:string;
-    public readonly width:number;
-
-    constructor(columnName:string, columnWidth:number) {
-        this.name = columnName;
-        this.width = columnWidth;
-    }
-}
+    throw new Error('Not Implemented Yet!');
+};
