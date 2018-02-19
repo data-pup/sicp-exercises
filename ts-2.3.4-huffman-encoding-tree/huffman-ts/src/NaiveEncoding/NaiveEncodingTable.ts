@@ -39,6 +39,10 @@ export class NaiveEncodingTable implements IEncodingTable {
         return encodeInputString(input, this.encodingScheme);
     }
 
+    public getScheme() : Dictionary<string, string> {
+        return this.encodingScheme;
+    }
+
     constructor (inputString:string) {
         this.encodingScheme = NaiveEncodingTable
             .generateEncodingDictionary(inputString);

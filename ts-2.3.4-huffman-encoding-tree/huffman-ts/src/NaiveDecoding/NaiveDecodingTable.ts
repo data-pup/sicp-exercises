@@ -32,6 +32,10 @@ export class NaiveDecodingTable implements IDecodingTable {
         return decodeInputString(input, this.decodingScheme);
     }
 
+    public getScheme() : Dictionary<string, string> {
+        return this.decodingScheme;
+    }
+
     constructor(encodingTable:IEncodingTable) {
         this.decodingScheme = NaiveDecodingTable
             .generateDecodingScheme(encodingTable);

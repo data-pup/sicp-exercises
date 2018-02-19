@@ -14,6 +14,10 @@ export class EncodingTable implements IEncodingTable {
         return encodeInputString(input, this.encodingScheme);
     }
 
+    public getScheme() : Dictionary<string, string> {
+        return this.encodingScheme;
+    }
+
     constructor(huffmanTree:IHuffmanBTreeNode) {
         this.encodingScheme = createEncodingDictionary(huffmanTree, '1');
         this.method = 'huffman';

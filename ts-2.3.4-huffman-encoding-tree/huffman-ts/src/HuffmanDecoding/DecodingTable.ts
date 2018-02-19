@@ -29,8 +29,10 @@ export class DecodingTable implements IDecodingTable {
     public readonly method:string;
     public readonly type:string;
 
-    // Convert an input string back into plaintext using the internal
-    // decoding scheme dictionary.
+    public getScheme() : Dictionary<string, string> {
+        return this.decodingScheme;
+    }
+
     public decode(input:string) : string {
         return decodeInputString(input, this.decodingScheme);
     }

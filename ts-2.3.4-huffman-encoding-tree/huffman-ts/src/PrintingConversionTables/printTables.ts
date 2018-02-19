@@ -1,17 +1,24 @@
 // import { ColumnPrintingInformation } from './ColumnPrintingInformation';
-import { TableColumnPrintingInformation } from './TablePrintingInformation';
-import { ColumnWidthTuple, ConversionTable } from './printingHelperTypes';
+// import { TableColumnPrintingInformation } from './TablePrintingInformation';
+import {
+    // ColumnWidthTuple,
+    ConversionTable,
+} from './printingHelperTypes';
 import { IDecodingTable } from '../TableInterfaces/IDecodingTable';
 import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
 
 // Print an encoding table or a decoding table.
 /* tslint:disable-next-line:no-unused-variable */
 export const getTableString = (table:ConversionTable) : string => {
+    // Get type type, table method, create column names, find width.
     // const tableInformation:TableColumnPrintingInformation =
     switch (table.type) {
-        case 'encoding' : return getEncodingTableString(<IEncodingTable>table);
-        case 'decoding' : return getDecodingTableString(<IDecodingTable>table);
-        default: throw new Error('Could not identify table!');
+        case 'encoding' :
+            return getEncodingTableString(<IEncodingTable>table);
+        case 'decoding' :
+            return getDecodingTableString(<IDecodingTable>table);
+        default:
+            throw new Error('Could not identify table!');
     }
 };
 
@@ -45,20 +52,5 @@ const getDecodingTableHeaderString = () : void => {
 /* tslint:disable-next-line:no-unused-variable */
 const getGenericTableHeaderSectionString = (table:ConversionTable)
                                            : string => {
-    throw new Error('Not Implemented Yet!');
-};
-
-// TODO: This function should find the column names, and the length of the
-// longest value in each of the columns for a given table.
-/* tslint:disable-next-line:no-unused-variable */
-const getSchemeKeyValueColumnWidths = (table:ConversionTable)
-                                      : ColumnWidthTuple => {
-    throw new Error('Not Implemented Yet!');
-};
-
-// Get the total width of the table, given a table printing information object.
-/* tslint:disable-next-line:no-unused-variable */
-const getTableTotalWidth = (tableInfo:TableColumnPrintingInformation)
-                           : number => {
     throw new Error('Not Implemented Yet!');
 };
