@@ -1,4 +1,4 @@
-import { ColumnPrintingInformation } from './ColumnPrintingInformation';
+// import { ColumnPrintingInformation } from './ColumnPrintingInformation';
 import { TableColumnPrintingInformation } from './TablePrintingInformation';
 import { IDecodingTable } from '../TableInterfaces/IDecodingTable';
 import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
@@ -14,21 +14,21 @@ type ColumnWidthTuple = [number, number];
 /* tslint:disable-next-line:no-unused-variable */
 export const getTableString = (table:ConversionTable) : string => {
     switch (table.type) {
-        case 'encoding' : return printEncodingTable(<IEncodingTable>table);
-        case 'decoding' : return printDecodingTable(<IDecodingTable>table);
+        case 'encoding' : return getEncodingTableString(<IEncodingTable>table);
+        case 'decoding' : return getDecodingTableString(<IDecodingTable>table);
         default: throw new Error('Could not identify table!');
     }
 };
 
 // Print an object that implements the decoding table interface.
 /* tslint:disable-next-line:no-unused-variable */
-const printEncodingTable = (table:IEncodingTable) : string => {
+const getEncodingTableString = (table:IEncodingTable) : string => {
     throw new Error('Not Implemented Yet!');
 };
 
 // Print an object that implements the decoding table interface.
 /* tslint:disable-next-line:no-unused-variable */
-const printDecodingTable = (table:IDecodingTable) : string => {
+const getDecodingTableString = (table:IDecodingTable) : string => {
     throw new Error('Not Implemented Yet!');
 };
 
@@ -47,6 +47,7 @@ const getDecodingTableHeaderString = () : void => {
 // This function will create a string containing the generic section of the
 // table printing header. This should contain the type of the table being
 // printed, and what the encoding method used to generate the scheme was.
+/* tslint:disable-next-line:no-unused-variable */
 const getGenericTableHeaderSectionString = (table:ConversionTable)
                                            : string => {
     throw new Error('Not Implemented Yet!');
@@ -55,7 +56,14 @@ const getGenericTableHeaderSectionString = (table:ConversionTable)
 // TODO: This function should find the column names, and the length of the
 // longest value in each of the columns for a given table.
 /* tslint:disable-next-line:no-unused-variable */
-const getSchemeKeyValueColumnWidths = (table:ConversionTable) : void => {
+const getSchemeKeyValueColumnWidths = (table:ConversionTable)
+                                      : ColumnWidthTuple => {
+    throw new Error('Not Implemented Yet!');
+};
 
+// Get the total width of the table, given a table printing information object.
+/* tslint:disable-next-line:no-unused-variable */
+const getTableTotalWidth = (tableInfo:TableColumnPrintingInformation)
+                           : number => {
     throw new Error('Not Implemented Yet!');
 };
