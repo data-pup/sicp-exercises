@@ -2,10 +2,10 @@ import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import {
     NaiveDecodingTable,
-} from '../../src/NaiveDecoding/NaiveDecodingTable';
+} from '../../src/ConversionTables/NaiveTables/NaiveDecodingTable';
 import {
     NaiveEncodingTable,
-} from '../../src/NaiveEncoding/NaiveEncodingTable';
+} from '../../src/ConversionTables/NaiveTables/NaiveEncodingTable';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestNaiveDecodingTable {

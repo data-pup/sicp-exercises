@@ -3,7 +3,7 @@ import { suite, test } from 'mocha-typescript';
 import { Dictionary } from 'typescript-collections';
 import {
     NaiveEncodingTable,
-} from '../../src/NaiveEncoding/NaiveEncodingTable';
+} from '../../src/ConversionTables/NaiveTables/NaiveEncodingTable';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestNaiveEncodingTable {

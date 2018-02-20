@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import {
     convertNumberToEncodingString,
-} from '../../src/NaiveEncoding/generateEncodingString';
+} from '../../src/ConversionTables/NaiveTables/EncodingLogic/generateEncodingString';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestGenerateEncodingString {

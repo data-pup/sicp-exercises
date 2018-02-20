@@ -1,9 +1,15 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import { Dictionary } from 'typescript-collections';
-import { initializeQueue } from '../../src/CharFreqQueue/initCharFreqQueue';
-import { DecodingTable } from '../../src/HuffmanDecoding/DecodingTable';
-import { EncodingTable } from '../../src/HuffmanEncoding/EncodingTable';
+import {
+    initializeQueue,
+} from '../../src/HuffmanBTree/CharFreqQueue/initCharFreqQueue';
+import {
+    DecodingTable,
+} from '../../src/ConversionTables/HuffmanTables/DecodingTable';
+import {
+    EncodingTable,
+} from '../../src/ConversionTables/HuffmanTables/EncodingTable';
 import {
     initializeHuffmanEncodingTree,
 } from '../../src/HuffmanBTree/initEncodingTree';

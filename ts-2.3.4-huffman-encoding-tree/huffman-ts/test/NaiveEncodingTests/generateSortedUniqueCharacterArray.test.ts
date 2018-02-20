@@ -1,7 +1,7 @@
 import { suite, test } from 'mocha-typescript';
 import {
     getSortedUniqueCharArray,
-} from '../../src/NaiveEncoding/generateSortedUniqueCharacterArray';
+} from '../../src/ConversionTables/NaiveTables/EncodingLogic/generateSortedUniqueCharacterArray';
 import { assertArraysAreEqual } from '../testUtils/assertArraysAreEqual';
 
 /* tslint:disable-next-line:no-unused-variable */

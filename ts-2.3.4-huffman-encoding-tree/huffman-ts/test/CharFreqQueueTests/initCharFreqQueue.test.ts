@@ -1,10 +1,10 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import {
-    CharFreqRecord
+    CharFreqRecord,
 } from '../../src/HuffmanBTree/CharFreqQueue/CharFreqRecord';
 import {
-    initializeQueue
+    initializeQueue,
 } from '../../src/HuffmanBTree/CharFreqQueue/initCharFreqQueue';
 
 /* tslint:disable-next-line:no-unused-variable */

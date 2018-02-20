@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import {
-    CharFreqRecord
+    CharFreqRecord,
 } from '../../src/HuffmanBTree/CharFreqQueue/CharFreqRecord';
 import {
     compareCharFreqRecords,

@@ -2,14 +2,12 @@ import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import { PriorityQueue } from 'typescript-collections';
 import { assertArraysAreEqual } from '../testUtils/assertArraysAreEqual';
-
-// Character Frequency Record Imports.
-import { CharFreqRecord } from '../../src/CharFreqQueue/CharFreqRecord';
+import {
+    CharFreqRecord,
+} from '../../src/HuffmanBTree/CharFreqQueue/CharFreqRecord';
 import {
     compareCharFreqRecords,
-} from '../../src/CharFreqQueue/compareCharFreqRecords';
-
-// Huffman B-Tree Imports.
+} from '../../src/HuffmanBTree/CharFreqQueue/compareCharFreqRecords';
 import { HuffmanBTreeNode } from '../../src/HuffmanBTree/HuffmanBTreeNode';
 import {
     initializeHuffmanEncodingTree,
