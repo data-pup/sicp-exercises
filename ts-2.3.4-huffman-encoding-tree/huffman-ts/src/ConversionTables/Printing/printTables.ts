@@ -8,7 +8,6 @@ import {
 } from './printingHelperTypes';
 
 // Print an encoding table or a decoding table.
-/* tslint:disable-next-line:no-unused-variable */
 export const getTableString = (table:ConversionTable) : string => {
 
     // Define a padding value.
@@ -65,7 +64,7 @@ const getBodyString = (table:ConversionTable,
                       : string => {
     const rowStrings:string[] = new Array<string>();
     table.getScheme().forEach(
-        (key, value) : void => {
+        (key:string, value:string) : void => {
             rowStrings.push(getRowString([key, value], columnWidths));
         },
     );
@@ -77,46 +76,38 @@ const getBodyString = (table:ConversionTable,
 // values of the row, and the widths of each column.
 const getRowString = (values:ColumnValueTuple,
                       widths:ColumnWidthTuple) : string => {
-    // Get the cell string for each column.
-    const cellStrings:string[] = new Array<string>();
-    for (let currIndex = 0; currIndex < 2; currIndex++) {
-        cellStrings.push(
-            getCellString(values[currIndex], widths[currIndex]),
-        );
-    }
-
-    return [ // Add dividers between the cells, and before/after the row.
-        '|', cellStrings.join('|'), '|',
-    ].join('');
+    const cellStrings:string[] = [ // Get the cell string for both columns.
+        getCellString(values[0], widths[0]),
+        getCellString(values[1], widths[1]),
+    ];
+    // Add dividers between the cells, and before/after the row.
+    return addBordersToRowString(cellStrings.join('|'));
 };
 
 // Helper function used to get the string representation of a cell.
-const getCellString = (contents:string,
-                       width:number) : string => {
+const getCellString = (contents:string, width:number) : string => {
     // Calculate the left and right padding space.
-    const remainingSpace = (width - contents.length);
-    const leftSpace = Math.floor((remainingSpace / 2));
-    const rightSpace = remainingSpace - leftSpace;
-
-    return [ // Create padding strings and join them with the cell contents.
-        createCharacterStringOfLength(' ', leftSpace),
-        contents,
-        createCharacterStringOfLength(' ', rightSpace),
-    ].join('');
+    const remainingSpace:number = (width - contents.length);
+    const leftPaddingSize:number = Math.floor((remainingSpace / 2));
+    const rightPaddingSize:number = remainingSpace - leftPaddingSize;
+    // Create the padding strings.
+    const leftPadding:string = createStringOfLength(' ', leftPaddingSize);
+    const rightPadding:string = createStringOfLength(' ', rightPaddingSize);
+    // Join the padding strings and the cell contents together, and return.
+    return [leftPadding, contents, rightPadding].join('');
 };
 
 // Helper function used to create a horizontal ruling for printing.
 const getHorizontalRuling = (columnWidths:ColumnWidthTuple) : string => {
+    // Calculate the width of the horizontal ruling, then wrap with borders.
     const totalWidth:number = getBodyRowWidth(columnWidths);
     const rulingWidth:number = totalWidth - 2;
-    return [
-        '|', createCharacterStringOfLength('-', rulingWidth), '|',
-    ].join('');
+    const ruling:string = createStringOfLength('-', rulingWidth);
+    return addBordersToRowString(ruling);
 };
 
 // Helper function used to create padding and ruling strings.
-const createCharacterStringOfLength = (character:string,
-                                       length:number) : string => {
+const createStringOfLength = (character:string, length:number) : string => {
     if (length <= 0) { // Check that the length is not negative.
         throw new Error(TablePrintingErrorMessages.invalidWidthValue);
     }
@@ -141,8 +132,8 @@ const getHeaderRowWidth = (widths:ColumnWidthTuple) : number => {
 };
 
 // Convenience function used to calculate the width of a body row.
+// NOTE: Add length + 1 to the sum, to account for the first, middle, and
+// last '|' dividers separating columns.
 const getBodyRowWidth = (widths:ColumnWidthTuple) : number => {
-    // NOTE: Add length + 1 to the sum, to account for the first,
-    // middle, and last '|' dividers separating columns.
     return widths[0] + widths[1] + widths.length + 1;
 };

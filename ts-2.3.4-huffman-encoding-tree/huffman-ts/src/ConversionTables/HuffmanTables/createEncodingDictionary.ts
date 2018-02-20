@@ -1,6 +1,6 @@
 import { Dictionary } from 'typescript-collections';
 import { isNullOrUndefined } from 'util';
-import { IHuffmanBTreeNode } from '../HuffmanBTree/IHuffmanBTreeNode';
+import { IHuffmanBTreeNode } from '../../HuffmanBTree/IHuffmanBTreeNode';
 
 // Create an encoding dictionary using a Huffman encoding tree. This function
 // will recursively traverse the tree and return a dictionary containing

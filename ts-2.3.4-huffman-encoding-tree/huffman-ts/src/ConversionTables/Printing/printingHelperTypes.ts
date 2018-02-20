@@ -1,5 +1,5 @@
-import { IDecodingTable } from '../TableInterfaces/IDecodingTable';
-import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
+import { IDecodingTable } from '../Interfaces/IDecodingTable';
+import { IEncodingTable } from '../Interfaces/IEncodingTable';
 
 // Define a type union for the two sorts of tables that we may need to print.
 export type ConversionTable = IEncodingTable | IDecodingTable;

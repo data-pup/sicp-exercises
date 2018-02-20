@@ -1,9 +1,11 @@
 import { Dictionary } from 'typescript-collections';
-import { calculateEncodingSize } from './calculateEncodingSize';
-import { convertNumberToEncodingString } from './generateEncodingString';
-import { getSortedUniqueCharArray } from './generateSortedUniqueCharacterArray';
-import { encodeInputString } from '../GenericConversionLogic/encodeData';
-import { IEncodingTable } from '../TableInterfaces/IEncodingTable';
+import {
+    calculateEncodingSize,
+    convertNumberToEncodingString,
+    getSortedUniqueCharArray,
+} from './encodingLogic';
+import { encodeInputString } from '../GenericLogic/encodeData';
+import { IEncodingTable } from '../Interfaces/IEncodingTable';
 
 export class NaiveEncodingTable implements IEncodingTable {
 

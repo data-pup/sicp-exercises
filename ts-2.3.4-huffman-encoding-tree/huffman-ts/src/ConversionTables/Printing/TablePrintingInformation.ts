@@ -1,9 +1,6 @@
 import { isNullOrUndefined } from 'util';
 import { ColumnPrintingInformation } from './ColumnPrintingInformation';
-import {
-    // ColumnWidthTuple,
-    ConversionTable,
-} from './printingHelperTypes';
+import { ConversionTable } from './printingHelperTypes';
 
 export class TableColumnPrintingInformation {
 
