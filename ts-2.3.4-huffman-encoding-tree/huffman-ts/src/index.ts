@@ -21,14 +21,25 @@ import { getTableString } from './PrintingConversionTables/printTables';
     // printHuffmanBTree(hbt);
 // };
 
-// Define the main function.
-const main = () => {
-    // process.stdout.write('Under construction');
-    // temp();
-
-    const net = new NaiveEncodingTable('hello world this is a table!');
+const createEncodingTableAndPrint = (s:string) => {
+    process.stdout.write(`Received input: '${s}'\n`);
+    const net = new NaiveEncodingTable(s);
     const netString:string = getTableString(net);
     process.stdout.write(`${netString}\n`);
+    process.stdout.write('\n\n');
+};
+
+// Define the main function.
+const main = () => {
+    const testStrings:string[] = [
+        'hello world',
+        'the cow jumped over the moon',
+        'this is a slightly longer test string',
+        'the quick brown fox jumped over the slow lazy dog',
+    ];
+    testStrings.forEach(
+        (testString) => createEncodingTableAndPrint(testString),
+    );
 };
 
 // Invoke the main function.

@@ -38,22 +38,21 @@ const getHeaderString = (table:ConversionTable,
                          columnWidths:ColumnWidthTuple,
                          padding:number,
                          horizontalRuling:string) : string => {
-    const totalTableWidth:number = getTotalTablePrintingWidth(columnWidths);
-    const headerValues = [`Type:${table.type}`, `Method:${table.method}`];
-    const headerPaddedValues:string[] = headerValues.map((value) : string => {
-        return [
-            '|',
-            getCellString(value, totalTableWidth),
-            '|',
-        ].join('');
-    });
-    // const headerLines:string[] = new Array<string>();
-    // headerPaddedValues.forEach((value) : void => {
-    //     headerLines.push(value);
-    // });
-    return [
+    // Initialize header row strings, and the values of the header.
+    const headerStrings = [`Type:${table.type}`, `Method:${table.method}`];
+    const headerWidth:number = getHeaderRowWidth(columnWidths);
+
+    // Pad the row strings in the header, and wrap in '|' characters.
+    const headerContents:string[] = headerStrings.map(
+        (row) : string => {
+            const paddedHeaderRow:string = getCellString(row, headerWidth);
+            return addBordersToRowString(paddedHeaderRow);
+        },
+    );
+
+    return [ // Join the rows, and add a ruling above and below the contents.
         horizontalRuling,
-        ...headerPaddedValues,
+        ...headerContents,
         horizontalRuling,
     ].join('\n');
 };
@@ -67,13 +66,15 @@ const getBodyString = (table:ConversionTable,
     const rowStrings:string[] = new Array<string>();
     table.getScheme().forEach(
         (key, value) : void => {
-            rowStrings.push(getRowString([key, value], columnWidths))            ;
+            rowStrings.push(getRowString([key, value], columnWidths));
         },
     );
     rowStrings.push(horizontalRuling);
     return rowStrings.join('\n');
 };
 
+// This function will return the string representation of a row, using the
+// values of the row, and the widths of each column.
 const getRowString = (values:ColumnValueTuple,
                       widths:ColumnWidthTuple) : string => {
     // Get the cell string for each column.
@@ -106,7 +107,7 @@ const getCellString = (contents:string,
 
 // Helper function used to create a horizontal ruling for printing.
 const getHorizontalRuling = (columnWidths:ColumnWidthTuple) : string => {
-    const totalWidth:number = getTotalTablePrintingWidth(columnWidths);
+    const totalWidth:number = getBodyRowWidth(columnWidths);
     const rulingWidth:number = totalWidth - 2;
     return [
         '|', createCharacterStringOfLength('-', rulingWidth), '|',
@@ -127,8 +128,20 @@ const createCharacterStringOfLength = (character:string,
     return charArray.join('');
 };
 
-// Convenience function used to calculate the width of a table.
-const getTotalTablePrintingWidth = (widths:ColumnWidthTuple) : number => {
+// Add a border character to the beginning and end of the string.
+const addBordersToRowString = (rowString:string) : string => {
+    return [
+        '|', rowString, '|',
+    ].join('');
+};
+
+// Convenience function used to calculate the width of a header row.
+const getHeaderRowWidth = (widths:ColumnWidthTuple) : number => {
+    return widths[0] + widths[1] + 1;
+};
+
+// Convenience function used to calculate the width of a body row.
+const getBodyRowWidth = (widths:ColumnWidthTuple) : number => {
     // NOTE: Add length + 1 to the sum, to account for the first,
     // middle, and last '|' dividers separating columns.
     return widths[0] + widths[1] + widths.length + 1;
