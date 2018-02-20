@@ -1,6 +1,6 @@
 import { isNullOrUndefined } from 'util';
 import { IHuffmanBTreeNode } from './IHuffmanBTreeNode';
-import { ICharFreqRecord } from '../CharFreqQueue/ICharFreqRecord';
+import { ICharFreqRecord } from './CharFreqQueue/ICharFreqRecord';
 import {
     validateIHuffmanBTreeNode,
 } from './Validation/checkHuffmanNodeValidity';

@@ -1,6 +1,6 @@
 import { isNullOrUndefined } from 'util';
 import { HuffmanBTreePrintingChars } from './HuffmanBTreePrintingChars';
-import { IHuffmanBTreeNode } from '../HuffmanBTree/IHuffmanBTreeNode';
+import { IHuffmanBTreeNode } from '../IHuffmanBTreeNode';
 
 // This function will print a Huffman encoding tree to stdout.
 export const printHuffmanBTree = (rootNode:IHuffmanBTreeNode) : void => {
