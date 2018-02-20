@@ -3,8 +3,8 @@ import { IHuffmanBTreeNode } from './IHuffmanBTreeNode';
 import { ICharFreqRecord } from '../CharFreqQueue/ICharFreqRecord';
 import {
     validateIHuffmanBTreeNode,
-} from '../HuffmanBTreeValidation/checkHuffmanNodeValidity';
-import { NodeCheckResult } from '../HuffmanBTreeValidation/NodeCheckResult';
+} from './Validation/checkHuffmanNodeValidity';
+import { NodeCheckResult } from './Validation/NodeCheckResult';
 
 export class HuffmanBTreeNode implements IHuffmanBTreeNode  {
 

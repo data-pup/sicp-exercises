@@ -1,4 +1,4 @@
-import { INodeCheckResult } from '../HuffmanBTreeValidation/INodeCheckResult';
+import { INodeCheckResult } from './Validation/INodeCheckResult';
 
 export interface IHuffmanBTreeNode {
     // Member variables.

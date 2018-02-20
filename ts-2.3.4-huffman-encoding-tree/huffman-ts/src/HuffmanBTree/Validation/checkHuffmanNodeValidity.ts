@@ -22,11 +22,9 @@
 */
 
 import { isNullOrUndefined } from 'util';
+import { InvalidNodeErrorMessages } from './invalidNodeErrorMessages';
 import { NodeCheckResult } from './NodeCheckResult';
-import { IHuffmanBTreeNode } from '../HuffmanBTree/IHuffmanBTreeNode';
-import {
-    InvalidNodeErrorMessages,
-} from '../HuffmanBTreeValidation/invalidNodeErrorMessages';
+import { IHuffmanBTreeNode } from '../IHuffmanBTreeNode';
 
 // This function will validate an Huffman encoding tree node.
 // Note that this is not a deep check, this does not check the children

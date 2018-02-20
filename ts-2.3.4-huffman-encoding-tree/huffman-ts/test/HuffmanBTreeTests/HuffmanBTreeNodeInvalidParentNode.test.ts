@@ -6,7 +6,7 @@ import {
 import { HuffmanBTreeNode } from '../../src/HuffmanBTree/HuffmanBTreeNode';
 import {
     InvalidNodeErrorMessages,
-} from '../../src/HuffmanBTreeValidation/invalidNodeErrorMessages';
+} from '../../src/HuffmanBTree/Validation/invalidNodeErrorMessages';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNodeInvalidLeaf {
