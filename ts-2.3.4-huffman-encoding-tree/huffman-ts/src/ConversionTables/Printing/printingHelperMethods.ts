@@ -1,3 +1,5 @@
+import { getSchemeKeyValueColumnNames } from './getTableColumnNames';
+import { getTableColumnDimensions } from './getTablePrintingDimensions';
 import {
     getBodyRowWidth,
     getHeaderRowWidth,
@@ -9,25 +11,39 @@ import {
 } from './printingHelperTypes';
 import { TablePrintingErrorMessages } from './TablePrintingErrorMessages';
 
-export const getTableStrings = (table:ConversionTable,
-                                columnNames:ColumnValueTuple,
-                                columnWidths:ColumnWidthTuple,
-                                padding:number,
-                                horizontalRuling:string) : string[] => {
+export const getTableStrings = (table:ConversionTable) : string[] => {
+    // Define a padding value.
+    const paddingAmount = 1;
+
+    // Get type type, table method, create column names, find column widths.
+    const columnNames:ColumnValueTuple = getSchemeKeyValueColumnNames(table);
+    const columnWidths:ColumnWidthTuple = getTableColumnDimensions(
+        table, columnNames, paddingAmount);
+
+    // Initialize a string to store a horizontal ruling.
+    const horizontalRuling:string = getTableRuling(columnWidths);
+
     return [
         ...getHeaderStrings(table, columnNames, columnWidths,
-                            padding, horizontalRuling),
-        ...getBodyStrings(table, columnWidths, padding, horizontalRuling),
+                            paddingAmount, horizontalRuling),
+
+        ...getBodyStrings(table, columnWidths,
+                          paddingAmount, horizontalRuling),
     ];
 };
 
-// Helper function used to create a horizontal ruling for printing.
-export const getTableRuling = (columnWidths:ColumnWidthTuple) : string => {
-    // Calculate the width of the horizontal ruling, then wrap with borders.
-    const totalWidth:number = getBodyRowWidth(columnWidths);
-    const rulingWidth:number = totalWidth - 2;
-    const ruling:string = createStringOfLength('-', rulingWidth);
-    return addBordersToRowString(ruling);
+// Helper function used to create padding and ruling strings.
+export const createStringOfLength = (character:string,
+                                     length:number) : string => {
+    if (length <= 0) { // Check that the length is not negative.
+        throw new Error(TablePrintingErrorMessages.invalidWidthValue);
+    }
+
+    // Create a new array, fill it with `length` characters, and join.
+    const charArray:string[] = new Array<string>();
+    let counter = 0;
+    while (counter < length) { charArray.push(character); counter++; }
+    return charArray.join('');
 };
 
 // This will create a string representation of the body of a table. This
@@ -105,17 +121,13 @@ const getCellString = (contents:string, width:number) : string => {
     return [leftPadding, contents, rightPadding].join('');
 };
 
-// Helper function used to create padding and ruling strings.
-const createStringOfLength = (character:string, length:number) : string => {
-    if (length <= 0) { // Check that the length is not negative.
-        throw new Error(TablePrintingErrorMessages.invalidWidthValue);
-    }
-
-    // Create a new array, fill it with `length` characters, and join.
-    const charArray:string[] = new Array<string>();
-    let counter = 0;
-    while (counter < length) { charArray.push(character); counter++; }
-    return charArray.join('');
+// Helper function used to create a horizontal ruling for printing.
+const getTableRuling = (columnWidths:ColumnWidthTuple) : string => {
+    // Calculate the width of the horizontal ruling, then wrap with borders.
+    const totalWidth:number = getBodyRowWidth(columnWidths);
+    const rulingWidth:number = totalWidth - 2;
+    const ruling:string = createStringOfLength('-', rulingWidth);
+    return addBordersToRowString(ruling);
 };
 
 // Add a border character to the beginning and end of the string.

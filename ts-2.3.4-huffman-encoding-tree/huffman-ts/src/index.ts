@@ -1,5 +1,6 @@
+import { NaiveDecodingTable } from './ConversionTables/NaiveTables/NaiveDecodingTable';
 import { NaiveEncodingTable } from './ConversionTables/NaiveTables/NaiveEncodingTable';
-import { getTableString } from './ConversionTables/Printing/printConversionTable';
+import { getConversionSchemeString } from './ConversionTables/Printing/printConversionScheme';
 
 // Unused Imports:
 // import { PriorityQueue } from 'typescript-collections';
@@ -13,6 +14,7 @@ import { getTableString } from './ConversionTables/Printing/printConversionTable
 // import { printHuffmanBTree } from './PrintingUtilities/printHuffmanBTree';
 // import { DecodingTable } from './HuffmanDecoding/DecodingTable';
 // import { EncodingTable } from './HuffmanEncoding/EncodingTable';
+// import { getTableString } from './ConversionTables/Printing/printConversionTable';
 
 // Temporary example function. (Disabled)
 // const temp = () => {
@@ -22,15 +24,8 @@ import { getTableString } from './ConversionTables/Printing/printConversionTable
     // printHuffmanBTree(hbt);
 // };
 
-const createEncodingTableAndPrint = (s:string) => {
-    process.stdout.write(`Received input: '${s}'\n`);
-    const net = new NaiveEncodingTable(s);
-    const netString:string = getTableString(net);
-    process.stdout.write(`${netString}\n`);
-    process.stdout.write('\n\n');
-};
-
 // Define the main function.
+// ----------------------------------------------------------------------------
 const main = () => {
     const testStrings:string[] = [
         '',
@@ -42,10 +37,30 @@ const main = () => {
 
     testStrings.forEach(
         (testString:string) : void => {
-            createEncodingTableAndPrint(testString);
+            printNaiveScheme(testString);
         },
     );
 
+};
+
+// Define helper functions.
+// ----------------------------------------------------------------------------
+
+// // This function will create a naive encoding table and print the results.
+// const createNaiveEncodingTableAndPrint = (s:string) => {
+//     process.stdout.write(`Received input: '${s}'\n`);
+//     const net = new NaiveEncodingTable(s);
+//     const netString:string = getTableString(net);
+//     process.stdout.write(`${netString}\n`);
+//     process.stdout.write('\n\n');
+// };
+
+const printNaiveScheme = (s:string) => {
+    const net = new NaiveEncodingTable(s);
+    const ndt = new NaiveDecodingTable(net);
+    process.stdout.write(`Received input: '${s}'\n`);
+    process.stdout.write(getConversionSchemeString(net, ndt));
+    process.stdout.write('\n\n');
 };
 
 // Invoke the main function.

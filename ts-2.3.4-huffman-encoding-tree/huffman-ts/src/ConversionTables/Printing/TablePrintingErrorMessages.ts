@@ -4,4 +4,7 @@ export class TablePrintingErrorMessages {
 
     public static readonly invalidWidthValue:string =
         'Invalid length value given! Lengths must be greater than 0.';
+
+    public static readonly schemesDoNotMatch:string =
+        'Error! Schemes do not match.';
 }
