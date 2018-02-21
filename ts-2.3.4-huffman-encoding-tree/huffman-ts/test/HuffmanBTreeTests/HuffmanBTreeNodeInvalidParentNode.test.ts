@@ -2,11 +2,9 @@ import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import {
     assertNodeIsInInvalidState,
-} from '../testUtils/assertNodeIsInInvalidState';
-import { HuffmanBTreeNode } from '../../src/HuffmanBTree/HuffmanBTreeNode';
-import {
+    HuffmanBTreeNode,
     InvalidNodeErrorMessages,
-} from '../../src/HuffmanBTree/Validation/invalidNodeErrorMessages';
+} from './importTestDependencies';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNodeInvalidLeaf {

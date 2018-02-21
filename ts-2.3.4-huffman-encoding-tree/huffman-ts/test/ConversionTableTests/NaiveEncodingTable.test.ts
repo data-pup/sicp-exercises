@@ -1,9 +1,7 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import { Dictionary } from 'typescript-collections';
-import {
-    NaiveEncodingTable,
-} from '../../src/ConversionTables/NaiveTables/NaiveEncodingTable';
+import { NaiveEncodingTable } from './importTestDependencies';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestNaiveEncodingTable {

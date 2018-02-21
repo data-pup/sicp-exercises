@@ -2,17 +2,11 @@ import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import { Dictionary } from 'typescript-collections';
 import {
-    initializeQueue,
-} from '../../src/HuffmanBTree/CharFreqQueue/initCharFreqQueue';
-import {
     DecodingTable,
-} from '../../src/ConversionTables/HuffmanTables/DecodingTable';
-import {
     EncodingTable,
-} from '../../src/ConversionTables/HuffmanTables/EncodingTable';
-import {
     initializeHuffmanEncodingTree,
-} from '../../src/HuffmanBTree/initEncodingTree';
+    initializeQueue,
+} from './importTestDependencies';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestDecodingTable {

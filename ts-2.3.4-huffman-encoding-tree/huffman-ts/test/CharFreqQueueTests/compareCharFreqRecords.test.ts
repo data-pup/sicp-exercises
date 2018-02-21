@@ -1,6 +1,9 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
-import { CharFreqRecord, compareCharFreqRecords } from './importCharFreqQueue';
+import {
+    CharFreqRecord,
+    compareCharFreqRecords,
+} from './importTestDependencies';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestCompareCharFreqRecords {

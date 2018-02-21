@@ -1,10 +1,10 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
-import { assertArraysAreEqual } from '../testUtils/assertArraysAreEqual';
 import {
+    assertArraysAreEqual,
     CharFreqRecord,
-} from '../../src/HuffmanBTree/CharFreqQueue/CharFreqRecord';
-import { HuffmanBTreeNode } from '../../src/HuffmanBTree/HuffmanBTreeNode';
+    HuffmanBTreeNode,
+} from './importTestDependencies';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNodeConstructor {

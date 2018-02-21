@@ -1,17 +1,11 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
-
-// Test helper utilities imports.
 import {
+    assertArraysAreEqual,
     assertNodeIsInInvalidState,
-} from '../testUtils/assertNodeIsInInvalidState';
-import { assertArraysAreEqual } from '../testUtils/assertArraysAreEqual';
-
-// Huffman B-Tree and validation imports.
-import { HuffmanBTreeNode } from '../../src/HuffmanBTree/HuffmanBTreeNode';
-import {
+    HuffmanBTreeNode,
     InvalidNodeErrorMessages,
-} from '../../src/HuffmanBTree/Validation/invalidNodeErrorMessages';
+} from './importTestDependencies';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestHuffmanBTreeNodeMergeTrees {

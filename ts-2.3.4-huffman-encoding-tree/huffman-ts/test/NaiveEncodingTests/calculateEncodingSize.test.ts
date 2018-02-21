@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import {
     calculateEncodingSize,
-} from '../../src/ConversionTables/NaiveTables/EncodingLogic/calculateEncodingSize';
+} from './importTestDependencies';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestCalculateEncodingSize {

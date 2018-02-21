@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import {
     NodeCheckResult,
-} from '../../src/HuffmanBTree/Validation/NodeCheckResult';
+} from './importTestDependencies';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestNodeCheckResult {

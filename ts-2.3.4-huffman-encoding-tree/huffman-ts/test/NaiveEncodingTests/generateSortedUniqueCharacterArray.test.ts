@@ -1,8 +1,8 @@
 import { suite, test } from 'mocha-typescript';
 import {
+    assertArraysAreEqual,
     getSortedUniqueCharArray,
-} from '../../src/ConversionTables/NaiveTables/EncodingLogic/generateSortedUniqueCharacterArray';
-import { assertArraysAreEqual } from '../testUtils/assertArraysAreEqual';
+} from './importTestDependencies';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestGenerateEncodingString {
