@@ -8,29 +8,55 @@ import {
 import {
     TablePrintingErrorMessages,
 } from './TablePrintingErrorMessages';
+import { isNullOrUndefined } from 'util';
 
-export const getConversionSchemeString = (t1:ConversionTable,
-                                          t2:ConversionTable,
+export const getConversionSchemeString = (tableArray:ConversionTable[],
                                           spacing:number=4) : string => {
-    const t1Strings:string[] = getTableStrings(t1);
-    const t2Strings:string[] = getTableStrings(t2);
+    return getConversionSchemeStrings(tableArray, spacing).join('\n');
+};
 
-    if (t1Strings.length != t2Strings.length) {
-        throw new Error(TablePrintingErrorMessages.schemesDoNotMatch);
-    }
+export const getConversionSchemeStrings = (tableArray:ConversionTable[],
+                                           spacing:number=4) : string[] => {
+    const tableStrings:string[][] = tableArray.map(
+        (table:ConversionTable) => getTableStrings(table),
+    );
 
     const tableSpacing:string = createStringOfLength(' ', spacing);
     const joinedStrings:string[] = new Array<string>();
-    const loopMax = t1Strings.length;
+    const loopMax = getLoopHeight(tableStrings);
 
     for (let i = 0; i < loopMax; i++) {
         joinedStrings.push(
-            [
-                t1Strings[i],
-                t2Strings[i],
-            ].join(tableSpacing),
+            joinCurrentRows(tableStrings, i, tableSpacing),
         );
     }
 
-    return joinedStrings.join('\n');
+    return joinedStrings;
+};
+
+const joinCurrentRows = (tableStrings:string[][],
+                         index:number,
+                         spacingString:string) : string => {
+    return tableStrings.map(
+        (rowStrings) => rowStrings[index],
+    ).join(spacingString);
+};
+
+const getLoopHeight = (tableStrings:string[][]) : number => {
+    if (isNullOrUndefined(tableStrings)) {
+        throw new Error(TablePrintingErrorMessages.schemeArrayEmpty);
+    }
+
+    if (tableStrings.length === 0) {
+        throw new Error(TablePrintingErrorMessages.schemeArrayEmpty);
+    }
+
+    const schemeLength = tableStrings[0].length;
+    for (const currScheme of tableStrings) {
+        if (currScheme.length != schemeLength) {
+            throw new Error(TablePrintingErrorMessages.schemesDoNotMatch);
+        }
+    }
+
+    return schemeLength;
 };

@@ -1,28 +1,11 @@
 import { NaiveDecodingTable } from './ConversionTables/NaiveTables/NaiveDecodingTable';
 import { NaiveEncodingTable } from './ConversionTables/NaiveTables/NaiveEncodingTable';
 import { getConversionSchemeString } from './ConversionTables/Printing/printConversionScheme';
-
-// Unused Imports:
-// import { PriorityQueue } from 'typescript-collections';
-// import { CharFreqRecord } from './CharFreqQueue/CharFreqRecord';
-// import { initializeQueue } from './CharFreqQueue/initCharFreqQueue';
-// import { HuffmanBTreeNode } from './HuffmanBTree/HuffmanBTreeNode';
-// import {
-//     initializeHuffmanEncodingTree,
-// } from './HuffmanBTree/initEncodingTree';
-// import { isNullOrUndefined } from 'util';
-// import { printHuffmanBTree } from './PrintingUtilities/printHuffmanBTree';
-// import { DecodingTable } from './HuffmanDecoding/DecodingTable';
-// import { EncodingTable } from './HuffmanEncoding/EncodingTable';
-// import { getTableString } from './ConversionTables/Printing/printConversionTable';
-
-// Temporary example function. (Disabled)
-// const temp = () => {
-    // const s = 'hello world';
-    // const pq:PriorityQueue<CharFreqRecord> = initializeQueue(s);
-    // const hbt:HuffmanBTreeNode = initializeHuffmanEncodingTree(pq);
-    // printHuffmanBTree(hbt);
-// };
+import { ConversionTable } from './ConversionTables/Printing/printingHelperTypes';
+import { initializeHuffmanEncodingTree } from './HuffmanBTree/initEncodingTree';
+import { initializeQueue } from './HuffmanBTree/CharFreqQueue/initCharFreqQueue';
+import { DecodingTable } from './ConversionTables/HuffmanTables/DecodingTable';
+import { EncodingTable }  from './ConversionTables/HuffmanTables/EncodingTable';
 
 // Define the main function.
 // ----------------------------------------------------------------------------
@@ -37,7 +20,7 @@ const main = () => {
 
     testStrings.forEach(
         (testString:string) : void => {
-            printNaiveScheme(testString);
+            printSchemeComparison(testString);
         },
     );
 
@@ -46,21 +29,31 @@ const main = () => {
 // Define helper functions.
 // ----------------------------------------------------------------------------
 
-// // This function will create a naive encoding table and print the results.
-// const createNaiveEncodingTableAndPrint = (s:string) => {
-//     process.stdout.write(`Received input: '${s}'\n`);
-//     const net = new NaiveEncodingTable(s);
-//     const netString:string = getTableString(net);
-//     process.stdout.write(`${netString}\n`);
-//     process.stdout.write('\n\n');
-// };
+const printSchemeComparison = (s:string) => {
+    const naiveScheme = getNaiveScheme(s);
+    const huffmanScheme = getHuffmanScheme(s);
+    process.stdout.write(`Received input: '${s}'\n`);
+    process.stdout.write(getConversionSchemeString(
+        [
+            ...naiveScheme,
+            ...huffmanScheme,
+        ],
+    ));
+    process.stdout.write('\n\n');
+};
 
-const printNaiveScheme = (s:string) => {
+const getNaiveScheme = (s:string) : ConversionTable[] => {
     const net = new NaiveEncodingTable(s);
     const ndt = new NaiveDecodingTable(net);
-    process.stdout.write(`Received input: '${s}'\n`);
-    process.stdout.write(getConversionSchemeString(net, ndt));
-    process.stdout.write('\n\n');
+    return [net, ndt];
+};
+
+const getHuffmanScheme = (s:string) : ConversionTable[] => {
+    const pq = initializeQueue(s);
+    const hbt = initializeHuffmanEncodingTree(pq);
+    const het = new EncodingTable(hbt);
+    const hdt = new DecodingTable(het);
+    return [het, hdt];
 };
 
 // Invoke the main function.
