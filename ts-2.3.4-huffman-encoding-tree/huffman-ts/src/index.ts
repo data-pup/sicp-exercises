@@ -19,7 +19,6 @@ type ConversionScheme = [ConversionTable, ConversionTable];
 // ----------------------------------------------------------------------------
 const main = () => {
     const testStrings:string[] = [
-        // '',
         'hello world',
         'the cow jumped over the moon',
         'this is a slightly longer test string',
