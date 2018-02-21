@@ -28,9 +28,9 @@ import {
     @test public testDecodingSchemeGeneration() {
         // Expected Decoding Table:
         // ---------------------------------------------------------
-        // | 10 -> a                                               |
-        // | 110 -> b                                              |
-        // | 111 -> c                                              |
+        // | 0 -> a                                               |
+        // | 10 -> b                                              |
+        // | 11 -> c                                              |
         // ---------------------------------------------------------
         // NOTE: See EncodingTable test suite for more information.
         // ---------------------------------------------------------
@@ -52,9 +52,9 @@ import {
 
         // Initialize a dictionary containing the expected decoding scheme.
         const expectedDecodings = new Dictionary<string, string>();
-        expectedDecodings.setValue('10', 'a');
-        expectedDecodings.setValue('110', 'b');
-        expectedDecodings.setValue('111', 'c');
+        expectedDecodings.setValue('0', 'a');
+        expectedDecodings.setValue('10', 'b');
+        expectedDecodings.setValue('11', 'c');
 
         // Check that each entry in the actual decoding table matches the
         // corresponding entry in the collection of expected entries.

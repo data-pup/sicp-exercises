@@ -41,9 +41,9 @@ import {
 
         // Expected Encoding Table:
         // ---------------------------------------------------------
-        // | a -> 10                                               |
-        // | b -> 110                                              |
-        // | c -> 111                                              |
+        // | a -> 0                                               |
+        // | b -> 10                                              |
+        // | c -> 11                                              |
         // ---------------------------------------------------------
 
         // Initialize the input string.
@@ -61,9 +61,9 @@ import {
         // Initialize and fill a dictionary containing characters from
         // the test string and their respective encodings.
         const expectedEncodings = new Dictionary<string, string>();
-        expectedEncodings.setValue('a', '10');
-        expectedEncodings.setValue('b', '110');
-        expectedEncodings.setValue('c', '111');
+        expectedEncodings.setValue('a', '0');
+        expectedEncodings.setValue('b', '10');
+        expectedEncodings.setValue('c', '11');
 
         // Assert the encoding scheme is correct by comparing the expected
         // and actual encoding for each key in the expected dictionary.
@@ -76,7 +76,7 @@ import {
         // Manually initialize a string containing the expected encoding
         // of the test string, using the expected schema defined above.
         const expectedTestStringEncoding:string = [
-            '10', '10', '10', '110', '110', '111',
+            '0', '0', '0', '10', '10', '11',
         ].join('');
 
         // Initialize a variable containing the actual test string encoding.
