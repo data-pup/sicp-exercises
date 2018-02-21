@@ -20,10 +20,10 @@ type ConversionScheme = [ConversionTable, ConversionTable];
 const main = () => {
     const testStrings:string[] = [
         // '',
-        // 'hello world',
-        // 'the cow jumped over the moon',
-        // 'this is a slightly longer test string',
-        // 'the quick brown fox jumped over the slow lazy dog',
+        'hello world',
+        'the cow jumped over the moon',
+        'this is a slightly longer test string',
+        'the quick brown fox jumped over the slow lazy dog',
         'mississipi sips slippery soup',
     ];
 

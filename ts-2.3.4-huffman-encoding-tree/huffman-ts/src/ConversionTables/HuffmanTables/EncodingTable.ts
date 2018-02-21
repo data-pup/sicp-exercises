@@ -19,7 +19,7 @@ export class EncodingTable implements IEncodingTable {
     }
 
     constructor(huffmanTree:IHuffmanBTreeNode) {
-        this.encodingScheme = createEncodingDictionary(huffmanTree, '1');
+        this.encodingScheme = createEncodingDictionary(huffmanTree, '');
         this.method = 'huffman';
         this.type = 'encoding';
     }
