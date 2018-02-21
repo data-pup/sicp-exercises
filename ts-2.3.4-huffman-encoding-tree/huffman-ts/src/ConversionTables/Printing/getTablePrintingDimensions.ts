@@ -4,6 +4,18 @@ import {
     ConversionTable,
 } from './printingHelperTypes';
 
+// Convenience function used to calculate the width of a header row.
+export const getHeaderRowWidth = (widths:ColumnWidthTuple) : number => {
+    return widths[0] + widths[1] + 1;
+};
+
+// Convenience function used to calculate the width of a body row.
+// NOTE: Add length + 1 to the sum, to account for the first, middle, and
+// last '|' dividers separating columns.
+export const getBodyRowWidth = (widths:ColumnWidthTuple) : number => {
+    return widths[0] + widths[1] + widths.length + 1;
+};
+
 // TODO: This function should find the column names, and the length of the
 // longest value in each of the columns for a given table.
 /* tslint:disable-next-line:no-unused-variable */

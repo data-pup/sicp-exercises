@@ -1,3 +1,6 @@
+import { NaiveEncodingTable } from './ConversionTables/NaiveTables/NaiveEncodingTable';
+import { getTableString } from './ConversionTables/Printing/printConversionTable';
+
 // Unused Imports:
 // import { PriorityQueue } from 'typescript-collections';
 // import { CharFreqRecord } from './CharFreqQueue/CharFreqRecord';
@@ -10,8 +13,6 @@
 // import { printHuffmanBTree } from './PrintingUtilities/printHuffmanBTree';
 // import { DecodingTable } from './HuffmanDecoding/DecodingTable';
 // import { EncodingTable } from './HuffmanEncoding/EncodingTable';
-// import { NaiveEncodingTable } from './NaiveEncoding/NaiveEncodingTable';
-// import { getTableString } from './PrintingConversionTables/printTables';
 
 // Temporary example function. (Disabled)
 // const temp = () => {
@@ -21,25 +22,30 @@
     // printHuffmanBTree(hbt);
 // };
 
-// const createEncodingTableAndPrint = (s:string) => {
-//     process.stdout.write(`Received input: '${s}'\n`);
-//     const net = new NaiveEncodingTable(s);
-//     const netString:string = getTableString(net);
-//     process.stdout.write(`${netString}\n`);
-//     process.stdout.write('\n\n');
-// };
+const createEncodingTableAndPrint = (s:string) => {
+    process.stdout.write(`Received input: '${s}'\n`);
+    const net = new NaiveEncodingTable(s);
+    const netString:string = getTableString(net);
+    process.stdout.write(`${netString}\n`);
+    process.stdout.write('\n\n');
+};
 
 // Define the main function.
 const main = () => {
-    // const testStrings:string[] = [
-    //     '',
-    //     'hello world',
-    //     'the cow jumped over the moon',
-    //     'this is a slightly longer test string',
-    //     'the quick brown fox jumped over the slow lazy dog',
-    // ];
+    const testStrings:string[] = [
+        '',
+        'hello world',
+        'the cow jumped over the moon',
+        'this is a slightly longer test string',
+        'the quick brown fox jumped over the slow lazy dog',
+    ];
 
-    process.stdout.write('Under Construction!');
+    testStrings.forEach(
+        (testString:string) : void => {
+            createEncodingTableAndPrint(testString);
+        },
+    );
+
 };
 
 // Invoke the main function.
