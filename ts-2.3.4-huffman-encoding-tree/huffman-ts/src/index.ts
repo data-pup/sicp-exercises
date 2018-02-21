@@ -18,7 +18,7 @@ type ConversionScheme = [ConversionTable, ConversionTable];
 // Define the main function.
 // ----------------------------------------------------------------------------
 const main = () => {
-    const testStrings:string[] = [
+    const testStrings:string[] = [ // Initialize an array of test cases.
         'hello world',
         'the cow jumped over the moon',
         'this is a slightly longer test string',
@@ -26,7 +26,7 @@ const main = () => {
         'mississipi sips slippery soup',
     ];
 
-    testStrings.forEach(
+    testStrings.forEach( // Print the encoding scheme for each test string.
         (testString:string) : void => {
             printSchemeComparison(testString);
         },
@@ -51,40 +51,18 @@ const printSchemeComparison = (s:string) : void => {
     ));
     process.stdout.write('\n\n');
 
-    // Next, encode the input string using each scheme.
-    const naiveEncodingResult:string = (naiveScheme[0] as NaiveEncodingTable)
-        .encode(s);
-    const huffmanEncodingResult:string = (huffmanScheme[0] as EncodingTable)
-        .encode(s);
+    // Next, encode the input string using each scheme, print the results.
+    const [naiveEncoding, huffmanEncoding] = getEncodingForEachScheme(
+        s, naiveScheme, huffmanScheme);
+    printEncodingForEachScheme(s, naiveEncoding, huffmanEncoding);
 
-    // Print the encoding of the input using each scheme.
-    process.stdout.write(`Received input: '${s}'\n`);
-    process.stdout.write(`Naively Encoded String: ${naiveEncodingResult}\n\n`);
-    process.stdout.write(`Huffman Encoded String: ${huffmanEncodingResult}\n\n`);
-    process.stdout.write('\n\n');
+    // Next, decode and print each scheme's encoding of the input string.
+    const [naiveResult, huffmanResult] = getDecodingForEachScheme(
+        naiveEncoding, huffmanEncoding, naiveScheme, huffmanScheme);
+    printDecodingForEachScheme(naiveResult, huffmanResult);
 
-    // Next, decode each scheme's encoding of the input string.
-    const naiveResult:string =
-        (naiveScheme[1] as NaiveDecodingTable).decode(naiveEncodingResult);
-    const huffmanResult:string =
-        (huffmanScheme[1] as DecodingTable).decode(huffmanEncodingResult);
-
-    // Print the encoding of the input using each scheme.
-    process.stdout.write(`Naive Result: ${naiveResult}\n`);
-    process.stdout.write(`Huffman Result: ${huffmanResult}\n`);
-    process.stdout.write('\n\n');
-
-    // Calculate the percent of space that huffman encoding used in comparison
-    // to the naive scheme, if both results could be successfully decoded.
-    const huffmanImprovement:string =(
-        (huffmanEncodingResult.length / naiveEncodingResult.length) * 100
-    ).toPrecision(5);
-
-    // Print the percentage improvement of the Huffman encoding scheme.
-    process.stdout.write( // Print
-        `Huffman scheme used ${huffmanImprovement}% as much space as naive encoding.\n`,
-    );
-
+    // Print the amount of space saved by the Huffman encoding scheme.
+    calculateAndPrintHuffmanImprovement(naiveEncoding, huffmanEncoding);
     process.stdout.write('\n\n\n'); // Print some newline characters.
 };
 
@@ -104,6 +82,60 @@ const getHuffmanScheme = (s:string) : ConversionScheme => {
     const het = new EncodingTable(hbt);
     const hdt = new DecodingTable(het);
     return [het, hdt];
+};
+
+// Given each encoding scheme, encode an input string and return the results.
+const getEncodingForEachScheme = (inputString:string,
+                                  naiveScheme:ConversionScheme,
+                                  huffmanScheme:ConversionScheme)
+                                 : [string, string] => {
+    const naiveEncodingResult:string = (naiveScheme[0] as NaiveEncodingTable)
+        .encode(inputString);
+    const huffmanEncodingResult:string = (huffmanScheme[0] as EncodingTable)
+        .encode(inputString);
+    return [naiveEncodingResult, huffmanEncodingResult];
+};
+
+// Print the encoding of the input using each scheme.
+const printEncodingForEachScheme = (inputString:string,
+                                    naiveEncoding:string,
+                                    huffmanEncoding:string) : void => {
+    process.stdout.write(`Received input: '${inputString}'\n`);
+    process.stdout.write(`Naively Encoded String: ${naiveEncoding}\n\n`);
+    process.stdout.write(`Huffman Encoded String: ${huffmanEncoding}\n\n`);
+    process.stdout.write('\n');
+};
+
+// Get the decoding of each scheme's encoding string.
+const getDecodingForEachScheme = (naiveEncoding:string, huffmanEncoding:string,
+                                  naiveScheme:ConversionScheme,
+                                  huffmanScheme:ConversionScheme)
+                                 : [string, string] => {
+    const naiveResult:string =
+        (naiveScheme[1] as NaiveDecodingTable).decode(naiveEncoding);
+    const huffmanResult:string =
+        (huffmanScheme[1] as DecodingTable).decode(huffmanEncoding);
+    return [naiveResult, huffmanResult];
+};
+
+// Print the encoding of the input using each scheme.
+const printDecodingForEachScheme = (naiveResult:string,
+                                    huffmanResult:string) : void => {
+    process.stdout.write(`Naive Result: ${naiveResult}\n`);
+    process.stdout.write(`Huffman Result: ${huffmanResult}\n`);
+    process.stdout.write('\n\n');
+};
+
+const calculateAndPrintHuffmanImprovement = (naiveEncoding:string,
+                                             huffmanEncoding:string) => {
+    const naiveLength:number = naiveEncoding.length;
+    const huffmanLength:number = huffmanEncoding.length;
+    const ratio:number = (huffmanLength / naiveLength);
+    const savings:number = 1 - ratio;
+    const savingsPercentage:number = savings * 100;
+    const savingsString:string = savingsPercentage.toPrecision(5);
+    process.stdout.write( // Print the amount of space saved.
+        `Huffman scheme saved ${savingsString}% of space.`);
 };
 
 // Invoke the main function.
