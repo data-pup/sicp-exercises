@@ -1,8 +1,6 @@
 import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
-import {
-    CharFreqRecord,
-} from '../../src/HuffmanBTree/CharFreqQueue/CharFreqRecord';
+import { CharFreqRecord } from './importCharFreqQueue';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestCharFreqRecord {
