@@ -8,7 +8,7 @@ import {
 } from './printingHelperTypes';
 
 // Print an encoding table or a decoding table.
-export const getTableString = (table:ConversionTable) : string => {
+export const getTableStrings = (table:ConversionTable) : string => {
 
     // Define a padding value.
     const paddingAmount = 1;
