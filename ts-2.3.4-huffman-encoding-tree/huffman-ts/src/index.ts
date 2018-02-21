@@ -139,4 +139,5 @@ const calculateAndPrintHuffmanImprovement = (naiveEncoding:string,
 };
 
 // Invoke the main function.
+// ----------------------------------------------------------------------------
 main();
